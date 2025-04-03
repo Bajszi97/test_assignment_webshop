@@ -2,21 +2,30 @@
 
 namespace App\Core;
 
-class Application {
+use App\Core\Contracts\MiddlewareServiceProvider;
+use App\Core\Contracts\RouteServiceProvider;
+use DI\Container;
+use Nyholm\Psr7Server\ServerRequestCreator;
 
-    private function __construct()
+class Application
+{
+
+    public function __construct(
+        private MiddlewareServiceProvider $middlewareDispatcher,
+        private ServerRequestCreator $serverRequestCreator,
+        private Container $container,
+    ) {
+    }
+
+    public function run(): void {
+        $request = $this->serverRequestCreator->fromGlobals();
+        $response = $this->middlewareDispatcher->dispatch($request);
+        $this->dd($response);
+    }
+
+    public static function dd(mixed ...$content): void
     {
-        $this->loadConfigs();
-        $this->createDIContainer();
-        $this->registerErrorHandler();
+        dump(...$content);
+        die();
     }
-
-    public static function create(): static {
-        return new static;
-    }
-
-    // public static function dd($content): void {
-    //     // Response::create(body: print_r($content, true))->send();
-    //     die();
-    // }
 }

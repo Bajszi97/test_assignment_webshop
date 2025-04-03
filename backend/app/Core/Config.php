@@ -2,6 +2,8 @@
 
 namespace App\Core;
 
+use Dotenv\Dotenv;
+
 class Config
 {
     private static array $config = [];
@@ -17,19 +19,10 @@ class Config
             return;
         }
 
-        static::$config = [
-            'db' => [
-                'host' => $_ENV['DB_HOST'],
-                'port' => $_ENV['DB_PORT'],
-                'database' => $_ENV['DB_DATABASE'],
-                'user' => $_ENV['DB_USER'],
-                'password' => $_ENV['DB_PASSWORD'],
-            ],
-            'errors' => [
-                'debug' => $_ENV['APP_DEBUG'],
-                'log_file' => $_ENV['LOG_FILE'],
-            ]
-        ];
+        $dotenv = Dotenv::createImmutable(__DIR__.'/../../');
+        $dotenv->load();
+
+        static::$config = require_once __DIR__."/../config.php";
 
         static::$isLoaded = True;
     }

@@ -1,8 +1,7 @@
 <?php
 
-use App\Core\Route;
 use App\Controllers\HomeController;
 
-return [
-    Route::get('/', [HomeController::class, 'index']),
-];
+return function (FastRoute\RouteCollector $r) {
+    $r->get("/", [HomeController::class, 'index']);
+};

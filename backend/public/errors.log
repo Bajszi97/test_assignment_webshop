@@ -1,0 +1,1 @@
+[2025-04-03 09:47:47] Uncaught Exception: App\Core\Exceptions\RouteNotFound - The route you are looking for not exists in /var/www/backend/app/Core/Router.php on line 41
