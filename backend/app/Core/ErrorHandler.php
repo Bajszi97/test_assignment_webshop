@@ -15,10 +15,10 @@ class ErrorHandler
     public function __construct(
         private ResponseFactoryInterface $responseFactory
     ) {
-        $this->configurate();
+        $this->configure();
     }
 
-    private function configurate(): void
+    private function configure(): void
     {
         $config = Config::get('error_handling');
         $this->debug = $config['debug'] ?? false;

@@ -3,7 +3,6 @@
 namespace App\Core;
 
 use App\Core\Contracts\MiddlewareServiceProvider;
-use App\Core\Contracts\RouteServiceProvider;
 use DI\Container;
 use Nyholm\Psr7Server\ServerRequestCreator;
 
