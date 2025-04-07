@@ -2,24 +2,16 @@
 
 namespace App\GraphQL\Types;
 
+use App\GraphQL\QueryRegistry;
 use GraphQL\Type\Definition\ObjectType;
-use GraphQL\Type\Definition\Type;
 
 final class QueryType extends ObjectType
 {
-    public function __construct()
+    public function __construct(QueryRegistry $registry)
     {
         parent::__construct([
             'fields' => [
-                'echo' => [
-                    'type' => Type::string(),
-                    'args' => [
-                        'message' => [
-                            'type' => Type::nonNull(Type::string()),
-                        ],
-                    ],
-                    'resolve' => fn($rootValue, array $args): string => $args['message'],
-                ],
+                'allCategories' => $registry->get('allCategories')
             ],
         ]);
     }
