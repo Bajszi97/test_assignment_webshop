@@ -6,6 +6,7 @@ use App\Core\Exceptions\HTTPException;
 use Exception;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
+use Throwable;
 
 class ErrorHandler
 {
@@ -25,7 +26,7 @@ class ErrorHandler
         $this->logFile = $config['log_file'] ?? 'errors.log';
     }
 
-    public function handle(Exception $exception): ResponseInterface
+    public function handle(Throwable $exception): ResponseInterface
     {
 
         $message = "Uncaught Exception: " . get_class($exception) . " - " . $exception->getMessage() .
