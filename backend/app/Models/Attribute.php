@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Repositories\CategoryRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -11,9 +10,9 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 
-#[Entity(repositoryClass: CategoryRepository::class)]
-#[Table(name: 'categories')]
-class Category
+#[Entity()]
+#[Table(name: 'attributes')]
+class Attribute
 {
     #[Id]
     #[Column()]
@@ -23,19 +22,14 @@ class Category
     #[Column()]
     private string $name;
     
-    #[OneToMany(targetEntity: Product::class, mappedBy: 'category')]
-    private Collection $products;
+    #[Column()]
+    private string $type;
 
+    #[OneToMany(targetEntity: AttributeValue::class, mappedBy: 'attribute')]
+    private Collection $values;
 
     public function toName() : string {
         return $this->name;
-    }
-
-    public static function createFromName(string $name): static
-    {   
-        $new = new Category;
-        $new->name = $name;
-        return $new;
     }
 }
 
