@@ -10,7 +10,8 @@
         "doctrine/dbal": "^4.2",
         "doctrine/orm": "^3.3",
         "symfony/cache": "^7.2",
-        "jms/serializer": "^3.32"
+        "jms/serializer": "^3.32",
+        "webonyx/graphql-php": "^15.20"
     },
     "autoload": {
         "psr-4": {
