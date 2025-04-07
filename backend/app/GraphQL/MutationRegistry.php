@@ -24,7 +24,7 @@ class MutationRegistry
     {
         $key = strtolower($name);
 
-        if (!isset($this->types[$key])) {
+        if (!isset($this->mutations[$key])) {
             $class = self::BASE_NAMESPACE . '\\' . ucfirst($name);
 
             if (!class_exists($class)) {

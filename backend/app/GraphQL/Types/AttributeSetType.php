@@ -5,7 +5,7 @@ namespace App\GraphQL\Types;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 
-final class CategoryType extends ObjectType
+final class AttributeSetType extends ObjectType
 {
     public function __construct()
     {
@@ -13,6 +13,7 @@ final class CategoryType extends ObjectType
             'fields' => [
                 'id' => Type::int(),
                 'name' => Type::string(),
+                'type' => Type::string(),
             ],
         ]);
     }

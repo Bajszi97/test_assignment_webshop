@@ -2,14 +2,15 @@
 
 namespace App\Repositories;
 
+use App\Models\AttributeSet;
 use App\Models\Category;
 use Doctrine\ORM\EntityRepository;
 
-class CategoryRepository extends EntityRepository 
+class AttributeSetRepository extends EntityRepository 
 {
-    public function createAndSave(array $attributes): Category
+    public function createAndSave(array $attributes): AttributeSet
     {
-        $category = Category::create($attributes);
+        $category = AttributeSet::create($attributes);
         $em = $this->getEntityManager();
         $em->persist($category);
         $em->flush();

@@ -2,6 +2,7 @@
 
 namespace App\GraphQL;
 
+use App\Core\Application;
 use DI\Container;
 use Exception;
 
@@ -23,7 +24,7 @@ class QueryRegistry
     {
         $key = strtolower($name);
 
-        if (!isset($this->types[$key])) {
+        if (!isset($this->queries[$key])) {
             $class = self::BASE_NAMESPACE . '\\' . ucfirst($name);
 
             if (!class_exists($class)) {

@@ -9,7 +9,9 @@ use App\Core\MiddlewareDispatcher;
 use App\Core\Middlewares\ErrorHandlerMiddleware;
 use App\Core\ResponseEmitter;
 use App\Core\Router;
+use App\Models\AttributeSet;
 use App\Models\Category;
+use App\Repositories\AttributeSetRepository;
 use App\Repositories\CategoryRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -56,6 +58,7 @@ return [
         
         // Registering repos
         CategoryRepository::class => factory(doctrineRepository(Category::class)),
+        AttributeSetRepository::class => factory(doctrineRepository(AttributeSet::class)),
     ],
 
     /**

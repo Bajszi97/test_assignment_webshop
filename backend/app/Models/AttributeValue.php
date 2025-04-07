@@ -25,9 +25,10 @@ class AttributeValue
     #[Column(name: 'display_value')]
     private string $displayValue;
 
-    #[ManyToOne(targetEntity: Attribute::class, inversedBy: 'values')]
-    private Attribute $attribute;
-
+    #[ManyToOne(targetEntity: AttributeSet::class, inversedBy: 'values')]
+    #[JoinColumn(name: 'attribute_set_id')]
+    private AttributeSet $attributeSet;
+    
     #[ManyToOne(targetEntity: ProductVariant::class, inversedBy: 'attributes')]
     #[JoinColumn(name: 'product_variant_id')]
     private ProductVariant $productVariant;

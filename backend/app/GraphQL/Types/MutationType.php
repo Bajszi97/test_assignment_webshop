@@ -12,6 +12,7 @@ final class MutationType extends ObjectType
         parent::__construct([
             'fields' => [
                 'createCategory' => $registry->get('createCategory'),
+                'createAttributeSet' => $registry->get('createAttributeSet'),
             ],
         ]);
     }

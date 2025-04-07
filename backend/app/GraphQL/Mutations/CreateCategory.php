@@ -27,7 +27,7 @@ class CreateCategory implements FieldDefinition
                     'description' => 'The name of the category.',
                 ],
             ],
-            'resolve' => fn ($rootValue, array $args): array => $this->repo->createFromName($args['name'])->toArray(),
+            'resolve' => fn ($rootValue, array $args): array => $this->repo->createAndSave($args)->toArray(),
         ];
     }
 }
