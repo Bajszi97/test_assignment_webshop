@@ -91,13 +91,28 @@ services:
         - GID=${GID:-1000}
     working_dir: /var/www/backend
     volumes:
-        - ./backend:/var/www/backend
+      - ./backend:/var/www/backend
     depends_on:
-        - php
+      - php
     entrypoint: [ 'composer' ]
     networks:
-        - app
-    
+      - app
+
+  doctrine:
+    build:
+      context: ./docker/php
+      dockerfile: php.dockerfile
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+    working_dir: /var/www/backend/app/
+    volumes:
+      - ./backend:/var/www/backend
+    entrypoint: [ "php", "doctrine-cli.php" ]
+    depends_on:
+      - mysql
+    networks:
+      - app
 
   phpmyadmin:
     image: 'phpmyadmin:latest'
@@ -112,7 +127,6 @@ services:
       PMA_PORT: 3306
       UPLOAD_LIMIT: 300M
 
-      
 networks:
   app:
     driver: bridge

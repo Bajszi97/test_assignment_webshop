@@ -2,11 +2,19 @@
 
 use App\Core\Contracts\ErrorHandlingProvider;
 use App\Core\Contracts\MiddlewareServiceProvider;
+use App\Core\Contracts\ResponseEmitterInterface;
 use App\Core\Contracts\RouteServiceProvider;
 use App\Core\ErrorHandler;
 use App\Core\MiddlewareDispatcher;
 use App\Core\Middlewares\ErrorHandlerMiddleware;
+use App\Core\ResponseEmitter;
 use App\Core\Router;
+use App\Models\Category;
+use App\Repositories\CategoryRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+use JMS\Serializer\SerializerBuilder;
+use JMS\Serializer\SerializerInterface;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7Server\ServerRequestCreator;
 use Nyholm\Psr7Server\ServerRequestCreatorInterface;
@@ -17,20 +25,9 @@ use Psr\Http\Message\UploadedFileFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
 use function DI\autowire;
 use function DI\create;
+use function DI\factory;
 
 return [
-
-    /**
-     * The Database connection configurations, they should be set in the .env file.
-     */
-    'db' => [
-        'host' => $_ENV['DB_HOST'],
-        'port' => $_ENV['DB_PORT'],
-        'database' => $_ENV['DB_DATABASE'],
-        'user' => $_ENV['DB_USER'],
-        'password' => $_ENV['DB_PASSWORD'],
-    ],
-
     /**
      * The error handling configurations.
      */
@@ -53,6 +50,12 @@ return [
         UploadedFileFactoryInterface::class => create(Psr17Factory::class),
         StreamFactoryInterface::class => create(Psr17Factory::class),
         ResponseFactoryInterface::class => create(Psr17Factory::class),
+        ResponseEmitterInterface::class => create(ResponseEmitter::class),
+        EntityManagerInterface::class => factory(require('doctrine.php')),
+        SerializerInterface::class => factory(fn () => SerializerBuilder::create()->build()),
+        
+        // Registering repos
+        CategoryRepository::class => factory(doctrineRepository(Category::class)),
     ],
 
     /**
@@ -62,3 +65,9 @@ return [
         ErrorHandlerMiddleware::class,
     ]
 ];
+
+function doctrineRepository(string $entityClass): \Closure {
+    return function (EntityManagerInterface $em) use ($entityClass) {
+        return $em->getRepository($entityClass);
+    };
+}
