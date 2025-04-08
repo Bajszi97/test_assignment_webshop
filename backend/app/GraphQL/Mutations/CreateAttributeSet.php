@@ -21,6 +21,10 @@ class CreateAttributeSet implements FieldDefinition
         return [
             'type' => $this->registry->get('attributeSet'),
             'args' => [
+                'slug' => [
+                    'type' => Type::nonNull(Type::string()),
+                    'description' => 'The slug referring the attribute group.',
+                ],
                 'name' => [
                     'type' => Type::nonNull(Type::string()),
                     'description' => 'The name of the attribute group.',

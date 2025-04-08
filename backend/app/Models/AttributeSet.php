@@ -28,6 +28,9 @@ class AttributeSet
     private int $id;
     
     #[Column()]
+    private string $slug;
+    
+    #[Column()]
     private string $name;
     
     #[Column()]
@@ -45,6 +48,7 @@ class AttributeSet
     {
         return [
             'id',
+            'slug',
             'name',
             'type',
         ];
@@ -53,6 +57,7 @@ class AttributeSet
     private function getFillable(): array
     {
         return [
+            'slug',
             'name',
             'type',
         ];

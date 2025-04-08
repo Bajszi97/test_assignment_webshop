@@ -27,6 +27,9 @@ class Category
     private int $id;
 
     #[Column()]
+    private string $slug;
+
+    #[Column()]
     private string $name;
 
     #[OneToMany(targetEntity: Product::class, mappedBy: 'category')]
@@ -41,7 +44,7 @@ class Category
     private function getVisible(): array
     {
         return [
-            'id',
+            'slug',
             'name',
         ];
     }
@@ -49,6 +52,7 @@ class Category
     private function getFillable(): array
     {
         return [
+            'slug',
             'name',
         ];
     }

@@ -43,9 +43,9 @@ class CreateProduct implements FieldDefinition
                     'type' => Type::nonNull(Type::string()),
                     'description' => "The brand of the product.",
                 ],
-                'categoryId' => [
-                    'type' => Type::nonNull(type: Type::int()),
-                    'description' => "The id of the product's category.",
+                'category' => [
+                    'type' => Type::nonNull(Type::string()),
+                    'description' => "The slug referring the product's category.",
                 ],
                 'price' => [
                     'type' => new InputObjectType([

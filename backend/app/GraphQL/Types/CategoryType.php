@@ -11,7 +11,7 @@ final class CategoryType extends ObjectType
     {
         parent::__construct([
             'fields' => [
-                'id' => Type::int(),
+                'slug' => Type::string(),
                 'name' => Type::string(),
             ],
         ]);

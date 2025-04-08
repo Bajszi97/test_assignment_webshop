@@ -2,8 +2,6 @@
 
 namespace App\Models\Traits;
 
-use App\Core\Application;
-
 trait MassAssignedCreate {
 
     /**

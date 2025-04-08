@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Core\Application;
 use App\Models\Category;
 use App\Models\Currency;
 use App\Models\Image;
@@ -17,7 +16,7 @@ class ProductRepository extends EntityRepository
         $new = Product::create($attributes);
         $em = $this->getEntityManager();
         
-        $category = $em->find(Category::class, $attributes['categoryId']);
+        $category = $em->getRepository(Category::class)->findOneBySlug($attributes['category']);
         $new->setCategory($category);
         $category->addProduct($new);
 

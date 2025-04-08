@@ -22,6 +22,10 @@ class CreateCategory implements FieldDefinition
         return [
             'type' => $this->registry->get('category'),
             'args' => [
+                'slug' => [
+                    'type' => Type::nonNull(Type::string()),
+                    'description' => 'The slug referring to the category.',
+                ],
                 'name' => [
                     'type' => Type::nonNull(Type::string()),
                     'description' => 'The name of the category.',
