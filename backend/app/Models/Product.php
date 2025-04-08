@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Traits\ArrayableEntity;
+use App\Models\Traits\ToRapidDTO;
 use App\Models\Traits\MassAssignedCreate;
 use App\Repositories\ProductRepository;
 use Doctrine\Common\Collections\Collection;
@@ -21,7 +21,7 @@ class Product
 {
 
     use MassAssignedCreate;
-    use ArrayableEntity;
+    use ToRapidDTO;
 
     #[Id]
     #[Column()]
@@ -50,7 +50,7 @@ class Product
     private Collection $variants;
 
     #[OneToOne(mappedBy: 'product')]
-    private Price $price;
+    private ?Price $price;
 
     #[OneToMany(targetEntity: Image::class, mappedBy: 'product')]
     private Collection $images;

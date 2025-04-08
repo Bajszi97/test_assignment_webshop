@@ -20,7 +20,7 @@ class AllAttributeSets implements FieldDefinition
     {
         return [
             'type' => Type::listOf($this->registry->get('attributeSet')),
-            'resolve' => fn(): array => array_map(fn ($e) => $e->toArray(),$this->repo->findAll()),
+            'resolve' => fn(): array => array_map(fn ($e): object => $e->toDTO(),$this->repo->findAll()),
         ];
     }
 }

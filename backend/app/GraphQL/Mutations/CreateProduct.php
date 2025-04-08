@@ -47,7 +47,7 @@ class CreateProduct implements FieldDefinition
                     'description' => "The id of the product's category.",
                 ],
             ],
-            'resolve' => fn($rootValue, array $args): array => $this->repo->createAndSave($args)->toArray(),
+            'resolve' => fn($rootValue, array $args): object => $this->repo->createAndSave($args)->toDTO(),
         ];
     }
 }

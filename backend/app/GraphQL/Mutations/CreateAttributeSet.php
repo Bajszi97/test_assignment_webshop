@@ -30,7 +30,7 @@ class CreateAttributeSet implements FieldDefinition
                     'description' => 'The type of the attribute group.',
                 ],
             ],
-            'resolve' => fn($rootValue, array $args): array => $this->repo->createAndSave($args)->toArray(),
+            'resolve' => fn($rootValue, array $args): object => $this->repo->createAndSave($args)->toDTO(),
         ];
     }
 }

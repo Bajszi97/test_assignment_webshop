@@ -20,7 +20,7 @@ final class ProductType extends ObjectType
                 'brand' => Type::string(),
                 'category' => [
                     'type' => $registry->get('category'),
-                    'resolve' => fn (array $productArray): array => $productArray['category']->toArray()
+                    'resolve' => fn (object $product): object => $product->category->toDTO()
                 ],
             ],
         ]);

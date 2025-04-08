@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Traits\ArrayableEntity;
+use App\Models\Traits\ToRapidDTO;
 use App\Models\Traits\MassAssignedCreate;
 use App\Repositories\CurrencyRepository;
 use Doctrine\Common\Collections\Collection;
@@ -19,7 +19,7 @@ class Currency
 {
 
     use MassAssignedCreate;
-    use ArrayableEntity;
+    use ToRapidDTO;
 
     #[Id]
     #[Column()]

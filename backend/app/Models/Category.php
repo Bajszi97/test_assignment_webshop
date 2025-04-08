@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Traits\ArrayableEntity;
+use App\Models\Traits\ToRapidDTO;
 use App\Models\Traits\MassAssignedCreate;
 use App\Repositories\CategoryRepository;
 use Doctrine\Common\Collections\Collection;
@@ -17,7 +17,7 @@ use Doctrine\ORM\Mapping\Table;
 #[Table(name: 'categories')]
 class Category
 {
-    use ArrayableEntity;
+    use ToRapidDTO;
     use MassAssignedCreate;
 
     #[Id]
