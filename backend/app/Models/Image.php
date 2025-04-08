@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Traits\MassAssignedCreate;
+use App\Models\Traits\ToRapidDTO;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
@@ -13,6 +15,10 @@ use Doctrine\ORM\Mapping\Table;
 #[Table(name: 'images')]
 class Image
 {
+
+    use MassAssignedCreate;
+    use ToRapidDTO;
+
     #[Id]
     #[Column()]
     #[GeneratedValue()]
@@ -23,5 +29,25 @@ class Image
 
     #[ManyToOne(targetEntity: Product::class, inversedBy: 'images')]
     private Product $product;
+
+    private function getVisible(): array
+    {
+        return [
+            'url'
+        ];
+    }
+
+    private function getFillable(): array
+    {
+        return [
+            'url',
+        ];
+    }
+
+    public function setProduct(Product $product): self
+    {
+        $this->product = $product;
+        return $this;
+    }
 }
 

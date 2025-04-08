@@ -44,7 +44,7 @@ class CreateProduct implements FieldDefinition
                     'description' => "The brand of the product.",
                 ],
                 'categoryId' => [
-                    'type' => Type::nonNull(Type::int()),
+                    'type' => Type::nonNull(type: Type::int()),
                     'description' => "The id of the product's category.",
                 ],
                 'price' => [
@@ -62,6 +62,18 @@ class CreateProduct implements FieldDefinition
                         ]
                     ]),
                     'description' => "The product's price.",
+                ],
+                'images' => [
+                    'type' => Type::listOf(new InputObjectType([
+                        'name' => 'ImageInput',
+                        'fields' => [
+                            'url' => [
+                                'type' => Type::nonNull(Type::string()),
+                                'description' => "The URL of the image",
+                            ],
+                        ]
+                    ])),
+                    'description' => "The product's images.",
                 ],
             ],
             'resolve' => fn($rootValue, array $args): object => $this->repo->createAndSave($args)->toDTO(),

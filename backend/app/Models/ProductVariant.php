@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -28,6 +29,11 @@ class ProductVariant
 
     #[OneToMany(targetEntity: OrderItem::class, mappedBy: 'product')]
     private Collection $orderItems;
+
+    public function __construct() {
+        $this->attributes = new ArrayCollection();
+        $this->orderItems = new ArrayCollection();
+    }
 
 }
 

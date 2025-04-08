@@ -20,11 +20,15 @@ final class ProductType extends ObjectType
                 'brand' => Type::string(),
                 'category' => [
                     'type' => $registry->get('category'),
-                    'resolve' => fn (object $product): object => $product->category->toDTO()
+                    'resolve' => fn(object $product): object => $product->category->toDTO()
                 ],
                 'price' => [
                     'type' => $registry->get('price'),
-                    'resolve' => fn (object $product): ?object => $product->price?->toDTO()
+                    'resolve' => fn(object $product): ?object => $product->price?->toDTO()
+                ],
+                'images' => [
+                    'type' => Type::listOf($registry->get('image')),
+                    'resolve' => fn(object $product): object => $product->images->map(fn($i): object => $i->toDTO())
                 ],
             ],
         ]);

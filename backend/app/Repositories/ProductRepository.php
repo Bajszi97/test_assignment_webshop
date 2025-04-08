@@ -2,8 +2,10 @@
 
 namespace App\Repositories;
 
+use App\Core\Application;
 use App\Models\Category;
 use App\Models\Currency;
+use App\Models\Image;
 use App\Models\Price;
 use App\Models\Product;
 use Doctrine\ORM\EntityRepository;
@@ -19,7 +21,15 @@ class ProductRepository extends EntityRepository
         $new->setCategory($category);
         $category->addProduct($new);
 
-        $new = $this->createPriceForProduct($attributes['price'], $new);
+        if(isset($attributes['price'])){
+            $new = $this->createPriceForProduct($attributes['price'], $new);
+        }
+        
+        if(isset($attributes['images'])){
+            foreach ($attributes['images'] as $imageAttributes) {
+                $new = $this->createImageForProduct($imageAttributes, $new);
+            }
+        }
 
         $em->persist($new);
         $em->flush();
@@ -38,6 +48,18 @@ class ProductRepository extends EntityRepository
         $price->setProduct($product);
         $product->setPrice($price);
         $em->persist($price);
+
+        return $product;
+    }
+
+    public function createImageForProduct(array $attributes, Product $product): Product
+    {
+        $image = Image::create(['url' => $attributes['url']]);
+
+        $em = $this->getEntityManager();
+        $image->setProduct($product);
+        $product->addImage($image);
+        $em->persist($image);
 
         return $product;
     }

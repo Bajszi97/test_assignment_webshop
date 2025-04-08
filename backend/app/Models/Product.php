@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Traits\ToRapidDTO;
 use App\Models\Traits\MassAssignedCreate;
 use App\Repositories\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -55,6 +56,12 @@ class Product
     #[OneToMany(targetEntity: Image::class, mappedBy: 'product')]
     private Collection $images;
 
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+        $this->variants = new ArrayCollection();
+    }
+
     private function getVisible(): array
     {
         return [
@@ -66,6 +73,7 @@ class Product
             'brand',
             'category',
             'price',
+            'images',
         ];
     }
 
@@ -95,6 +103,12 @@ class Product
     public function setPrice(Price $price): self
     {
         $this->price = $price;
+        return $this;
+    }
+
+    public function addImage(Image $image): self
+    {
+        $this->images->add($image);
         return $this;
     }
 }

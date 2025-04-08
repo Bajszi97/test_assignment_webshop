@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Traits\ToRapidDTO;
 use App\Models\Traits\MassAssignedCreate;
 use App\Repositories\CategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -30,6 +31,12 @@ class Category
 
     #[OneToMany(targetEntity: Product::class, mappedBy: 'category')]
     private Collection $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
+
 
     private function getVisible(): array
     {

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Traits\ToRapidDTO;
 use App\Models\Traits\MassAssignedCreate;
 use App\Repositories\AttributeSetRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -34,6 +35,11 @@ class AttributeSet
 
     #[OneToMany(targetEntity: AttributeValue::class, mappedBy: 'attributeSet')]
     private Collection $values;
+
+    public function __construct()
+    {
+        $this->values = new ArrayCollection();
+    }
 
     private function getVisible(): array
     {

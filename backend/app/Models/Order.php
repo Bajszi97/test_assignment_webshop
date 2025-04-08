@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -25,5 +26,9 @@ class Order
 
     #[OneToMany(targetEntity: OrderItem::class, mappedBy: 'order')]
     private Collection $items;
+
+    public function __construct() {
+        $this->items = new ArrayCollection();
+    }
 }
 
