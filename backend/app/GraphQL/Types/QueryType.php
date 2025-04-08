@@ -14,6 +14,7 @@ final class QueryType extends ObjectType
                 'allCategories' => $registry->get('allCategories'),
                 'allAttributeSets' => $registry->get('allAttributeSets'),
                 'allCurrencies' => $registry->get('allCurrencies'),
+                'allProducts' => $registry->get('allProducts'),
             ],
         ]);
     }

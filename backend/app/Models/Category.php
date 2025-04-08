@@ -50,5 +50,11 @@ class Category
     {
         return $this->name;
     }
+
+    public function addProduct(Product $product): self
+    {
+        $this->products->add($product);
+        return $this;
+    }
 }
 

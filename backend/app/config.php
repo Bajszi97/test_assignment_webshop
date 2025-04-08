@@ -12,9 +12,11 @@ use App\Core\Router;
 use App\Models\AttributeSet;
 use App\Models\Category;
 use App\Models\Currency;
+use App\Models\Product;
 use App\Repositories\AttributeSetRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\CurrencyRepository;
+use App\Repositories\ProductRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use JMS\Serializer\SerializerBuilder;
@@ -62,6 +64,7 @@ return [
         CategoryRepository::class => factory(doctrineRepository(Category::class)),
         AttributeSetRepository::class => factory(doctrineRepository(AttributeSet::class)),
         CurrencyRepository::class => factory(doctrineRepository(Currency::class)),
+        ProductRepository::class => factory(doctrineRepository(Product::class)),
     ],
 
     /**

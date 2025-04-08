@@ -14,6 +14,7 @@ final class MutationType extends ObjectType
                 'createCategory' => $registry->get('createCategory'),
                 'createAttributeSet' => $registry->get('createAttributeSet'),
                 'createCurrency' => $registry->get('createCurrency'),
+                'createProduct' => $registry->get('createProduct'),
             ],
         ]);
     }
