@@ -13,6 +13,7 @@ final class MutationType extends ObjectType
             'fields' => [
                 'createCategory' => $registry->get('createCategory'),
                 'createAttributeSet' => $registry->get('createAttributeSet'),
+                'createCurrency' => $registry->get('createCurrency'),
             ],
         ]);
     }

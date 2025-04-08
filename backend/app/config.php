@@ -11,8 +11,10 @@ use App\Core\ResponseEmitter;
 use App\Core\Router;
 use App\Models\AttributeSet;
 use App\Models\Category;
+use App\Models\Currency;
 use App\Repositories\AttributeSetRepository;
 use App\Repositories\CategoryRepository;
+use App\Repositories\CurrencyRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use JMS\Serializer\SerializerBuilder;
@@ -59,6 +61,7 @@ return [
         // Registering repos
         CategoryRepository::class => factory(doctrineRepository(Category::class)),
         AttributeSetRepository::class => factory(doctrineRepository(AttributeSet::class)),
+        CurrencyRepository::class => factory(doctrineRepository(Currency::class)),
     ],
 
     /**

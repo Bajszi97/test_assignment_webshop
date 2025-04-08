@@ -13,6 +13,7 @@ final class QueryType extends ObjectType
             'fields' => [
                 'allCategories' => $registry->get('allCategories'),
                 'allAttributeSets' => $registry->get('allAttributeSets'),
+                'allCurrencies' => $registry->get('allCurrencies'),
             ],
         ]);
     }
