@@ -22,6 +22,10 @@ final class ProductType extends ObjectType
                     'type' => $registry->get('category'),
                     'resolve' => fn (object $product): object => $product->category->toDTO()
                 ],
+                'price' => [
+                    'type' => $registry->get('price'),
+                    'resolve' => fn (object $product): ?object => $product->price?->toDTO()
+                ],
             ],
         ]);
     }

@@ -11,7 +11,6 @@ final class CurrencyType extends ObjectType
     {
         parent::__construct([
             'fields' => [
-                'id' => Type::int(),
                 'label' => Type::string(),
                 'symbol' => Type::string(),
             ],

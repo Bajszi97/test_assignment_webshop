@@ -49,7 +49,8 @@ class Currency
         ];
     }
 
-    #[OneToMany(targetEntity: Price::class, mappedBy: 'currency')]
-    private Collection $prices;
+    // OBSOLETE
+    // #[OneToMany(targetEntity: Price::class, mappedBy: 'currency')]
+    // private Collection $prices;
 }
 

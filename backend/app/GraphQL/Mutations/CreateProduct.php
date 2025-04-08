@@ -6,6 +6,7 @@ use App\GraphQL\FieldDefinition;
 use App\GraphQL\TypeRegistry;
 use App\Repositories\CurrencyRepository;
 use App\Repositories\ProductRepository;
+use GraphQL\Type\Definition\InputObjectType;
 use GraphQL\Type\Definition\Type;
 
 class CreateProduct implements FieldDefinition
@@ -45,6 +46,22 @@ class CreateProduct implements FieldDefinition
                 'categoryId' => [
                     'type' => Type::nonNull(Type::int()),
                     'description' => "The id of the product's category.",
+                ],
+                'price' => [
+                    'type' => new InputObjectType([
+                        'name' => 'PriceInput',
+                        'fields' => [
+                            'amount' => [
+                                'type' => Type::nonNull(Type::int()),
+                                'description' => "The amount on the price tag",
+                            ],
+                            'currency' => [
+                                'type' => Type::nonNull(Type::string()),
+                                'description' => "The ISO 4217 currency code (e.g. EUR, USD)",
+                            ],
+                        ]
+                    ]),
+                    'description' => "The product's price.",
                 ],
             ],
             'resolve' => fn($rootValue, array $args): object => $this->repo->createAndSave($args)->toDTO(),

@@ -65,6 +65,7 @@ class Product
             'description',
             'brand',
             'category',
+            'price',
         ];
     }
 
@@ -88,6 +89,12 @@ class Product
     public function setCategory(Category $category): self
     {
         $this->category = $category;
+        return $this;
+    }
+
+    public function setPrice(Price $price): self
+    {
+        $this->price = $price;
         return $this;
     }
 }
