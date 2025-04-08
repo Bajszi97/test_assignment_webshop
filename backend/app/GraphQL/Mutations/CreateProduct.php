@@ -17,7 +17,8 @@ class CreateProduct implements FieldDefinition
         protected ProductRepository $repo
     ) {
     }
-
+    
+    // TODO: refractor InputTypes
     public function getDefinition(): array
     {
         return [
@@ -74,6 +75,31 @@ class CreateProduct implements FieldDefinition
                         ]
                     ])),
                     'description' => "The product's images.",
+                ],
+                'variants' => [
+                    'type' => Type::listOf(new InputObjectType([
+                        'name' => 'ProductVariantInput',
+                        'fields' => [
+                            'attributes' => Type::listOf(new InputObjectType([
+                                'name' => 'ProductAttributeValueInput',
+                                'fields' => [
+                                    'attributeSet' => [
+                                        'type' => Type::nonNull(Type::string()),
+                                        'description' => "The attribute set to which the attribute value belongs.",
+                                    ],
+                                    'value' => [
+                                        'type' => Type::nonNull(Type::string()),
+                                        'description' => "The attribute's value.",
+                                    ],
+                                    'displayValue' => [
+                                        'type' => Type::nonNull(Type::string()),
+                                        'description' => "The attribute's value to be displayed.",
+                                    ],
+                                ]
+                            ])),
+                        ]
+                    ])),
+                    'description' => "The different product variants.",
                 ],
             ],
             'resolve' => fn($rootValue, array $args): object => $this->repo->createAndSave($args)->toDTO(),

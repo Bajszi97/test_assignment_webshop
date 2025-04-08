@@ -47,7 +47,6 @@ class AttributeSet
     private function getVisible(): array
     {
         return [
-            'id',
             'slug',
             'name',
             'type',
@@ -66,5 +65,12 @@ class AttributeSet
     public function toName() : string {
         return $this->name;
     }
+
+    public function addValue(AttributeValue $attribute): self
+    {
+        $this->values->add($attribute);
+        return $this;
+    }
+
 }
 

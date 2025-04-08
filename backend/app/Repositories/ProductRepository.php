@@ -2,11 +2,15 @@
 
 namespace App\Repositories;
 
+use App\Core\Application;
+use App\Models\AttributeSet;
+use App\Models\AttributeValue;
 use App\Models\Category;
 use App\Models\Currency;
 use App\Models\Image;
 use App\Models\Price;
 use App\Models\Product;
+use App\Models\ProductVariant;
 use Doctrine\ORM\EntityRepository;
 
 class ProductRepository extends EntityRepository 
@@ -27,6 +31,12 @@ class ProductRepository extends EntityRepository
         if(isset($attributes['images'])){
             foreach ($attributes['images'] as $imageAttributes) {
                 $new = $this->createImageForProduct($imageAttributes, $new);
+            }
+        }
+
+        if(isset($attributes['variants'])){
+            foreach ($attributes['variants'] as $variantAttributes) {
+                $new = $this->createVariantForProduct($variantAttributes, $new);
             }
         }
 
@@ -61,5 +71,42 @@ class ProductRepository extends EntityRepository
         $em->persist($image);
 
         return $product;
+    }
+
+    public function createVariantForProduct(array $attributes, Product $product): Product
+    {
+        $variant = ProductVariant::create([]);
+
+        $em = $this->getEntityManager();
+
+        if(isset($attributes['attributes'])){
+            foreach ($attributes['attributes'] as $attrAttributes) {
+                $variant = $this->createAttributeValueForVariant($attrAttributes, $variant);
+            }
+        }
+
+        $variant->setProduct($product);
+        $product->addVariant($variant);
+
+
+        $em->persist($variant);
+
+        return $product;
+    }
+
+
+    public function createAttributeValueForVariant(array $attributes, ProductVariant $variant): ProductVariant
+    {
+        $attributeValue = AttributeValue::create($attributes);
+        
+        $em = $this->getEntityManager();
+        $attributeSet = $em->getRepository(AttributeSet::class)->findOneBySlug($attributes['attributeSet']);
+        $attributeValue->setAttributeSet($attributeSet);
+        $attributeSet->addValue($attributeValue);
+
+        $attributeValue->setProductVariant($variant);
+        $variant->addAttribute($attributeValue);
+        $em->persist($attributeValue);
+        return $variant;
     }
 }

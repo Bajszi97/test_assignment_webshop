@@ -3,10 +3,13 @@
 namespace App\Repositories;
 
 use App\Models\AttributeSet;
+use App\Repositories\Trait\FindOneBySlug;
 use Doctrine\ORM\EntityRepository;
 
 class AttributeSetRepository extends EntityRepository 
-{
+{   
+    use FindOneBySlug;
+    
     public function createAndSave(array $attributes): AttributeSet
     {
         $new = AttributeSet::create($attributes);

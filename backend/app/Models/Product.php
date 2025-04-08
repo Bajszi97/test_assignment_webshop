@@ -74,6 +74,7 @@ class Product
             'category',
             'price',
             'images',
+            'variants'
         ];
     }
 
@@ -109,6 +110,12 @@ class Product
     public function addImage(Image $image): self
     {
         $this->images->add($image);
+        return $this;
+    }
+
+    public function addVariant(ProductVariant $variant): self
+    {
+        $this->variants->add($variant);
         return $this;
     }
 }
