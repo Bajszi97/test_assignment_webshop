@@ -9,10 +9,10 @@ class CategoryRepository extends EntityRepository
 {
     public function createAndSave(array $attributes): Category
     {
-        $category = Category::create($attributes);
+        $new = Category::create($attributes);
         $em = $this->getEntityManager();
-        $em->persist($category);
+        $em->persist($new);
         $em->flush();
-        return $category;
+        return $new;
     }
 }

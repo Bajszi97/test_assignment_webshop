@@ -9,10 +9,10 @@ class CurrencyRepository extends EntityRepository
 {
     public function createAndSave(array $attributes): Currency
     {
-        $category = Currency::create($attributes);
+        $new = Currency::create($attributes);
         $em = $this->getEntityManager();
-        $em->persist($category);
+        $em->persist($new);
         $em->flush();
-        return $category;
+        return $new;
     }
 }
