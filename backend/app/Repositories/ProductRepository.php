@@ -34,6 +34,8 @@ class ProductRepository extends EntityRepository
             }
         }
 
+        // TODO: default variant if there is no specified product variant
+        // remove the default if a product variant is added later on?
         if(isset($attributes['variants'])){
             foreach ($attributes['variants'] as $variantAttributes) {
                 $new = $this->createVariantForProduct($variantAttributes, $new);
@@ -48,7 +50,7 @@ class ProductRepository extends EntityRepository
 
     public function createPriceForProduct(array $attributes, Product $product): Product
     {
-        $price = Price::create(['amount' => $attributes['amount']]);
+        $price = Price::create(['amount' => (int ) (100 * $attributes['amount'])]);
 
         $em = $this->getEntityManager();
         $currency = $em->getRepository(Currency::class)->findOneBy(['label' => $attributes['currency']]);

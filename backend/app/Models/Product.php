@@ -38,7 +38,7 @@ class Product
     #[Column(name:'in_stock')]
     private bool $inStock;
 
-    #[Column()]
+    #[Column(type: "text")]
     private string $description;
 
     #[Column()]

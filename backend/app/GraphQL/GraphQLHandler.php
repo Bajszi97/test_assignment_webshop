@@ -19,10 +19,12 @@ class GraphQLHandler
     }
 
     public function handle(ServerRequestInterface $request): array
-    {
+    {   
+        [$source, $variables] = $this->getQuery($request);
         return GraphQL::executeQuery(
-            $this->getSchema(),
-            $this->getQuery($request),
+            schema: $this->getSchema(),
+            source: $source,
+            variableValues: $variables
         )->toArray($this->debug);
     }
 
@@ -35,8 +37,10 @@ class GraphQLHandler
         return new Schema($config);
     }
 
-    private function getQuery(ServerRequestInterface $request): string
-    {   
-        return $request->getBody()->getContents();
+    private function getQuery(ServerRequestInterface $request): array
+    {       
+        // TODO: better error handling
+        $data = json_decode($request->getBody()->getContents(), true);
+        return [$data['query'], $data['variables']?? []];
     }
 }
