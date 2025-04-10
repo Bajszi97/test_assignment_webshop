@@ -30,6 +30,10 @@ final class ProductType extends ObjectType
                     'type' => Type::listOf($registry->get('image')),
                     'resolve' => fn(object $product): object => $product->images->map(fn($i): object => $i->toDTO())
                 ],
+                'mainImage' => [
+                    'type' => $registry->get('image'),
+                    'resolve' => fn(object $product): object => $product->images->first()->toDTO()
+                ],
                 'variants' => [
                     'type' => Type::listOf($registry->get('productVariant')),
                     'resolve' => fn(object $product): object => $product->variants->map(fn($i): object => $i->toDTO())

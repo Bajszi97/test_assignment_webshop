@@ -11,10 +11,10 @@ final class QueryType extends ObjectType
     {
         parent::__construct([
             'fields' => [
-                'allCategories' => $registry->get('allCategories'),
+                'getCategories' => $registry->get('getCategories'),
                 'allAttributeSets' => $registry->get('allAttributeSets'),
                 'allCurrencies' => $registry->get('allCurrencies'),
-                'allProducts' => $registry->get('allProducts'),
+                'getProducts' => $registry->get('getProducts'),
             ],
         ]);
     }

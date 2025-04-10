@@ -12,23 +12,40 @@ use App\Models\Price;
 use App\Models\Product;
 use App\Models\ProductVariant;
 use Doctrine\ORM\EntityRepository;
+use Traversable;
 
-class ProductRepository extends EntityRepository 
+class ProductRepository extends EntityRepository
 {
+
+    public function findByFilters(array $filters): array
+    {
+        if (isset($filters['category'])) {
+            if ($filters['category'] === 'all') {
+                unset($filters['category']);
+            } else {
+                $filters['category'] = $this->getEntityManager()
+                    ->getRepository(Category::class)
+                    ->findOneBySlug($filters['category']);
+            }
+        }
+
+        return $this->findBy($filters);
+    }
+
     public function createAndSave(array $attributes): Product
     {
         $new = Product::create($attributes);
         $em = $this->getEntityManager();
-        
+
         $category = $em->getRepository(Category::class)->findOneBySlug($attributes['category']);
         $new->setCategory($category);
         $category->addProduct($new);
 
-        if(isset($attributes['price'])){
+        if (isset($attributes['price'])) {
             $new = $this->createPriceForProduct($attributes['price'], $new);
         }
-        
-        if(isset($attributes['images'])){
+
+        if (isset($attributes['images'])) {
             foreach ($attributes['images'] as $imageAttributes) {
                 $new = $this->createImageForProduct($imageAttributes, $new);
             }
@@ -36,7 +53,7 @@ class ProductRepository extends EntityRepository
 
         // TODO: default variant if there is no specified product variant
         // remove the default if a product variant is added later on?
-        if(isset($attributes['variants'])){
+        if (isset($attributes['variants'])) {
             foreach ($attributes['variants'] as $variantAttributes) {
                 $new = $this->createVariantForProduct($variantAttributes, $new);
             }
@@ -50,7 +67,7 @@ class ProductRepository extends EntityRepository
 
     public function createPriceForProduct(array $attributes, Product $product): Product
     {
-        $price = Price::create(['amount' => (int ) (100 * $attributes['amount'])]);
+        $price = Price::create(['amount' => (int) (100 * $attributes['amount'])]);
 
         $em = $this->getEntityManager();
         $currency = $em->getRepository(Currency::class)->findOneBy(['label' => $attributes['currency']]);
@@ -81,7 +98,7 @@ class ProductRepository extends EntityRepository
 
         $em = $this->getEntityManager();
 
-        if(isset($attributes['attributes'])){
+        if (isset($attributes['attributes'])) {
             foreach ($attributes['attributes'] as $attrAttributes) {
                 $variant = $this->createAttributeValueForVariant($attrAttributes, $variant);
             }
@@ -100,7 +117,7 @@ class ProductRepository extends EntityRepository
     public function createAttributeValueForVariant(array $attributes, ProductVariant $variant): ProductVariant
     {
         $attributeValue = AttributeValue::create($attributes);
-        
+
         $em = $this->getEntityManager();
         $attributeSet = $em->getRepository(AttributeSet::class)->findOneBySlug($attributes['attributeSet']);
         $attributeValue->setAttributeSet($attributeSet);
