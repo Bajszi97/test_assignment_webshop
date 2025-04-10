@@ -29,7 +29,7 @@ class Price
     #[Column()]
     private int $amount;
 
-    #[OneToOne()]
+    #[ManyToOne(targetEntity: Product::class, inversedBy: 'prices')]
     private Product $product;
 
     #[ManyToOne(targetEntity: Currency::class, inversedBy: 'prices')]

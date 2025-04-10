@@ -38,8 +38,10 @@ class ProductRepository extends EntityRepository
         $new->setCategory($category);
         $category->addProduct($new);
 
-        if (isset($attributes['price'])) {
-            $new = $this->createPriceForProduct($attributes['price'], $new);
+        if (isset($attributes['prices'])) {
+            foreach ($attributes['prices'] as $priceAttributes) {
+                $new = $this->createPriceForProduct($priceAttributes, $new);
+            }
         }
 
         if (isset($attributes['images'])) {
@@ -69,7 +71,7 @@ class ProductRepository extends EntityRepository
         $price->setCurrency($currency);
 
         $price->setProduct($product);
-        $product->setPrice($price);
+        $product->addPrice($price);
         $em->persist($price);
 
         return $product;

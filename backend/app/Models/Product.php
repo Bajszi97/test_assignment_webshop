@@ -32,7 +32,7 @@ class Product
     private int $id;
 
     #[Column()]
-    private string $sku;
+    private string $slug;
 
     #[Column()]
     private string $name;
@@ -49,8 +49,8 @@ class Product
     #[ManyToOne(targetEntity: Category::class, inversedBy: 'products')]
     private Category $category;
 
-    #[OneToOne(mappedBy: 'product')]
-    private Price $price;
+    #[OneToMany(targetEntity: Price::class, mappedBy: 'product')]
+    private Collection $prices;
 
     #[OneToMany(targetEntity: Image::class, mappedBy: 'product')]
     private Collection $images;
@@ -62,6 +62,7 @@ class Product
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->prices = new ArrayCollection();
         $this->attributes = new ArrayCollection();
     }
 
@@ -69,13 +70,13 @@ class Product
     {
         return [
             'id',
-            'sku',
+            'slug',
             'name',
             'inStock',
             'description',
             'brand',
             'category',
-            'price',
+            'prices',
             'images',
             'attributes',
         ];
@@ -85,7 +86,7 @@ class Product
     {
         return [
             'name',
-            'sku',
+            'slug',
             'name',
             'inStock',
             'description',
@@ -104,9 +105,9 @@ class Product
         return $this;
     }
 
-    public function setPrice(Price $price): self
+    public function addPrice(Price $price): self
     {
-        $this->price = $price;
+        $this->prices->add($price);
         return $this;
     }
 

@@ -13,7 +13,7 @@ final class ProductType extends ObjectType
         parent::__construct([
             'fields' => [
                 'id' => Type::int(),
-                'sku' => Type::string(),
+                'slug' => Type::string(),
                 'name' => Type::string(),
                 'inStock' => Type::boolean(),
                 'description' => Type::string(),
@@ -22,9 +22,9 @@ final class ProductType extends ObjectType
                     'type' => $registry->get('category'),
                     'resolve' => fn(object $product): object => $product->category->toDTO()
                 ],
-                'price' => [
-                    'type' => $registry->get('price'),
-                    'resolve' => fn(object $product): object => $product->price->toDTO()
+                'prices' => [
+                    'type' => Type::listOf($registry->get('price')),
+                    'resolve' => fn(object $product): object => $product->prices->map(fn($i): object => $i->toDTO())
                 ],
                 'images' => [
                     'type' => Type::listOf(Type::string()),

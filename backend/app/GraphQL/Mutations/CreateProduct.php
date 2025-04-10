@@ -27,13 +27,13 @@ class CreateProduct implements FieldDefinition
                 'input' => new InputObjectType([
                     'name' => "ProductInput",
                     'fields' => [
-                        'sku' => Type::nonNull(Type::string()),
+                        'slug' => Type::nonNull(Type::string()),
                         'name' => Type::nonNull(Type::string()),
                         'inStock' => Type::nonNull(Type::boolean()),
                         'description' => Type::nonNull(Type::string()),
                         'brand' => Type::nonNull(Type::string()),
                         'category' => Type::nonNull(Type::string()),
-                        'price' => new InputObjectType([
+                        'prices' => Type::listOf(new InputObjectType([
                             'name' => 'PriceInput',
                             'fields' => [
                                 'amount' => Type::nonNull(Type::float()),
@@ -45,8 +45,8 @@ class CreateProduct implements FieldDefinition
                                     ]
                                 ]),
                             ]
-                        ]),
-                        'images' => Type::listOf(Type::nonNull(Type::string())),
+                        ])),
+                        'gallery' => Type::listOf(type: Type::nonNull(Type::string())),
                         'attributes' => Type::listOf(new InputObjectType([
                             'name' => 'AttributeSetsInput',
                             'fields' => [

@@ -12,8 +12,6 @@ final class QueryType extends ObjectType
         parent::__construct([
             'fields' => [
                 'getCategories' => $registry->get('getCategories'),
-                'allAttributeSets' => $registry->get('allAttributeSets'),
-                'allCurrencies' => $registry->get('allCurrencies'),
                 'getProducts' => $registry->get('getProducts'),
             ],
         ]);
