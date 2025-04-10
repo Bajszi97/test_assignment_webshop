@@ -24,91 +24,47 @@ class CreateProduct implements FieldDefinition
         return [
             'type' => $this->registry->get('product'),
             'args' => [
-                'input' => [
-                    'type' => new InputObjectType([
-                        'name' => "ProductInput",
-                        'fields' => [
-                            'sku' => [
-                                'type' => Type::nonNull(Type::string()),
-                                'description' => "A unique human readable identification string for the product.",
-                            ],
-                            'name' => [
-                                'type' => Type::nonNull(Type::string()),
-                                'description' => "The name of the product.",
-                            ],
-                            'inStock' => [
-                                'type' => Type::nonNull(Type::boolean()),
-                                'description' => "Indicating that the product is available.",
-                            ],
-                            'description' => [
-                                'type' => Type::nonNull(Type::string()),
-                                'description' => "The description of the product.",
-                            ],
-                            'brand' => [
-                                'type' => Type::nonNull(Type::string()),
-                                'description' => "The brand of the product.",
-                            ],
-                            'category' => [
-                                'type' => Type::nonNull(Type::string()),
-                                'description' => "The slug referring the product's category.",
-                            ],
-                            'price' => [
-                                'type' => new InputObjectType([
-                                    'name' => 'PriceInput',
+                'input' => new InputObjectType([
+                    'name' => "ProductInput",
+                    'fields' => [
+                        'sku' => Type::nonNull(Type::string()),
+                        'name' => Type::nonNull(Type::string()),
+                        'inStock' => Type::nonNull(Type::boolean()),
+                        'description' => Type::nonNull(Type::string()),
+                        'brand' => Type::nonNull(Type::string()),
+                        'category' => Type::nonNull(Type::string()),
+                        'price' => new InputObjectType([
+                            'name' => 'PriceInput',
+                            'fields' => [
+                                'amount' => Type::nonNull(Type::float()),
+                                'currency' => new InputObjectType([
+                                    'name' => 'CurrencyInput',
                                     'fields' => [
-                                        'amount' => [
-                                            'type' => Type::nonNull(Type::float()),
-                                            'description' => "The amount on the price tag",
-                                        ],
-                                        'currency' => [
-                                            'type' => Type::nonNull(Type::string()),
-                                            'description' => "The ISO 4217 currency code (e.g. EUR, USD)",
-                                        ],
+                                        'label' => Type::nonNull(Type::string()),
+                                        'symbol' => Type::nonNull(Type::string()),
                                     ]
                                 ]),
-                                'description' => "The product's price.",
-                            ],
-                            'images' => [
-                                'type' => Type::listOf(new InputObjectType([
-                                    'name' => 'ImageInput',
+                            ]
+                        ]),
+                        'images' => Type::listOf(Type::nonNull(Type::string())),
+                        'attributes' => Type::listOf(new InputObjectType([
+                            'name' => 'AttributeSetsInput',
+                            'fields' => [
+                                'items' => Type::nonNull(Type::listOf(new InputObjectType([
+                                    'name' => 'AttributeValueInput',
                                     'fields' => [
-                                        'url' => [
-                                            'type' => Type::nonNull(Type::string()),
-                                            'description' => "The URL of the image",
-                                        ],
+                                        'slug' => Type::nonNull(Type::string()),
+                                        'value' => Type::nonNull(Type::string()),
+                                        'displayValue' => Type::nonNull(Type::string()),
                                     ]
-                                ])),
-                                'description' => "The product's images.",
-                            ],
-                            'variants' => [
-                                'type' => Type::listOf(new InputObjectType([
-                                    'name' => 'ProductVariantInput',
-                                    'fields' => [
-                                        'attributes' => Type::listOf(new InputObjectType([
-                                            'name' => 'ProductAttributeValueInput',
-                                            'fields' => [
-                                                'attributeSet' => [
-                                                    'type' => Type::nonNull(Type::string()),
-                                                    'description' => "The attribute set to which the attribute value belongs.",
-                                                ],
-                                                'value' => [
-                                                    'type' => Type::nonNull(Type::string()),
-                                                    'description' => "The attribute's value.",
-                                                ],
-                                                'displayValue' => [
-                                                    'type' => Type::nonNull(Type::string()),
-                                                    'description' => "The attribute's value to be displayed.",
-                                                ],
-                                            ]
-                                        ])),
-                                    ]
-                                ])),
-                                'description' => "The different product variants.",
-                            ],
-                        ]
-                    ]),
-                    'description' => "All the inputs for creating a new product."
-                ]
+                                ]))),
+                                'slug' => Type::nonNull(type: Type::string()),
+                                'name' => Type::nonNull(Type::string()),
+                                'type' => Type::nonNull(Type::string()),
+                            ]
+                        ])),
+                    ]
+                ]),
             ],
             'resolve' => fn($rootValue, array $args): object => $this->repo->createAndSave($args['input'])->toDTO(),
         ];

@@ -12,12 +12,9 @@ final class AttributeValueType extends ObjectType
     {
         parent::__construct([
             'fields' => [
+                'slug' => Type::string(),
                 'value' => Type::string(),
                 'displayValue' => Type::string(),
-                'attributeSet' => [
-                    'type' => $registry->get('attributeSet'),
-                    'resolve' => fn(object $attribute): object => $attribute->attributeSet->toDTO()
-                ],
             ],
         ]);
     }

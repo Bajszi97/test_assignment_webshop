@@ -17,7 +17,6 @@ class Image
 {
 
     use MassAssignedCreate;
-    use ToRapidDTO;
 
     #[Id]
     #[Column()]
@@ -30,18 +29,16 @@ class Image
     #[ManyToOne(targetEntity: Product::class, inversedBy: 'images')]
     private Product $product;
 
-    private function getVisible(): array
-    {
-        return [
-            'url'
-        ];
-    }
-
     private function getFillable(): array
     {
         return [
             'url',
         ];
+    }
+
+    public function toUrl(): string
+    {
+        return $this->url;
     }
 
     public function setProduct(Product $product): self

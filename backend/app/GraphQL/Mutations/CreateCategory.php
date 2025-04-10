@@ -8,13 +8,13 @@ use App\Models\Category;
 use App\Repositories\CategoryRepository;
 use GraphQL\Type\Definition\Type;
 
-class CreateCategory implements FieldDefinition 
+class CreateCategory implements FieldDefinition
 {
 
     public function __construct(
         protected CategoryRepository $repo,
         protected TypeRegistry $registry
-    ){
+    ) {
     }
 
     public function getDefinition(): array
@@ -22,16 +22,10 @@ class CreateCategory implements FieldDefinition
         return [
             'type' => $this->registry->get('category'),
             'args' => [
-                'slug' => [
-                    'type' => Type::nonNull(Type::string()),
-                    'description' => 'The slug referring to the category.',
-                ],
-                'name' => [
-                    'type' => Type::nonNull(Type::string()),
-                    'description' => 'The name of the category.',
-                ],
+                'slug' => Type::nonNull(Type::string()),
+                'name' => Type::nonNull(Type::string()),
             ],
-            'resolve' => fn ($rootValue, array $args): object => $this->repo->createAndSave($args)->toDTO(),
+            'resolve' => fn($rootValue, array $args): object => $this->repo->createAndSave($args)->toDTO(),
         ];
     }
 }

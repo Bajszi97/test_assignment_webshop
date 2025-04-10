@@ -4,15 +4,20 @@ namespace App\Models;
 
 use App\Models\Traits\MassAssignedCreate;
 use App\Models\Traits\ToRapidDTO;
+use App\Repositories\AttributeValueRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
-#[Entity()]
+#[Entity(repositoryClass: AttributeValueRepository::class)]
 #[Table(name: 'attribute_values')]
 class AttributeValue
 {   
@@ -26,6 +31,9 @@ class AttributeValue
     private int $id;
     
     #[Column()]
+    private string $slug;
+
+    #[Column()]
     private string $value;
 
     #[Column(name: 'display_value')]
@@ -35,13 +43,18 @@ class AttributeValue
     #[JoinColumn(name: 'attribute_set_id')]
     private AttributeSet $attributeSet;
     
-    #[ManyToOne(targetEntity: ProductVariant::class, inversedBy: 'attributes')]
-    #[JoinColumn(name: 'product_variant_id')]
-    private ProductVariant $productVariant;
+    #[ManyToMany(targetEntity: Product::class, mappedBy: 'attributes')]
+    private Collection $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
 
     private function getVisible(): array
     {
         return [
+            'slug',
             'value',
             'displayValue',
             'attributeSet',
@@ -51,14 +64,15 @@ class AttributeValue
     private function getFillable(): array
     {
         return [
+            'slug',
             'value',
             'displayValue',
         ];
     }
 
-    public function setProductVariant(ProductVariant $variant): self
+    public function addProduct(Product $product): self
     {
-        $this->productVariant = $variant;
+        $this->products->add($product);
         return $this;
     }
 

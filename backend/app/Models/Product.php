@@ -11,6 +11,8 @@ use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\OneToOne;
@@ -47,19 +49,20 @@ class Product
     #[ManyToOne(targetEntity: Category::class, inversedBy: 'products')]
     private Category $category;
 
-    #[OneToMany(targetEntity: ProductVariant::class, mappedBy: 'product')]
-    private Collection $variants;
-
     #[OneToOne(mappedBy: 'product')]
-    private ?Price $price;
+    private Price $price;
 
     #[OneToMany(targetEntity: Image::class, mappedBy: 'product')]
     private Collection $images;
 
+    #[JoinTable(name: 'product_attribute_values')]
+    #[ManyToMany(targetEntity: AttributeValue::class, inversedBy: 'products')]
+    private Collection $attributes;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
-        $this->variants = new ArrayCollection();
+        $this->attributes = new ArrayCollection();
     }
 
     private function getVisible(): array
@@ -74,7 +77,7 @@ class Product
             'category',
             'price',
             'images',
-            'variants'
+            'attributes',
         ];
     }
 
@@ -113,9 +116,9 @@ class Product
         return $this;
     }
 
-    public function addVariant(ProductVariant $variant): self
+    public function addAttribute(AttributeValue $attribute): self
     {
-        $this->variants->add($variant);
+        $this->attributes->add($attribute);
         return $this;
     }
 }

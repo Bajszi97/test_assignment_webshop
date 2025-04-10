@@ -24,9 +24,5 @@ class OrderItem
 
     #[ManyToOne(targetEntity: Order::class, inversedBy: 'items')]
     private Order $order;
-
-    #[ManyToOne(targetEntity: ProductVariant::class, inversedBy: 'orderItems')]
-    #[JoinColumn(name: 'product_variant_id')]
-    private ProductVariant $productVariant;
 }
 
