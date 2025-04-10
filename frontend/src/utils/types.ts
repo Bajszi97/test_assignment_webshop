@@ -13,14 +13,10 @@ export type Price = {
   currency: Currency;
 };
 
-export type Image = {
-  url: string;
-};
-
 export type ProductForCard = {
-  sku: string;
+  slug: string;
   name: string;
   inStock: boolean;
-  price: Price;
-  mainImage: Image;
+  prices: Price[];
+  mainImage: string;
 };

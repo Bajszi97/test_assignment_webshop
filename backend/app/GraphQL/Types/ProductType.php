@@ -26,13 +26,13 @@ final class ProductType extends ObjectType
                     'type' => Type::listOf($registry->get('price')),
                     'resolve' => fn(object $product): object => $product->prices->map(fn($i): object => $i->toDTO())
                 ],
-                'images' => [
+                'gallery' => [
                     'type' => Type::listOf(Type::string()),
-                    'resolve' => fn(object $product): object => $product->images->map(fn($i): object => $i->toUrl())
+                    'resolve' => fn(object $product): ?object => $product->images->map(fn($i): object => $i->toUrl())
                 ],
                 'mainImage' => [
                     'type' => Type::string(),
-                    'resolve' => fn(object $product): object => $product->images->first()->toUrl()
+                    'resolve' => fn(object $product): ?string => ($mainImage = $product->images->first())? $mainImage->toUrl() : null
                 ],
             ],
         ]);

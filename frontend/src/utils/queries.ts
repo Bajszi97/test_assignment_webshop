@@ -16,20 +16,17 @@ export const getCategoryProducts = gql`
       name
     }
     products: getProducts(filters: { category: $category }) {
-      sku
+      slug
       inStock
       name
-      price {
+      prices {
         amount
         currency {
           label
           symbol
         }
       }
-      mainImage {
-        url
-      }
-      # defaultVariant for quick shop
+      mainImage
     }
   }
 `;

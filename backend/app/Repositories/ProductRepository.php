@@ -44,8 +44,8 @@ class ProductRepository extends EntityRepository
             }
         }
 
-        if (isset($attributes['images'])) {
-            foreach ($attributes['images'] as $urls) {
+        if (isset($attributes['gallery'])) {
+            foreach ($attributes['gallery'] as $urls) {
                 $new = $this->createImageForProduct($urls, $new);
             }
         }
