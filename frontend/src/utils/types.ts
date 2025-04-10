@@ -1,26 +1,26 @@
 export type Category = {
-    slug: string
-    name: string
+  slug: string;
+  name: string;
 };
 
 export type Currency = {
-    label: string
-    symbol: string
-}
+  label: string;
+  symbol: string;
+};
 
 export type Price = {
-    amount: number
-    currency: Currency
-}
+  amount: number;
+  currency: Currency;
+};
 
 export type Image = {
-    url: string
-}
+  url: string;
+};
 
 export type ProductForCard = {
-    sku: string
-    name: string
-    inStock: boolean
-    price: Price
-    mainImage: Image
+  sku: string;
+  name: string;
+  inStock: boolean;
+  price: Price;
+  mainImage: Image;
 };

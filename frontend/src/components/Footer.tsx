@@ -1,7 +1,3 @@
 export default function Footer() {
-    return (
-        <div className="w-full h-16 mt-auto">
-            Footer
-        </div>   
-    )
+  return <div className="mt-auto h-16 w-full">Footer</div>;
 }
