@@ -6,6 +6,7 @@ use App\Core\Contracts\ResponseEmitterInterface;
 use App\Core\Contracts\RouteServiceProvider;
 use App\Core\ErrorHandler;
 use App\Core\MiddlewareDispatcher;
+use App\Core\Middlewares\CORSMiddleware;
 use App\Core\Middlewares\ErrorHandlerMiddleware;
 use App\Core\ResponseEmitter;
 use App\Core\Router;
@@ -71,6 +72,7 @@ return [
      * The registered middlewares are executed in a bottom-up order.
      */
     'middlewares' => [
+        CORSMiddleware::class,
         ErrorHandlerMiddleware::class,
     ]
 ];
