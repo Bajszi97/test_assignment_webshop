@@ -12,7 +12,10 @@ final class PriceType extends ObjectType
     {
         parent::__construct([
             'fields' => [
-                'amount' => Type::int(),
+                'amount' => [
+                    'type' => Type::float(),
+                    'resolve' => fn (object $price): float => round($price->amount / 100, 2),
+                ],
                 'currency' => [
                     'type' => $registry->get('currency'),
                     'resolve' => fn (object $price): ?object => $price->currency->toDTO()

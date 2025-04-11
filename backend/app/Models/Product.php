@@ -94,9 +94,9 @@ class Product
         ];
     }
 
-    public function toName(): string
+    public function toId(): int
     {
-        return $this->name;
+        return $this->id;
     }
 
     public function setCategory(Category $category): self

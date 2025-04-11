@@ -19,6 +19,9 @@ export const getCategoryProducts = gql`
       slug
       inStock
       name
+      category {
+        slug
+      }
       prices {
         amount
         currency {
@@ -27,6 +30,26 @@ export const getCategoryProducts = gql`
         }
       }
       mainImage
+    }
+  }
+`;
+
+export const findProduct = gql`
+  query findProduct($slug: String!) {
+    product: findProduct(slug: $slug) {
+      slug
+      name
+      inStock
+      description
+      brand
+      prices {
+        amount
+        currency {
+          label
+          symbol
+        }
+      }
+      gallery
     }
   }
 `;

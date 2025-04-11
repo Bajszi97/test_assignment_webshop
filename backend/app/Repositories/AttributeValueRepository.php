@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use App\Models\AttributeSet;
 use App\Models\AttributeValue;
-use App\Repositories\Trait\FindOneBySlug;
 use Doctrine\ORM\EntityRepository;
 
 class AttributeValueRepository extends EntityRepository 

@@ -37,7 +37,7 @@ class AttributeSet
     private string $type;
 
     #[OneToMany(targetEntity: AttributeValue::class, mappedBy: 'attributeSet')]
-    private Collection $values;
+    private Collection $items;
 
     public function __construct()
     {

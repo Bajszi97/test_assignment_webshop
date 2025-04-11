@@ -39,7 +39,7 @@ class AttributeValue
     #[Column(name: 'display_value')]
     private string $displayValue;
 
-    #[ManyToOne(targetEntity: AttributeSet::class, inversedBy: 'values')]
+    #[ManyToOne(targetEntity: AttributeSet::class, inversedBy: 'items')]
     #[JoinColumn(name: 'attribute_set_id')]
     private AttributeSet $attributeSet;
     

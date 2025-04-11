@@ -13,7 +13,7 @@ export default function Header() {
     <div className="flex h-16 w-full justify-center">
       <div className="flex w-full">
         {data.categories.map((c: Category, index: number) => (
-          <NavLink key={`${index}-nav`} className="" to={`/${c.slug}`}>
+          <NavLink key={`${index}-nav`} className="" to={`${c.slug}`}>
             {({ isActive }) => (
               <div
                 className={

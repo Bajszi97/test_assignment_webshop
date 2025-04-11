@@ -9,10 +9,13 @@ use App\Models\Currency;
 use App\Models\Image;
 use App\Models\Price;
 use App\Models\Product;
+use App\Repositories\Trait\FindOneBySlug;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityRepository;
 
 class ProductRepository extends EntityRepository
 {
+    use FindOneBySlug;
 
     public function findByFilters(array $filters): array
     {
@@ -104,5 +107,4 @@ class ProductRepository extends EntityRepository
 
         return $product;
     }
-
 }

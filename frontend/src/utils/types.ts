@@ -17,6 +17,7 @@ export type ProductForCard = {
   slug: string;
   name: string;
   inStock: boolean;
+  category: Category;
   prices: Price[];
   mainImage: string;
 };
