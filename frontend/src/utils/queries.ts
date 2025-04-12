@@ -1,6 +1,9 @@
-import { gql } from "@apollo/client";
+import { gql, TypedDocumentNode } from "@apollo/client";
+import { Category, Product, ProductForCard } from "./types";
 
-export const getCategories = gql`
+export const getCategories: TypedDocumentNode<{
+  category: Category[];
+}> = gql`
   query getCategories {
     categories: getCategories {
       slug
@@ -9,7 +12,10 @@ export const getCategories = gql`
   }
 `;
 
-export const getCategoryProducts = gql`
+export const getCategoryProducts: TypedDocumentNode<{
+  category: Category;
+  products: ProductForCard[];
+}> = gql`
   query getCategoryProducts($category: String!) {
     category: getCategories(filters: { slug: $category }) {
       slug
@@ -34,7 +40,9 @@ export const getCategoryProducts = gql`
   }
 `;
 
-export const findProduct = gql`
+export const findProduct: TypedDocumentNode<{
+  product: Product;
+}> = gql`
   query findProduct($slug: String!) {
     product: findProduct(slug: $slug) {
       slug

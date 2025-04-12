@@ -1,4 +1,4 @@
-import { Dispatch, PropsWithChildren, SetStateAction } from "react";
+import { Dispatch, HTMLAttributes, PropsWithChildren, SetStateAction } from "react";
 
 export type AttributeSetType = 'text' | 'swatch';
 
@@ -65,5 +65,9 @@ export interface AttributeValueProps extends PropsWithChildren {
   attributeValue: AttributeValue
   onClick: (value: string) => void
   isSelected: boolean
+}
+
+export interface PriceTagProps extends HTMLAttributes<HTMLDivElement> {
+  price: Price
 }
 

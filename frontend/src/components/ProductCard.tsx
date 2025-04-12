@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { ProductForCard } from "../utils/types";
+import PriceTag from "./ProductInfo/PriceTag";
 
 export default function ProductCard({ product }: { product: ProductForCard }) {
   return (
@@ -20,10 +21,7 @@ export default function ProductCard({ product }: { product: ProductForCard }) {
         <div className="mb-1 font-raleway font-light">
           {product.name}
         </div>
-        <div className="font-raleway">
-          {product.prices[0].currency.symbol}
-          {product.prices[0].amount}
-        </div>
+        <PriceTag className="font-raleway" price={product.prices[0]}/>
       </Link>
     </div>
   );

@@ -3,7 +3,7 @@ import { AttributeValueProps } from "../../../../utils/types";
 export default function TextAttribute({ attributeValue, onClick, isSelected }: AttributeValueProps) {
     return (
         <div className={"min-w-16 h-11 flex items-center justify-center border font-source-sans text-base " + (isSelected && "bg-shark text-white")}>
-            <button className="size-full px-2 cursor-pointer" onClick={() => onClick(attributeValue.slug)} disabled={isSelected}>
+            <button className="size-full px-2 cursor-pointer" onClick={() => onClick(attributeValue.slug)} disabled={isSelected} title={attributeValue.displayValue}>
                 {attributeValue.displayValue}
             </button>
         </div>
