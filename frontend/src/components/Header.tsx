@@ -17,12 +17,12 @@ export default function Header() {
             {({ isActive }) => (
               <div
                 className={
-                  "flex h-full min-w-12 px-2 text-center transition-colors hover:text-green-400 active:text-green-600 " +
-                  (isActive ? "border-b-2 border-green-400 text-green-400" : "")
+                  "flex h-full min-w-12 px-2 text-center transition-colors hover:text-primary active:text-green-600 " +
+                  (isActive ? "border-b-2 border-primary text-primary" : "")
                 }
               >
-                <span className="my-auto font-raleway">
-                  {c.name.toUpperCase()}
+                <span className="my-auto font-raleway uppercase">
+                  {c.name}
                 </span>
               </div>
             )}

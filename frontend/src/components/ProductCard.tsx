@@ -17,10 +17,10 @@ export default function ProductCard({ product }: { product: ProductForCard }) {
           }
 
         </div>
-        <div className="mb-1 font-raleway font-light text-neutral-900">
+        <div className="mb-1 font-raleway font-light">
           {product.name}
         </div>
-        <div className="font-raleway text-neutral-900">
+        <div className="font-raleway">
           {product.prices[0].currency.symbol}
           {product.prices[0].amount}
         </div>

@@ -42,6 +42,7 @@ export const findProduct = gql`
       inStock
       description
       brand
+      gallery
       prices {
         amount
         currency {
@@ -49,7 +50,16 @@ export const findProduct = gql`
           symbol
         }
       }
-      gallery
+      attributes {
+        slug
+        name
+        type
+        items {
+          slug
+          value
+          displayValue
+        }
+      }
     }
   }
 `;

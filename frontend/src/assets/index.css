@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
 @import "tailwindcss";
 
 body {
@@ -11,6 +11,11 @@ body {
 
 @theme {
   --font-raleway: "Raleway", sans-serif;
+  --font-roboto-condensed: "Roboto Condensed", sans-serif;
+  --font-roboto: "Roboto", sans-serif;
+  --font-source-sans: "Source Sans 3", sans-serif;
+  --color-primary: rgba(94,206,123,1);
+  --color-shark: rgba(29, 31, 34, 1);
 }
 
 
