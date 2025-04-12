@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router";
 import { findProduct } from "../utils/queries";
+import Gallery from "../components/Gallery/Gallery";
 
 export default function ProductPage() {
   const params = useParams();
@@ -12,8 +13,13 @@ export default function ProductPage() {
   if (error) return <p>Error : {error.message}</p>;
 
   return (
-    <div className="pt-10">
-      {data.product.name}
+    <div className="flex py-10">
+      <div className="">
+        <Gallery urls={data.product.gallery}/>
+      </div>
+      <div className="flex-1">
+
+      </div>
     </div>
   );
 }

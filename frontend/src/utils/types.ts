@@ -1,19 +1,21 @@
-export type Category = {
+import { Dispatch, SetStateAction } from "react";
+
+export interface Category {
   slug: string;
   name: string;
 };
 
-export type Currency = {
+export interface Currency {
   label: string;
   symbol: string;
 };
 
-export type Price = {
+export interface Price {
   amount: number;
   currency: Currency;
 };
 
-export type ProductForCard = {
+export interface ProductForCard {
   slug: string;
   name: string;
   inStock: boolean;
@@ -21,3 +23,9 @@ export type ProductForCard = {
   prices: Price[];
   mainImage: string;
 };
+
+export interface GalleryProps {
+  urls: string[],
+  selectedImage: string,
+  setSelectedImage: Dispatch<SetStateAction<string>>,
+}
