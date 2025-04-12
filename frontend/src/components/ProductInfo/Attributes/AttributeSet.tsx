@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { AttributeSetProps, AttributeValue } from "../../../utils/types";
+
 import AttributeTitle from "./AttributeTitle";
 import { AttributeTypeMap } from "./Types";
+import { AttributeSetProps } from "@/types/ComponentTypes";
+import { AttributeValue } from "@/types/DomainModels";
 
 export default function AttributeSet({ attributeSet, onChange }: AttributeSetProps) {
     const { slug, name, type, items } = attributeSet;

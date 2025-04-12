@@ -1,6 +1,6 @@
 import { Link } from "react-router";
-import { ProductForCard } from "../utils/types";
 import PriceTag from "./ProductInfo/PriceTag";
+import { ProductForCard } from "@/types/DomainModels";
 
 export default function ProductCard({ product }: { product: ProductForCard }) {
   return (

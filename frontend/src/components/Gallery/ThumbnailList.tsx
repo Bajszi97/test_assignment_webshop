@@ -1,4 +1,4 @@
-import { GalleryProps } from "../../utils/types";
+import { GalleryProps } from "@/types/ComponentTypes";
 
 export default function ThumbnailList({ urls, selectedImage, setSelectedImage }: GalleryProps) {
     return (

@@ -1,4 +1,4 @@
-import { GalleryProps } from "../../utils/types";
+import { GalleryProps } from "@/types/ComponentTypes";
 
 export default function MainImage({ selectedImage, setSelectedImage, urls }: GalleryProps) {
     const handleNextImage = () => {

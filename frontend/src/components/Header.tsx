@@ -1,7 +1,8 @@
+import { Category } from "@/types/DomainModels";
+import { getCategories } from "@/utils/queries";
 import { useQuery } from "@apollo/client";
 import { NavLink } from "react-router";
-import { getCategories } from "../utils/queries";
-import { Category } from "../utils/types";
+
 
 export default function Header() {
   const { loading, error, data } = useQuery(getCategories);
@@ -12,7 +13,7 @@ export default function Header() {
   return (
     <div className="flex h-16 w-full justify-center">
       <div className="flex w-full">
-        {data.categories.map((c: Category, index: number) => (
+        {data?.categories.map((c: Category, index: number) => (
           <NavLink key={`${index}-nav`} className="" to={`${c.slug}`}>
             {({ isActive }) => (
               <div

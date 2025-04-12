@@ -1,4 +1,4 @@
-import { AttributeValueProps } from "../../../../utils/types";
+import { AttributeValueProps } from "@/types/ComponentTypes";
 
 export default function SwatchAttribute({ attributeValue, onClick, isSelected }: AttributeValueProps) {
 

@@ -1,4 +1,4 @@
-import { PriceTagProps } from "../../utils/types";
+import { PriceTagProps } from "@/types/ComponentTypes";
 
 export default function PriceTag({price, className}: PriceTagProps) {
     return (

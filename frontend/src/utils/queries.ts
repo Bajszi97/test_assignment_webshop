@@ -1,8 +1,8 @@
 import { gql, TypedDocumentNode } from "@apollo/client";
-import { Category, Product, ProductForCard } from "./types";
+import { Category, Product, ProductForCard } from "@/types/DomainModels";
 
 export const getCategories: TypedDocumentNode<{
-  category: Category[];
+  categories: Category[];
 }> = gql`
   query getCategories {
     categories: getCategories {

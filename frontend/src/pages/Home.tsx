@@ -1,8 +1,8 @@
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router";
-import { getCategoryProducts } from "../utils/queries";
-import { ProductForCard } from "../utils/types";
-import ProductCard from "../components/ProductCard";
+import { getCategoryProducts } from "@/utils/queries";
+import ProductCard from "@/components/ProductCard";
+import { ProductForCard } from "@/types/DomainModels";
 
 export default function Home() {
   const params = useParams();

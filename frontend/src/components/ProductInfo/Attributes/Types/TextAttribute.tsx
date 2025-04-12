@@ -1,4 +1,4 @@
-import { AttributeValueProps } from "../../../../utils/types";
+import { AttributeValueProps } from "@/types/ComponentTypes";
 
 export default function TextAttribute({ attributeValue, onClick, isSelected }: AttributeValueProps) {
     return (

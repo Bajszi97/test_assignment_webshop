@@ -1,5 +1,5 @@
 import HTMLReactParser from "html-react-parser/lib/index";
-import { AttributeSet as AttributeSetType, Product } from "../utils/types";
+import { AttributeSet as AttributeSetType, Product } from "@/types/DomainModels";
 import AttributeTitle from "./ProductInfo/Attributes/AttributeTitle";
 import AttributeSet from "./ProductInfo/Attributes/AttributeSet";
 import { useState } from "react";
@@ -48,4 +48,4 @@ export default function ProductInfo({ product }: { product: Product }) {
             </div>
         </div>
     )
-} 
+}
