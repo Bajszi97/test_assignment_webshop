@@ -1,7 +1,8 @@
 import { Category } from "@/types/DomainModels";
 import { getCategories } from "@/utils/queries";
 import { useQuery } from "@apollo/client";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
+import Logo from "@/assets/logo.svg?react"
 
 
 const Header: React.FC = () => {
@@ -32,7 +33,11 @@ const Header: React.FC = () => {
           </NavLink>
         ))}
       </div>
-      <div className="w-16">logo</div>
+      <div className="w-16 flex items-center">
+        <Link to="/">
+          <Logo/>
+        </Link>
+      </div>
       <div className="flex w-full justify-end">cart</div>
     </div>
   );
