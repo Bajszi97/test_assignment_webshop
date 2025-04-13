@@ -1,11 +1,10 @@
-import { useState } from "react";
-
+import React, { useState } from "react";
 import AttributeTitle from "./AttributeTitle";
-import { AttributeTypeMap } from "./Types";
+import { AttributeTypeMap } from "./valueTypes";
 import { AttributeSetProps } from "@/types/ComponentTypes";
 import { AttributeValue } from "@/types/DomainModels";
 
-export default function AttributeSet({ attributeSet, onChange }: AttributeSetProps) {
+const AttributeSet: React.FC<AttributeSetProps> = ({ attributeSet, onChange }) => {
     const { slug, name, type, items } = attributeSet;
     const AttributeButton = AttributeTypeMap[type];
 
@@ -32,3 +31,5 @@ export default function AttributeSet({ attributeSet, onChange }: AttributeSetPro
         </div>
     )
 }
+
+export default AttributeSet;

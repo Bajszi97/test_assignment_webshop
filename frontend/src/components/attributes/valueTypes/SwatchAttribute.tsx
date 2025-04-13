@@ -1,6 +1,7 @@
 import { AttributeValueProps } from "@/types/ComponentTypes";
+import React from "react";
 
-export default function SwatchAttribute({ attributeValue, onClick, isSelected }: AttributeValueProps) {
+const SwatchAttribute: React.FC<AttributeValueProps> = ({ attributeValue, onClick, isSelected }) => {
 
     // TODO: more robust bright color filter
     return (
@@ -21,3 +22,5 @@ export default function SwatchAttribute({ attributeValue, onClick, isSelected }:
         </div>
     )
 }
+
+export default SwatchAttribute;

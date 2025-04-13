@@ -1,13 +1,13 @@
 import HTMLReactParser from "html-react-parser/lib/index";
 import { AttributeSet as AttributeSetType, Product } from "@/types/DomainModels";
-import AttributeTitle from "./ProductInfo/Attributes/AttributeTitle";
-import AttributeSet from "./ProductInfo/Attributes/AttributeSet";
+import AttributeTitle from "./attributes/AttributeTitle";
+import AttributeSet from "./attributes/AttributeSet";
 import { useState } from "react";
-import ProductName from "./ProductInfo/ProductName";
-import PriceTag from "./ProductInfo/PriceTag";
-import AddToCartButton from "./ProductInfo/AddToCartButton";
+import ProductName from "./ProductName";
+import PriceTag from "./PriceTag";
+import AddToCartButton from "./AddToCartButton";
 
-export default function ProductInfo({ product }: { product: Product }) {
+const ProductInfo: React.FC<{ product: Product }> = ({ product }) => {
     const [selectedAttributes, setSelectedAttributes] = useState<Record<string, string>>({});
 
     const handleAttributeChange = (attribute: string, valueSlug: string) => {
@@ -38,9 +38,9 @@ export default function ProductInfo({ product }: { product: Product }) {
                 <PriceTag className="font-raleway font-bold text-2xl py-2" price={product.prices[0]} />
             </div>
             <div className="mb-12">
-                <AddToCartButton 
-                    onClick={handleAddToCart} 
-                    disabled={isDisabled} 
+                <AddToCartButton
+                    onClick={handleAddToCart}
+                    disabled={isDisabled}
                 />
             </div>
             <div className="font-roboto">
@@ -49,3 +49,5 @@ export default function ProductInfo({ product }: { product: Product }) {
         </div>
     )
 }
+
+export default ProductInfo;

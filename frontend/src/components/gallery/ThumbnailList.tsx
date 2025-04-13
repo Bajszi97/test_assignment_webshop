@@ -1,6 +1,6 @@
 import { GalleryProps } from "@/types/ComponentTypes";
 
-export default function ThumbnailList({ urls, selectedImage, setSelectedImage }: GalleryProps) {
+const ThumbnailList: React.FC<GalleryProps> = ({ urls, selectedImage, setSelectedImage }) => {
     return (
         <div className="flex flex-col mr-7">
             {urls.map((url, index) => (
@@ -16,3 +16,5 @@ export default function ThumbnailList({ urls, selectedImage, setSelectedImage }:
         </div>
     )
 }
+
+export default ThumbnailList;

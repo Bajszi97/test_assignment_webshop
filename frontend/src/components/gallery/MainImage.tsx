@@ -1,6 +1,8 @@
 import { GalleryProps } from "@/types/ComponentTypes";
 
-export default function MainImage({ selectedImage, setSelectedImage, urls }: GalleryProps) {
+const MainImage: React.FC<GalleryProps> = ({ selectedImage, setSelectedImage, urls }) => {
+
+    // TODO these two function looks nearly identical, could be simplified?
     const handleNextImage = () => {
         const currentIndex = urls.indexOf(selectedImage);
         const nextIndex = (currentIndex + 1) % urls.length;
@@ -13,6 +15,7 @@ export default function MainImage({ selectedImage, setSelectedImage, urls }: Gal
         setSelectedImage(urls[prevIndex]);
     };
 
+    // TODO simplify and abstract chevron buttons 
     return (
         <div className="flex w-full">
             <img
@@ -53,3 +56,5 @@ export default function MainImage({ selectedImage, setSelectedImage, urls }: Gal
         </div>
     )
 }
+
+export default MainImage;

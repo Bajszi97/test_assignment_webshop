@@ -1,6 +1,6 @@
 import { PriceTagProps } from "@/types/ComponentTypes";
 
-export default function PriceTag({price, className}: PriceTagProps) {
+const PriceTag: React.FC<PriceTagProps> = ({ price, className }) => {
     return (
         <div className={`${className}`}>
             {price.currency.symbol}
@@ -8,3 +8,5 @@ export default function PriceTag({price, className}: PriceTagProps) {
         </div>
     )
 }
+
+export default PriceTag;

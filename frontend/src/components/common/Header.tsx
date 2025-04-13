@@ -4,16 +4,18 @@ import { useQuery } from "@apollo/client";
 import { NavLink } from "react-router";
 
 
-export default function Header() {
+const Header: React.FC = () => {
   const { loading, error, data } = useQuery(getCategories);
 
+  // TODO improve this three
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
+  if (!data) return <>Empty data</>
 
   return (
     <div className="flex h-16 w-full justify-center">
       <div className="flex w-full">
-        {data?.categories.map((c: Category, index: number) => (
+        {data.categories.map((c: Category, index: number) => (
           <NavLink key={`${index}-nav`} className="" to={`${c.slug}`}>
             {({ isActive }) => (
               <div
@@ -35,3 +37,5 @@ export default function Header() {
     </div>
   );
 }
+
+export default Header;
