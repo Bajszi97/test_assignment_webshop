@@ -4,13 +4,12 @@ import "./assets/index.css";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import Home from "./pages/ProductList";
 import MainLayout from "./layouts/MainLayout";
-import { ApolloProvider } from "@apollo/client";
-import { client } from "./utils/apollo";
 import ProductPage from "./pages/ProductPage";
+import ApolloProvider from "./providers/ApolloProvider";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <ApolloProvider client={client}>
+    <ApolloProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigate to="/all" replace />} />
