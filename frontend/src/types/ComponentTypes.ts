@@ -1,23 +1,14 @@
-import { Dispatch, SetStateAction, HTMLAttributes, PropsWithChildren } from "react";
-import { Price, AttributeSet, AttributeValue } from "./DomainModels";
+import { Dispatch, SetStateAction } from "react";
+import { AttributeValue } from "./DomainModels";
 
-export interface GalleryProps extends PropsWithChildren {
+export interface GalleryPartProps {
   urls: string[];
   selectedImage: string;
   setSelectedImage: Dispatch<SetStateAction<string>>;
 }
 
-export interface AttributeSetProps extends PropsWithChildren {
-  attributeSet: AttributeSet;
-  onChange: (attribute: string, valueSlug: string) => void;
-}
-
-export interface AttributeValueProps extends PropsWithChildren {
+export interface AttributeValueProps {
   attributeValue: AttributeValue;
   onClick: (value: string) => void;
   isSelected: boolean;
-}
-
-export interface PriceTagProps extends HTMLAttributes<HTMLDivElement> {
-  price: Price;
 }

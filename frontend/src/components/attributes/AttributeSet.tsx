@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import AttributeTitle from "./AttributeTitle";
 import { AttributeTypeMap } from "./valueTypes";
-import { AttributeSetProps } from "@/types/ComponentTypes";
-import { AttributeValue } from "@/types/DomainModels";
+import { AttributeSet as AttributeSetModel, AttributeValue } from "@/types/DomainModels";
+
+interface AttributeSetProps {
+  attributeSet: AttributeSetModel; // AttributeSet type renamed not to conflict with the component's name
+  onChange: (attribute: string, valueSlug: string) => void;
+}
 
 const AttributeSet: React.FC<AttributeSetProps> = ({ attributeSet, onChange }) => {
     const { slug, name, type, items } = attributeSet;

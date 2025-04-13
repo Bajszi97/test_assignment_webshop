@@ -2,7 +2,11 @@ import { useState } from 'react';
 import MainImage from './MainImage';
 import ThumbnailList from './ThumbnailList';
 
-const Gallery: React.FC<{ urls: string[] }> = ({ urls }) => {
+interface GalleryProps {
+    urls: string[]
+}
+
+const Gallery: React.FC<GalleryProps> = ({ urls }) => {
     const [selectedImage, setSelectedImage] = useState<string>(urls[0] || "");
 
     return (

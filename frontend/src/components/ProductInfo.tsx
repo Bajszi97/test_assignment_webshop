@@ -7,7 +7,11 @@ import ProductName from "./ProductName";
 import PriceTag from "./PriceTag";
 import AddToCartButton from "./AddToCartButton";
 
-const ProductInfo: React.FC<{ product: Product }> = ({ product }) => {
+interface ProductInfoProps {
+    product: Product
+}
+
+const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
     const [selectedAttributes, setSelectedAttributes] = useState<Record<string, string>>({});
 
     const handleAttributeChange = (attribute: string, valueSlug: string) => {

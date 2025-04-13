@@ -1,6 +1,6 @@
-import { GalleryProps } from "@/types/ComponentTypes";
+import { GalleryPartProps } from "@/types/ComponentTypes";
 
-const ThumbnailList: React.FC<GalleryProps> = ({ urls, selectedImage, setSelectedImage }) => {
+const ThumbnailList: React.FC<GalleryPartProps> = ({ urls, selectedImage, setSelectedImage }) => {
     return (
         <div className="flex flex-col mr-7">
             {urls.map((url, index) => (

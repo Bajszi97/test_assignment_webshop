@@ -1,6 +1,6 @@
-import { GalleryProps } from "@/types/ComponentTypes";
+import { GalleryPartProps } from "@/types/ComponentTypes";
 
-const MainImage: React.FC<GalleryProps> = ({ selectedImage, setSelectedImage, urls }) => {
+const MainImage: React.FC<GalleryPartProps> = ({ selectedImage, setSelectedImage, urls }) => {
 
     // TODO these two function looks nearly identical, could be simplified?
     const handleNextImage = () => {

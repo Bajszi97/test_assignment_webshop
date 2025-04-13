@@ -2,7 +2,11 @@ import { Link } from "react-router";
 import { ProductForCard } from "@/types/DomainModels";
 import PriceTag from "./PriceTag";
 
-const ProductCard: React.FC<{ product: ProductForCard }> = ({ product }) => {
+interface ProductCardProps {
+  product: ProductForCard
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <div className="w-min cursor-pointer border border-transparent p-4 shadow-gray-200 transition-all duration-300 ease-in-out hover:scale-105 hover:border-neutral-100 hover:shadow-xl">
       <Link to={`/${product.category.slug}/${product.slug}`}>
