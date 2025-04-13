@@ -13,7 +13,7 @@ const ProductPage: React.FC = () => {
   // TODO improve this three
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
-  if (!data) return <>Empty data</>
+  if (!data) return <>Empty data</>;
 
   const product = data.product;
 
@@ -27,6 +27,6 @@ const ProductPage: React.FC = () => {
       </div>
     </div>
   );
-}
+};
 
 export default ProductPage;

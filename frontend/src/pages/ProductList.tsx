@@ -14,13 +14,11 @@ const ProductList: React.FC = () => {
   // TODO improve this three
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
-  if (!data) return <>Empty data</>
+  if (!data) return <>Empty data</>;
 
   return (
     <div className="pt-10">
-      <span className="font-raleway text-2xl">
-        {data.category.name}
-      </span>
+      <span className="font-raleway text-2xl">{data.category.name}</span>
       <div className="mt-10 grid grid-cols-1 justify-items-center gap-y-10 px-5 md:grid-cols-2 xl:grid-cols-3">
         {data.products.map((p: ProductForCard, index) => (
           <ProductCard key={index} product={p} />
@@ -28,6 +26,6 @@ const ProductList: React.FC = () => {
       </div>
     </div>
   );
-}
+};
 
 export default ProductList;

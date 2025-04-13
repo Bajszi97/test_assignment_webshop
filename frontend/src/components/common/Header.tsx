@@ -2,8 +2,7 @@ import { Category } from "@/types/DomainModels";
 import { getCategories } from "@/utils/queries";
 import { useQuery } from "@apollo/client";
 import { Link, NavLink } from "react-router";
-import Logo from "@/assets/logo.svg?react"
-
+import Logo from "@/assets/logo.svg?react";
 
 const Header: React.FC = () => {
   const { loading, error, data } = useQuery(getCategories);
@@ -11,7 +10,7 @@ const Header: React.FC = () => {
   // TODO improve this three
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
-  if (!data) return <>Empty data</>
+  if (!data) return <>Empty data</>;
 
   return (
     <div className="flex h-16 w-full justify-center">
@@ -25,22 +24,20 @@ const Header: React.FC = () => {
                   (isActive ? "border-b-2 border-primary text-primary" : "")
                 }
               >
-                <span className="my-auto font-raleway uppercase">
-                  {c.name}
-                </span>
+                <span className="my-auto font-raleway uppercase">{c.name}</span>
               </div>
             )}
           </NavLink>
         ))}
       </div>
-      <div className="w-16 flex items-center">
+      <div className="flex w-16 items-center">
         <Link to="/">
-          <Logo/>
+          <Logo />
         </Link>
       </div>
       <div className="flex w-full justify-end">cart</div>
     </div>
   );
-}
+};
 
 export default Header;

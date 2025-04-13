@@ -10,6 +10,6 @@ const MainLayout: React.FC = () => {
       <Footer />
     </div>
   );
-}
+};
 
 export default MainLayout;

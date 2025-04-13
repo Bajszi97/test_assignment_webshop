@@ -1,5 +1,8 @@
 import HTMLReactParser from "html-react-parser/lib/index";
-import { AttributeSet as AttributeSetType, Product } from "@/types/DomainModels";
+import {
+  AttributeSet as AttributeSetType,
+  Product,
+} from "@/types/DomainModels";
 import AttributeTitle from "./attributes/AttributeTitle";
 import AttributeSet from "./attributes/AttributeSet";
 import { useState } from "react";
@@ -8,50 +11,54 @@ import PriceTag from "./PriceTag";
 import AddToCartButton from "./AddToCartButton";
 
 interface ProductInfoProps {
-    product: Product
+  product: Product;
 }
 
 const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
-    const [selectedAttributes, setSelectedAttributes] = useState<Record<string, string>>({});
+  const [selectedAttributes, setSelectedAttributes] = useState<
+    Record<string, string>
+  >({});
 
-    const handleAttributeChange = (attribute: string, valueSlug: string) => {
-        setSelectedAttributes(prev => ({
-            ...prev,
-            [attribute]: valueSlug,
-        }));
-    };
+  const handleAttributeChange = (attribute: string, valueSlug: string) => {
+    setSelectedAttributes((prev) => ({
+      ...prev,
+      [attribute]: valueSlug,
+    }));
+  };
 
-    const handleAddToCart = () => {
-        console.log(selectedAttributes, product);
-    };
+  const handleAddToCart = () => {
+    console.log(selectedAttributes, product);
+  };
 
-    const isDisabled = !product.attributes.every(
-        attributeSet => selectedAttributes[attributeSet.slug]
-    );
+  const isDisabled = !product.attributes.every(
+    (attributeSet) => selectedAttributes[attributeSet.slug],
+  );
 
-    return (
-        <div className="flex flex-col w-74">
-            <ProductName>{product.name}</ProductName>
-            <div className="">
-                {product.attributes.map((attributeSet: AttributeSetType, index) =>
-                    <AttributeSet key={index} attributeSet={attributeSet} onChange={handleAttributeChange} />
-                )}
-            </div>
-            <div className="mb-6">
-                <AttributeTitle>PRICE:</AttributeTitle>
-                <PriceTag className="font-raleway font-bold text-2xl py-2" price={product.prices[0]} />
-            </div>
-            <div className="mb-12">
-                <AddToCartButton
-                    onClick={handleAddToCart}
-                    disabled={isDisabled}
-                />
-            </div>
-            <div className="font-roboto">
-                {HTMLReactParser(product.description)}
-            </div>
-        </div>
-    )
-}
+  return (
+    <div className="flex w-74 flex-col">
+      <ProductName>{product.name}</ProductName>
+      <div className="">
+        {product.attributes.map((attributeSet: AttributeSetType, index) => (
+          <AttributeSet
+            key={index}
+            attributeSet={attributeSet}
+            onChange={handleAttributeChange}
+          />
+        ))}
+      </div>
+      <div className="mb-6">
+        <AttributeTitle>PRICE:</AttributeTitle>
+        <PriceTag
+          className="py-2 font-raleway text-2xl font-bold"
+          price={product.prices[0]}
+        />
+      </div>
+      <div className="mb-12">
+        <AddToCartButton onClick={handleAddToCart} disabled={isDisabled} />
+      </div>
+      <div className="font-roboto">{HTMLReactParser(product.description)}</div>
+    </div>
+  );
+};
 
 export default ProductInfo;
