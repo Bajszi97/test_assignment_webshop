@@ -9,8 +9,8 @@ const TextAttribute: React.FC<AttributeValueProps> = ({
   return (
     <div
       className={
-        "flex h-11 min-w-16 items-center justify-center border font-source-sans text-base " +
-        (isSelected && "bg-shark text-white")
+        `flex h-11 min-w-16 items-center justify-center border font-source-sans text-base transition-colors
+        ${isSelected ? "bg-shark text-white" : "hover:bg-neutral-100"}`
       }
     >
       <button

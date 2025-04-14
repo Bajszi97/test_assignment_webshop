@@ -8,7 +8,8 @@ import AttributeSet from "./attributes/AttributeSet";
 import { useState } from "react";
 import ProductName from "./ProductName";
 import PriceTag from "./PriceTag";
-import AddToCartButton from "./AddToCartButton";
+import PrimaryButton from "./PrimaryButton";
+import { useCartContext } from "@/hooks/useCartContext";
 
 interface ProductInfoProps {
   product: Product;
@@ -18,6 +19,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
   const [selectedAttributes, setSelectedAttributes] = useState<
     Record<string, string>
   >({});
+  const {addItem, setIsCartOpen} = useCartContext();
 
   const handleAttributeChange = (attribute: string, valueSlug: string) => {
     setSelectedAttributes((prev) => ({
@@ -27,7 +29,12 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
   };
 
   const handleAddToCart = () => {
-    console.log(selectedAttributes, product);
+    addItem({
+      product: product,
+      selectedAttributes: selectedAttributes,
+      quantity: 1,
+    })
+    setIsCartOpen(true);
   };
 
   const isDisabled = !product.attributes.every(
@@ -54,7 +61,9 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
         />
       </div>
       <div className="mb-12">
-        <AddToCartButton onClick={handleAddToCart} disabled={isDisabled} />
+        <PrimaryButton title={isDisabled ? "Select product attributes first" : ""} onClick={handleAddToCart} disabled={isDisabled}>
+          Add to cart
+        </PrimaryButton>
       </div>
       <div className="font-roboto">{HTMLReactParser(product.description)}</div>
     </div>

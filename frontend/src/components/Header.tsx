@@ -3,6 +3,7 @@ import { getCategories } from "@/utils/queries";
 import { useQuery } from "@apollo/client";
 import { Link, NavLink } from "react-router";
 import Logo from "@/assets/logo.svg?react";
+import CartButton from "./cart/CartButton";
 
 const Header: React.FC = () => {
   const { loading, error, data } = useQuery(getCategories);
@@ -13,7 +14,7 @@ const Header: React.FC = () => {
   if (!data) return <>Empty data</>;
 
   return (
-    <div className="flex h-16 w-full justify-center">
+    <header className="flex h-16 w-full justify-center px-20">
       <div className="flex w-full">
         {data.categories.map((c: Category, index: number) => (
           <NavLink key={`${index}-nav`} className="" to={`${c.slug}`}>
@@ -30,13 +31,17 @@ const Header: React.FC = () => {
           </NavLink>
         ))}
       </div>
+
       <div className="flex w-16 items-center">
         <Link to="/">
           <Logo />
         </Link>
       </div>
-      <div className="flex w-full justify-end">cart</div>
-    </div>
+      
+      <div className="flex w-full justify-end items-center">
+        <CartButton/>
+      </div>
+    </header>
   );
 };
 
