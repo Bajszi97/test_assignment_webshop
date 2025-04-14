@@ -14,6 +14,7 @@ final class QueryType extends ObjectType
                 'getCategories' => $registry->get('getCategories'),
                 'getProducts' => $registry->get('getProducts'),
                 'findProduct' => $registry->get('findProduct'),
+                'findCategory' => $registry->get('findCategory'),
             ],
         ]);
     }

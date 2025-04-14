@@ -8,9 +8,9 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
-    <div className="w-min cursor-pointer border border-transparent p-4 shadow-gray-200 transition-all duration-300 ease-in-out hover:scale-105 hover:border-neutral-100 hover:shadow-xl">
+    <div className="flex cursor-pointer border border-transparent p-4 shadow-gray-200 transition-all duration-300 ease-in-out hover:border-neutral-100 hover:shadow-[0_4px_35px_0_rgba(168,172,176,0.19)]">
       <Link to={`/${product.category.slug}/${product.slug}`}>
-        <div className="mb-5 flex size-64 bg-transparent">
+        <div className="mb-5 flex aspect-square bg-transparent">
           {
             product.mainImage ? (
               <img

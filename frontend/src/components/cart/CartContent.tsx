@@ -18,7 +18,7 @@ const CartContent: React.FC = () => {
 
     // TODO default currency
     return (
-        <div className="bg-white w-82 h-fit me-20 py-8 px-4">
+        <div className="bg-white w-82 h-fit me-5 lg:me-20 py-8 px-4">
             <div className="font-raleway font-medium mb-5"><span className="font-bold">My Bag,</span> {getItemCountText()}</div>
             <div className="mb-5">
                 {cartItems.map((item, index) => <CartItemCard key={index} item={item}/>)}

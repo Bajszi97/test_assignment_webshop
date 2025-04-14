@@ -14,32 +14,34 @@ const Header: React.FC = () => {
   if (!data) return <>Empty data</>;
 
   return (
-    <header className="flex h-16 w-full justify-center px-20">
-      <div className="flex w-full">
-        {data.categories.map((c: Category, index: number) => (
-          <NavLink key={`${index}-nav`} className="" to={`${c.slug}`}>
-            {({ isActive }) => (
-              <div
-                className={
-                  "flex h-full min-w-12 px-2 text-center transition-colors hover:text-primary active:text-green-600 " +
-                  (isActive ? "border-b-2 border-primary text-primary" : "")
-                }
-              >
-                <span className="my-auto font-raleway uppercase">{c.name}</span>
-              </div>
-            )}
-          </NavLink>
-        ))}
-      </div>
+    <header className="flex h-16 w-full justify-center">
+      <div className="flex max-w-[1920px] w-full px-5 lg:px-20">
+        <div className="flex w-full">
+          {data.categories.map((c: Category, index: number) => (
+            <NavLink key={`${index}-nav`} className="" to={`${c.slug}`}>
+              {({ isActive }) => (
+                <div
+                  className={
+                    "flex h-full min-w-12 px-2 text-center transition-colors hover:text-primary active:text-green-600 " +
+                    (isActive ? "border-b-2 border-primary text-primary" : "")
+                  }
+                >
+                  <span className="my-auto font-raleway uppercase">{c.name}</span>
+                </div>
+              )}
+            </NavLink>
+          ))}
+        </div>
 
-      <div className="flex w-16 items-center">
-        <Link to="/">
-          <Logo />
-        </Link>
-      </div>
-      
-      <div className="flex w-full justify-end items-center">
-        <CartButton/>
+        <div className="flex w-16 items-center">
+          <Link to="/">
+            <Logo />
+          </Link>
+        </div>
+        
+        <div className="flex w-full justify-end items-center">
+          <CartButton/>
+        </div>
       </div>
     </header>
   );

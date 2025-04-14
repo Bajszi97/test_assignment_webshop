@@ -18,11 +18,11 @@ const ProductPage: React.FC = () => {
   const product = data.product;
 
   return (
-    <div className="flex py-10">
-      <div className="">
+    <div className="flex py-5 lg:py-10 flex-col lg:flex-row">
+      <div className="flex justify-center mb-10 lg:justify-end lg:basis-7/12">
         <Gallery urls={product.gallery} />
       </div>
-      <div className="flex flex-1 justify-center">
+      <div className="flex justify-center lg:justify-start lg:basis-5/12 lg:ps-10">
         <ProductInfo product={product} />
       </div>
     </div>

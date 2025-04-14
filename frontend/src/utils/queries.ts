@@ -16,8 +16,9 @@ export const getCategoryProducts: TypedDocumentNode<{
   category: Category;
   products: ProductForCard[];
 }> = gql`
+
   query getCategoryProducts($category: String!) {
-    category: getCategories(filters: { slug: $category }) {
+    category: findCategory(slug: $category) {
       slug
       name
     }

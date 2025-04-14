@@ -20,7 +20,7 @@ const MainImage: React.FC<GalleryPartProps> = ({
 
   // TODO simplify and abstract chevron buttons
   return (
-    <div className="flex w-full">
+    <div className="relative w-full max-h-[480px] lg:max-h-none lg:w-[575px] mb-5 lg:mb-5">
       <img
         src={selectedImage}
         alt="Selected"
