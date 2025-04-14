@@ -9,6 +9,11 @@ export interface GalleryPartProps {
 
 export interface AttributeValueProps {
   attributeValue: AttributeValue;
-  onClick: (value: string) => void;
   isSelected: boolean;
 }
+
+export interface AttributeButtonProps extends AttributeValueProps{
+  onClick: (value: string) => void;
+}
+
+

@@ -1,6 +1,6 @@
-import { ButtonHTMLAttributes, ReactNode } from "react";
+import { ButtonHTMLAttributes } from "react";
 
-const PrimaryButton: React.FC<ButtonHTMLAttributes<HTMLButtonElement> & { children: ReactNode }> = ({
+const PrimaryButton: React.FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
   className,
   onClick,
   disabled,

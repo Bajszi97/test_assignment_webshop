@@ -9,7 +9,7 @@ const CartOverlay: React.FC = () => {
     if (isCartOpen) {
         return (
             <div
-                className="absolute inset-0 bg-gray-900/20 z-[9999]"
+                className="absolute flex min-h-full h-fit justify-end inset-0 bg-gray-900/20 z-[9999] pb-10"
                 onClick={handleClick}
             >
                 <CartContent />

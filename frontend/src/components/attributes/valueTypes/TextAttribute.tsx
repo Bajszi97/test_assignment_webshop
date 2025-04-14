@@ -1,7 +1,7 @@
-import { AttributeValueProps } from "@/types/ComponentTypes";
+import { AttributeButtonProps } from "@/types/ComponentTypes";
 import React from "react";
 
-const TextAttribute: React.FC<AttributeValueProps> = ({
+const TextAttribute: React.FC<AttributeButtonProps> = ({
   attributeValue,
   onClick,
   isSelected,
@@ -19,7 +19,7 @@ const TextAttribute: React.FC<AttributeValueProps> = ({
         disabled={isSelected}
         title={attributeValue.displayValue}
       >
-        {attributeValue.displayValue}
+        {attributeValue.value}
       </button>
     </div>
   );

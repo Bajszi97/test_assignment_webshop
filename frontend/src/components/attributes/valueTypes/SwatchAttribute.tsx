@@ -1,7 +1,7 @@
-import { AttributeValueProps } from "@/types/ComponentTypes";
+import { AttributeButtonProps } from "@/types/ComponentTypes";
 import React from "react";
 
-const SwatchAttribute: React.FC<AttributeValueProps> = ({
+const SwatchAttribute: React.FC<AttributeButtonProps> = ({
   attributeValue,
   onClick,
   isSelected,

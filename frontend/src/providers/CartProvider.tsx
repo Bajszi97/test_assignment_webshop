@@ -1,7 +1,7 @@
 import { Product } from "@/types/DomainModels";
 import { createContext, useState, PropsWithChildren, Dispatch, SetStateAction} from "react";
 
-interface CartItem {
+export interface CartItem {
     id: string;
     product: Product;
     selectedAttributes: Record<string, string>;
@@ -45,15 +45,15 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
         });
     };
 
-    const changeQuantity = (itemId: string, change: number) => {
+    const changeQuantity = (itemId: string, increment: number) => {
         setCartItems((prev) => {
             const newCart = [...prev];
-            const changedItemIndex = newCart.findIndex((cartItem) => cartItem.id, itemId);
+            const changedItemIndex = newCart.findIndex((cartItem) => cartItem.id === itemId);
 
             if (changedItemIndex === -1) return prev;
 
             const changedItem = { ...newCart[changedItemIndex] };
-            changedItem.quantity += change;
+            changedItem.quantity += increment;
 
             if (changedItem.quantity > 0) {
                 newCart[changedItemIndex] = changedItem;
@@ -70,7 +70,7 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
     };
 
     const cartTotal = () => {
-        return cartItems.reduce((total, item) => total + item.quantity * item.product.prices[0].amount, 0);
+        return Number(cartItems.reduce((total, item) => total + item.quantity * item.product.prices[0].amount, 0).toFixed(2));
     }
 
     return (

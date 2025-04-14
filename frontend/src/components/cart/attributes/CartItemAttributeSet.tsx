@@ -1,0 +1,36 @@
+import React from "react";
+import { AttributeTypeMap } from "./valueTypes";
+import {
+  AttributeSet,
+  AttributeValue,
+} from "@/types/DomainModels";
+
+interface CartItemAttributeSetProps {
+  attributeSet: AttributeSet;
+  selectedValue: string;
+}
+
+const CartItemAttributeSet: React.FC<CartItemAttributeSetProps> = ({
+  attributeSet,
+  selectedValue,
+}) => {
+  const { slug, name, type, items } = attributeSet;
+  const AttributeValue = AttributeTypeMap[type];
+
+  return (
+    <div className="">
+      <div className="font-raleway text-sm mb-1">{name}:</div>
+      <div className="flex w-full flex-wrap gap-2">
+        {items.map((attributeValue: AttributeValue, index) => (
+          <AttributeValue
+            key={index}
+            attributeValue={attributeValue}
+            isSelected={attributeValue.slug === selectedValue}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default CartItemAttributeSet;

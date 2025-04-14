@@ -1,12 +1,12 @@
 import { ComponentType } from "react";
-import TextAttribute from "./TextAttribute";
-import SwatchAttribute from "./SwatchAttribute";
+import TextAttribute from "./TextValue";
+import SwatchAttribute from "./SwatchValue";
 import { AttributeSetType } from "@/types/DomainModels";
-import { AttributeButtonProps } from "@/types/ComponentTypes";
+import { AttributeValueProps } from "@/types/ComponentTypes";
 
 export const AttributeTypeMap: Record<
   AttributeSetType,
-  ComponentType<AttributeButtonProps>
+  ComponentType<AttributeValueProps>
 > = {
   text: TextAttribute,
   swatch: SwatchAttribute,
