@@ -7,7 +7,7 @@ const TextAttributeInput: React.FC<AttributeInputProps> = ({
   onChange,
   isSelected,
 }) => {
-  const inputId = `swatch-${attributeValue.slug}`;
+  const inputId = `${setName}-${attributeValue.slug}`;
 
   return (
     <label htmlFor={inputId} className="cursor-pointer">

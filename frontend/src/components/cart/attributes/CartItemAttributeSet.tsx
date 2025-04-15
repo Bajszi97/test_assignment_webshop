@@ -19,7 +19,7 @@ const CartItemAttributeSet: React.FC<CartItemAttributeSetProps> = ({
 
   return (
     <div>
-      <span className="text-sm mb-1">{name}:</span>
+      <p className="text-sm mb-1 leading-tight">{name}:</p>
       <div className="flex w-full flex-wrap gap-2">
         {items.map((attributeValue: AttributeValue, index) => (
           <AttributeValue
