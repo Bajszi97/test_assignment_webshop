@@ -7,6 +7,7 @@ import MainLayout from "./layouts/MainLayout";
 import ProductPage from "./pages/ProductPage";
 import ApolloProvider from "./providers/ApolloProvider";
 import { CartProvider } from "./providers/CartProvider";
+import ScrollToTop from "./components/ScrollToTheTop";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -20,6 +21,7 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/:category/:product" element={<ProductPage />} />
             </Route>
           </Routes>
+          <ScrollToTop/>
         </BrowserRouter>
       </CartProvider>
     </ApolloProvider>
