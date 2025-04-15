@@ -14,7 +14,7 @@ const MainImage: React.FC<GalleryPartProps> = ({
   };
 
   return (
-    <figure className="relative w-full max-h-[480px] md:max-h-none md:max-w-[575px] md:min-w-[280px] mb-5 lg:mb-5">
+    <figure className="relative flex items-center w-full h-[60vh] md:h-min min-h-[480px] mb-5 lg:mb-5">
       <img
         src={selectedImage}
         alt="Selected"
