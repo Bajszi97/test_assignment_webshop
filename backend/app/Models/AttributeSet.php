@@ -41,7 +41,7 @@ class AttributeSet
 
     public function __construct()
     {
-        $this->values = new ArrayCollection();
+        $this->items = new ArrayCollection();
     }
 
     private function getVisible(): array
@@ -68,7 +68,7 @@ class AttributeSet
 
     public function addValue(AttributeValue $attribute): self
     {
-        $this->values->add($attribute);
+        $this->items->add($attribute);
         return $this;
     }
 
