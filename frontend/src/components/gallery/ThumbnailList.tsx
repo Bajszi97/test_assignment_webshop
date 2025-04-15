@@ -8,9 +8,8 @@ const ThumbnailList: React.FC<GalleryPartProps> = ({
   return (
       <div className="flex flex-row flex-nowrap px-5 md:px-0 gap-x-5 md:flex-col md:h-full md:min-w-fit md:gap-x-0 md:gap-y-5 overflow-scroll no-scrollbar md:pr-5" >
         {urls.map((url, index) => (
-          <figure className="min-w-fit">
+          <figure key={index} className="min-w-fit">
             <img
-              key={index}
               src={url}
               alt={`Thumbnail ${index + 1}`}
               className={`size-20 object-contain cursor-pointer border  ${
