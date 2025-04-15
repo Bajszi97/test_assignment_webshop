@@ -9,9 +9,9 @@ const CartButton: React.FC = () => {
         <button onClick={() => setIsCartOpen(!isCartOpen)} className={`me-5 relative ${hasItem ? "group cursor-pointer" : ""}`} disabled={!hasItem}>
             <Cart className="group-hover:fill-primary transition-colors" />
             {hasItem &&
-                <div className="absolute flex left-3 -top-3 min-w-5 h-5 px-1 rounded-full bg-shark group-hover:bg-primary text-white items-center justify-center">
+                <span className="absolute flex left-3 -top-3 min-w-5 h-5 px-1 rounded-full bg-shark group-hover:bg-primary text-white font-roboto font-bold items-center text-sm justify-center">
                     {cartItems.length}
-                </div>
+                </span>
             }
         </button>
     )

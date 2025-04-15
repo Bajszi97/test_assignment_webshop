@@ -1,5 +1,5 @@
 import { Product } from "@/types/DomainModels";
-import { createContext, useState, PropsWithChildren, Dispatch, SetStateAction} from "react";
+import { createContext, useState, PropsWithChildren, Dispatch, SetStateAction, useEffect} from "react";
 
 export interface CartItem {
     id: string;
@@ -27,6 +27,10 @@ export const CartContext = createContext<CartContextType | undefined>(undefined)
 export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
     const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
+
+    useEffect(() => {
+        document.body.style.overflow = isCartOpen ? "hidden" : ""
+    }, [isCartOpen])
 
     const addItem = (item: Omit<CartItem, 'id'>) => {
         const id = generateCartItemId(item);
