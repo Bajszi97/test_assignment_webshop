@@ -12,8 +12,9 @@ export interface AttributeValueProps {
   isSelected: boolean;
 }
 
-export interface AttributeButtonProps extends AttributeValueProps{
-  onClick: (value: string) => void;
+export interface AttributeInputProps extends AttributeValueProps{
+  setName: string;
+  onChange: (value: string) => void;
 }
 
 

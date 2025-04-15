@@ -6,12 +6,12 @@ const AttributeTitle: React.FC<HtmlHTMLAttributes<HTMLHeadingElement>> = ({
   ...props
 }) => {
   return (
-    <h2
+    <legend
       {...props}
       className={`pb-1 font-roboto-condensed text-lg font-bold uppercase ${className}`}
     >
       {children}
-    </h2>
+    </legend>
   );
 };
 

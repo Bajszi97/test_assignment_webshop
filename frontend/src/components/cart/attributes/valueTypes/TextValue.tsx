@@ -6,14 +6,14 @@ const TextValue: React.FC<AttributeValueProps> = ({
   isSelected,
 }) => {
   return (
-    <div
+    <span
       className={
         `flex h-6 min-w-6 px-1 items-center justify-center border font-source-sans text-sm transition-colors
         ${isSelected ? "bg-shark text-white" : "hover:bg-neutral-100"}`
       }
     >
         {attributeValue.value}
-    </div>
+    </span>
   );
 };
 

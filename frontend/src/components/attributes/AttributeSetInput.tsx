@@ -1,22 +1,19 @@
 import React, { useState } from "react";
 import AttributeTitle from "./AttributeTitle";
-import { AttributeTypeMap } from "./valueTypes";
-import {
-  AttributeSet as AttributeSetModel,
-  AttributeValue,
-} from "@/types/DomainModels";
+import { AttributeInputTypeMap } from "./valueTypes";
+import { AttributeSet, AttributeValue } from "@/types/DomainModels";
 
 interface AttributeSetProps {
-  attributeSet: AttributeSetModel; // AttributeSet type renamed not to conflict with the component's name
+  attributeSet: AttributeSet;
   onChange: (attribute: string, valueSlug: string) => void;
 }
 
-const AttributeSet: React.FC<AttributeSetProps> = ({
+const AttributeSetInput: React.FC<AttributeSetProps> = ({
   attributeSet,
   onChange,
 }) => {
   const { slug, name, type, items } = attributeSet;
-  const AttributeButton = AttributeTypeMap[type];
+  const AttributeInput = AttributeInputTypeMap[type];
 
   const [selectedValue, setSelectedValue] = useState("");
 
@@ -26,20 +23,21 @@ const AttributeSet: React.FC<AttributeSetProps> = ({
   };
 
   return (
-    <div className="mb-5">
+    <fieldset className="mb-5">
       <AttributeTitle>{name}:</AttributeTitle>
       <div className="flex w-full flex-wrap gap-3">
         {items.map((attributeValue: AttributeValue, index) => (
-          <AttributeButton
+          <AttributeInput
             key={index}
+            setName={name}
             attributeValue={attributeValue}
-            onClick={handleChange}
+            onChange={handleChange}
             isSelected={attributeValue.slug === selectedValue}
           />
         ))}
       </div>
-    </div>
+    </fieldset>
   );
 };
 
-export default AttributeSet;
+export default AttributeSetInput;

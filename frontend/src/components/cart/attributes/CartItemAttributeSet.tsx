@@ -18,8 +18,8 @@ const CartItemAttributeSet: React.FC<CartItemAttributeSetProps> = ({
   const AttributeValue = AttributeTypeMap[type];
 
   return (
-    <div className="">
-      <div className="font-raleway text-sm mb-1">{name}:</div>
+    <div>
+      <span className="text-sm mb-1">{name}:</span>
       <div className="flex w-full flex-wrap gap-2">
         {items.map((attributeValue: AttributeValue, index) => (
           <AttributeValue

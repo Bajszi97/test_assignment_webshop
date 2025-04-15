@@ -6,9 +6,9 @@ const ThumbnailList: React.FC<GalleryPartProps> = ({
   setSelectedImage,
 }) => {
   return (
-      <div className="flex flex-row flex-nowrap px-5 lg:px-0 gap-x-5 lg:flex-col lg:h-full lg:min-w-fit lg:gap-x-0 lg:gap-y-5 overflow-scroll no-scrollbar lg:pr-5" >
+      <div className="flex flex-row flex-nowrap px-5 md:px-0 gap-x-5 md:flex-col md:h-full md:min-w-fit md:gap-x-0 md:gap-y-5 overflow-scroll no-scrollbar md:pr-5" >
         {urls.map((url, index) => (
-          <div className="min-w-fit">
+          <figure className="min-w-fit">
             <img
               key={index}
               src={url}
@@ -18,7 +18,7 @@ const ThumbnailList: React.FC<GalleryPartProps> = ({
               }`}
               onClick={() => setSelectedImage(url)}
             />
-          </div>
+          </figure>
         ))}
       </div>
   );

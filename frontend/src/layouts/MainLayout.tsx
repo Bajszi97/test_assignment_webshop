@@ -4,15 +4,15 @@ import CartOverlay from "@/components/cart/CartOverlay";
 
 const MainLayout: React.FC = () => {
   return (
-    <div className="flex min-h-screen w-screen flex-col items-center">
+    <>
       <Header />
-      <main className="relative w-full flex-1 flex justify-center">
+      <main className="relative w-screen min-h-screen flex justify-center pb-50">
         <CartOverlay />
-        <div className="max-w-[1920px] w-full lg:px-20">
+        <div className="max-w-[1920px] w-full md:px-10 lg:px-20">
           <Outlet />
         </div>
       </main>
-    </div>
+    </>
   );
 };
 

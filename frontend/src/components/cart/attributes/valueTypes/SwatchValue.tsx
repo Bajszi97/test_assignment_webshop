@@ -7,8 +7,12 @@ const SwatchValue: React.FC<AttributeValueProps> = ({
 }) => {
   // TODO: more robust bright color filter
   return (
-    <div
-      className={`size-4 border ${isSelected && "outline-2 outline-primary"} ${attributeValue.slug === "white" ? "border-shark" : "border-white"} `}
+    <span
+      className={`
+        block size-4
+        ${attributeValue.slug === "white" && "border border-shark"}
+        ${isSelected && "outline-1 outline-offset-1 outline-primary"}
+        `}
       style={{ backgroundColor: attributeValue.value }}
     />
   );

@@ -17,13 +17,13 @@ const ProductList: React.FC = () => {
   if (!data) return <>Empty data</>;
 
   return (
-    <div className="pt-10">
-      <span className="font-raleway text-2xl">{data.category.name}</span>
-      <div className="mt-10 grid grid-cols-1 justify-items-center gap-16 px-5 md:grid-cols-2 lg:grid-cols-3">
-        {data.products.map((p: ProductForCard, index) => (
-          <ProductCard key={index} product={p} />
+    <div className="pt-10 px-5 lg:px-0">
+      <h1 className="text-[42px]">{data.category.name}</h1>
+      <section className="mt-10 grid grid-cols-1 justify-items-center gap-16 md:grid-cols-2 lg:grid-cols-3">
+        {data.products.map((product: ProductForCard, index) => (
+          <ProductCard key={index} product={product} />
         ))}
-      </div>
+      </section>
     </div>
   );
 };

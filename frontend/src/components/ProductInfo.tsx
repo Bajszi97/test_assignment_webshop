@@ -4,7 +4,7 @@ import {
   Product,
 } from "@/types/DomainModels";
 import AttributeTitle from "./attributes/AttributeTitle";
-import AttributeSet from "./attributes/AttributeSet";
+import AttributeSet from "./attributes/AttributeSetInput";
 import { useState } from "react";
 import ProductName from "./ProductName";
 import PriceTag from "./PriceTag";
@@ -44,7 +44,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
   return (
     <div className="flex w-74 flex-col">
       <ProductName>{product.name}</ProductName>
-      <div className="">
+      <form name="productAttributes">
         {product.attributes.map((attributeSet: AttributeSetType, index) => (
           <AttributeSet
             key={index}
@@ -52,7 +52,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
             onChange={handleAttributeChange}
           />
         ))}
-      </div>
+      </form>
       <div className="mb-6">
         <AttributeTitle>PRICE:</AttributeTitle>
         <PriceTag

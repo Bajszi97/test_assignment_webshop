@@ -10,7 +10,7 @@ const Gallery: React.FC<GalleryProps> = ({ urls }) => {
   const [selectedImage, setSelectedImage] = useState<string>(urls[0] || "");
 
   return (
-    <div className="flex flex-col-reverse w-full lg:w-auto lg:flex-row lg:max-h-[480px]">
+    <div className="flex flex-col-reverse w-full md:w-auto md:flex-row md:max-h-[480px]">
       <ThumbnailList
         urls={urls}
         selectedImage={selectedImage}
