@@ -37,9 +37,11 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
     setIsCartOpen(true);
   };
 
-  const isDisabled = !product.attributes.every(
+  const allSelected = product.attributes.every(
     (attributeSet) => selectedAttributes[attributeSet.slug],
   );
+
+  const tooltipText = product.inStock? (allSelected? "Add item to the cart." : "Select product attributes first") : "Item out of stock."
 
   return (
     <div className="flex w-74 flex-col">
@@ -61,8 +63,8 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
         />
       </div>
       <div className="mb-12">
-        <PrimaryButton title={isDisabled ? "Select product attributes first" : ""} onClick={handleAddToCart} disabled={isDisabled}>
-          Add to cart
+        <PrimaryButton title={tooltipText} onClick={handleAddToCart} disabled={!(product.inStock && allSelected)}>
+          {product.inStock? "Add to cart" : "Out of stock"}
         </PrimaryButton>
       </div>
       <div className="font-roboto">{HTMLReactParser(product.description)}</div>
