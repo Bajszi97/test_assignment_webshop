@@ -55,6 +55,9 @@ class Product
     #[OneToMany(targetEntity: Image::class, mappedBy: 'product')]
     private Collection $images;
 
+    #[OneToMany(targetEntity: OrderItem::class, mappedBy: 'product')]
+    private Collection $orderItems;
+
     #[JoinTable(name: 'product_attribute_values')]
     #[ManyToMany(targetEntity: AttributeValue::class, inversedBy: 'products')]
     private Collection $attributes;
@@ -64,6 +67,7 @@ class Product
         $this->images = new ArrayCollection();
         $this->prices = new ArrayCollection();
         $this->attributes = new ArrayCollection();
+        $this->orderItem = new ArrayCollection();
     }
 
     private function getVisible(): array
@@ -120,6 +124,12 @@ class Product
     public function addAttribute(AttributeValue $attribute): self
     {
         $this->attributes->add($attribute);
+        return $this;
+    }
+
+    public function addOrderItem(OrderItem $orderItem): self
+    {
+        $this->orderItems->add($orderItem);
         return $this;
     }
 }

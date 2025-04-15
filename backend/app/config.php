@@ -14,13 +14,14 @@ use App\Models\AttributeSet;
 use App\Models\AttributeValue;
 use App\Models\Category;
 use App\Models\Currency;
+use App\Models\Order;
 use App\Models\Product;
 use App\Repositories\AttributeSetRepository;
 use App\Repositories\AttributeValueRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\CurrencyRepository;
+use App\Repositories\OrderRepository;
 use App\Repositories\ProductRepository;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
@@ -69,6 +70,7 @@ return [
         AttributeValueRepository::class => factory(doctrineRepository(AttributeValue::class)),
         CurrencyRepository::class => factory(doctrineRepository(Currency::class)),
         ProductRepository::class => factory(doctrineRepository(Product::class)),
+        OrderRepository::class => factory(doctrineRepository(Order::class)),
     ],
 
     /**
