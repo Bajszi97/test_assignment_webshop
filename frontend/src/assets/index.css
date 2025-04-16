@@ -15,6 +15,7 @@ body {
   --font-roboto: "Roboto", sans-serif;
   --font-source-sans: "Source Sans 3", sans-serif;
   --color-primary: rgba(94, 206, 123, 1);
+  --color-primary-dark: #2fa455;
   --color-shark: rgba(29, 31, 34, 1);
 }
 

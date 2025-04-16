@@ -53,7 +53,7 @@ const CartContent: React.FC = () => {
     return (
         <div className="flex flex-col bg-white w-full sm:w-82 h-min max-h-[94%] mx-5 md:me-10 lg:me-20 py-8 px-4 pb-8">
             <h2 className="font-medium mb-5"><span className="font-bold">My Bag,</span> {getItemCountText()}</h2>
-            <ul className="space-y-8 mb-5 overflow-scroll">
+            <ul className="space-y-8 mb-5 overflow-y-scroll">
                 {cartItems.map((item, index) => <CartItemCard key={index} item={item} />)}
             </ul>
             <div className="font-medium mb-8">

@@ -9,7 +9,7 @@ const SwatchValue: React.FC<AttributeValueProps> = ({
   return (
     <span
       className={`
-        block size-4
+        block size-4 first:ms-1
         ${attributeValue.slug === "white" && "border border-shark"}
         ${isSelected && "outline-1 outline-offset-1 outline-primary"}
         `}

@@ -10,7 +10,7 @@ const PrimaryButton: React.FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
   return (
     <button
       {...props}
-      className={`h-12 w-full bg-primary text-white uppercase transition-colors ${disabled ? "grayscale" : "cursor-pointer hover:bg-[#2fa455]"}`}
+      className={`h-12 w-full bg-primary text-white uppercase transition-colors ${disabled ? "grayscale" : "cursor-pointer hover:bg-primary-dark"}`}
       onClick={onClick}
       disabled={disabled}
     >
