@@ -9,7 +9,6 @@ use Psr\Http\Message\ResponseInterface;
 // https://github.com/slimphp/Slim/blob/4.x/Slim/ResponseEmitter.php
 class ResponseEmitter implements ResponseEmitterInterface
 {
-
     private int $responseChunkSize;
 
     public function __construct(int $responseChunkSize = 4096)
@@ -118,4 +117,3 @@ class ResponseEmitter implements ResponseEmitterInterface
         return $seekable ? $stream->read(1) === '' : $stream->eof();
     }
 }
-

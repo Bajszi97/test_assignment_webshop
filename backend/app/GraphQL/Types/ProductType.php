@@ -33,7 +33,8 @@ final class ProductType extends ObjectType
                 ],
                 'mainImage' => [
                     'type' => Type::string(),
-                    'resolve' => fn(object $product): ?string => ($mainImage = $product->images->first())? $mainImage->toUrl() : null
+                    'resolve' => fn(object $product): ?string =>
+                        ($mainImage = $product->images->first()) ? $mainImage->toUrl() : null
                 ],
                 'attributes' => [
                     'type' => Type::listOf($registry->get('attributeSet')),

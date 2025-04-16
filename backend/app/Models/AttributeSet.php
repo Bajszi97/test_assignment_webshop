@@ -17,8 +17,7 @@ use Doctrine\ORM\Mapping\Table;
 #[Entity(repositoryClass: AttributeSetRepository::class)]
 #[Table(name: 'attribute_sets')]
 class AttributeSet
-{   
-
+{
     use MassAssignedCreate;
     use ToRapidDTO;
 
@@ -26,13 +25,13 @@ class AttributeSet
     #[Column()]
     #[GeneratedValue()]
     private int $id;
-    
+
     #[Column()]
     private string $slug;
-    
+
     #[Column()]
     private string $name;
-    
+
     #[Column()]
     private string $type;
 
@@ -62,7 +61,8 @@ class AttributeSet
         ];
     }
 
-    public function toName() : string {
+    public function toName(): string
+    {
         return $this->name;
     }
 
@@ -71,6 +71,4 @@ class AttributeSet
         $this->items->add($attribute);
         return $this;
     }
-
 }
-

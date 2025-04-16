@@ -9,7 +9,7 @@ return function () {
         paths: [__DIR__ . '/../app/Models'],
         isDevMode: $_ENV['APP_DEBUG'],
     );
-    
+
     /**
      * The Database connection configurations, they should be set in the .env file.
      */

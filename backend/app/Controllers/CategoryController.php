@@ -12,7 +12,6 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class CategoryController extends Controller
 {
-
     public function index(
         ResponseFactoryInterface $responseFactory,
         CategoryRepository $categoryRepository,

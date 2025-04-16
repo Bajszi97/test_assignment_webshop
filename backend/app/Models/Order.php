@@ -55,7 +55,7 @@ class Order
 
     public function getTotal(): float
     {
-        return $this->items->reduce(fn($sum, $orderItem) => 
+        return $this->items->reduce(fn($sum, $orderItem) =>
             $sum += $orderItem->toPrice()->toAmount() * $orderItem->toQuantity(), 0);
     }
 
@@ -64,4 +64,3 @@ class Order
         return $this->items->first()->toPrice()->toCurrency();
     }
 }
-

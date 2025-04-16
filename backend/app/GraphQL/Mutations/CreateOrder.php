@@ -11,7 +11,6 @@ use GraphQL\Type\Definition\Type;
 
 class CreateOrder implements FieldDefinition
 {
-
     public function __construct(
         protected OrderRepository $repo,
         protected TypeRegistry $registry

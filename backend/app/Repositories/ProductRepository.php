@@ -99,7 +99,8 @@ class ProductRepository extends EntityRepository
 
         if (isset($attributes['items'])) {
             foreach ($attributes['items'] as $attrAttributes) {
-                $attributeValue = $em->getRepository(AttributeValue::class)->findOrCreate($attrAttributes, $attributeSet);
+                $attributeValue = $em->getRepository(AttributeValue::class)
+                    ->findOrCreate($attrAttributes, $attributeSet);
                 $attributeValue->addProduct($product);
                 $product->addAttribute($attributeValue);
             }

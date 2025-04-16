@@ -10,7 +10,6 @@ use GraphQL\Type\Definition\Type;
 
 class GetOrders implements FieldDefinition
 {
-
     public function __construct(
         protected OrderRepository $repo,
         protected TypeRegistry $registry

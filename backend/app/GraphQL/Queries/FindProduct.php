@@ -10,7 +10,6 @@ use GraphQL\Type\Definition\Type;
 
 class FindProduct implements FieldDefinition
 {
-
     public function __construct(
         protected ProductRepository $repo,
         protected TypeRegistry $registry

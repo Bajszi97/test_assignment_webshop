@@ -9,7 +9,6 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class HomeController extends Controller
 {
-
     public function index(ResponseFactoryInterface $responseFactory, ServerRequestInterface $request): ResponseInterface
     {
         $response = $responseFactory->createResponse(200);

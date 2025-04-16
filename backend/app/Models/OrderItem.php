@@ -19,7 +19,7 @@ use Doctrine\ORM\Mapping\Table;
 #[Entity()]
 #[Table(name: 'order_items')]
 class OrderItem
-{   
+{
     use MassAssignedCreate;
     use ToRapidDTO;
 
@@ -37,7 +37,7 @@ class OrderItem
     #[ManyToOne(targetEntity: Product::class, inversedBy: 'orderItems')]
     private Product $product;
 
-    #[OneToOne(targetEntity: Price::class, mappedBy: 'orderItem',  cascade: ['persist', 'remove'])]
+    #[OneToOne(targetEntity: Price::class, mappedBy: 'orderItem', cascade: ['persist', 'remove'])]
     private Price $price;
 
     #[JoinTable(name: 'order_item_attribute_values')]
@@ -101,4 +101,3 @@ class OrderItem
         return $this;
     }
 }
-

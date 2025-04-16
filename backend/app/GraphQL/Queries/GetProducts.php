@@ -10,7 +10,6 @@ use GraphQL\Type\Definition\Type;
 
 class GetProducts implements FieldDefinition
 {
-
     public function __construct(
         protected ProductRepository $repo,
         protected TypeRegistry $registry
@@ -33,7 +32,7 @@ class GetProducts implements FieldDefinition
             ],
             'resolve' => fn($rootValue, $args): array => array_map(
                 fn($e): object => $e->toDTO(),
-                $this->repo->findByFilters($args['filters']?? [])
+                $this->repo->findByFilters($args['filters'] ?? [])
             ),
         ];
     }

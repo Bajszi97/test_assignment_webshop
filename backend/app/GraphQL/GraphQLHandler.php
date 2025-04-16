@@ -11,7 +11,6 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class GraphQLHandler
 {
-
     protected bool $debug = false;
     public function __construct(protected TypeRegistry $registry)
     {
@@ -19,7 +18,7 @@ class GraphQLHandler
     }
 
     public function handle(ServerRequestInterface $request): array
-    {   
+    {
         [$source, $variables] = $this->getQuery($request);
         return GraphQL::executeQuery(
             schema: $this->getSchema(),
@@ -29,7 +28,7 @@ class GraphQLHandler
     }
 
     private function getSchema(): Schema
-    {   
+    {
         // TODO: investigate this weird type missmatch
         $config = SchemaConfig::create()
             ->setQuery($this->registry->get('query'))
@@ -38,9 +37,9 @@ class GraphQLHandler
     }
 
     private function getQuery(ServerRequestInterface $request): array
-    {       
+    {
         // TODO: better error handling
         $data = json_decode($request->getBody()->getContents(), true);
-        return [$data['query'], $data['variables']?? []];
+        return [$data['query'], $data['variables'] ?? []];
     }
 }

@@ -19,8 +19,7 @@ use Doctrine\ORM\Mapping\Table;
 #[Entity(repositoryClass: AttributeValueRepository::class)]
 #[Table(name: 'attribute_values')]
 class AttributeValue
-{   
-
+{
     use MassAssignedCreate;
     use ToRapidDTO;
 
@@ -28,7 +27,7 @@ class AttributeValue
     #[Column()]
     #[GeneratedValue()]
     private int $id;
-    
+
     #[Column()]
     private string $slug;
 
@@ -41,10 +40,10 @@ class AttributeValue
     #[ManyToOne(targetEntity: AttributeSet::class, inversedBy: 'items')]
     #[JoinColumn(name: 'attribute_set_id')]
     private AttributeSet $attributeSet;
-    
+
     #[ManyToMany(targetEntity: Product::class, mappedBy: 'attributes')]
     private Collection $products;
-    
+
     #[ManyToMany(targetEntity: OrderItem::class, mappedBy: 'attributes')]
     private Collection $orderItems;
 
@@ -82,7 +81,7 @@ class AttributeValue
     public function addOrderItem(OrderItem $orderItem): self
     {
         $this->orderItems->add($orderItem);
-        return $this;   
+        return $this;
     }
 
     public function setAttributeSet(AttributeSet $attributeSet): self
@@ -91,4 +90,3 @@ class AttributeValue
         return $this;
     }
 }
-

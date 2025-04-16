@@ -13,11 +13,11 @@ use FastRoute\Dispatcher;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use ReflectionFunction;
+
 use function FastRoute\simpleDispatcher;
 
 class Router implements RouteServiceProvider
 {
-
     private $dispatcher;
 
     public function __construct(public Container $container)
@@ -34,19 +34,18 @@ class Router implements RouteServiceProvider
         );
 
         switch ($routeInfo[0]) {
-
             case Dispatcher::FOUND:
                 [$status, $handler, $args] = $routeInfo;
-                $handler = [new $handler[0], $handler[1]];
+                $handler = [new $handler[0](), $handler[1]];
                 return $this->callControllerMethod($handler, $args);
 
             case Dispatcher::NOT_FOUND:
-                throw new RouteNotFound;
+                throw new RouteNotFound();
 
             case Dispatcher::METHOD_NOT_ALLOWED:
                 // TODO send Allow: header
                 $allowed = $routeInfo[1];
-                throw new MethodNotAllowed;
+                throw new MethodNotAllowed();
 
             default:
                 throw new Exception("Routing error.");

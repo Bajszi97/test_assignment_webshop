@@ -17,7 +17,6 @@ use Doctrine\ORM\Mapping\Table;
 #[Table(name: 'currencies')]
 class Currency
 {
-
     use MassAssignedCreate;
     use ToRapidDTO;
 
@@ -25,7 +24,7 @@ class Currency
     #[Column()]
     #[GeneratedValue()]
     private int $id;
-    
+
     #[Column()]
     private string $label;
 
@@ -53,4 +52,3 @@ class Currency
     // #[OneToMany(targetEntity: Price::class, mappedBy: 'currency')]
     // private Collection $prices;
 }
-

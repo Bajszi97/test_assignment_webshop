@@ -22,7 +22,6 @@ use Doctrine\ORM\Mapping\Table;
 #[Table(name: 'products')]
 class Product
 {
-
     use MassAssignedCreate;
     use ToRapidDTO;
 
@@ -133,4 +132,3 @@ class Product
         return $this;
     }
 }
-

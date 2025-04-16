@@ -2,6 +2,7 @@
 
 namespace App\GraphQL;
 
-interface FieldDefinition {
+interface FieldDefinition
+{
     public function getDefinition(): array;
 }

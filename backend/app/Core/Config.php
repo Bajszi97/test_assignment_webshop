@@ -19,12 +19,12 @@ class Config
             return;
         }
 
-        $dotenv = Dotenv::createImmutable(__DIR__.'/../../');
+        $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
         $dotenv->load();
 
-        static::$config = require_once __DIR__."/../config.php";
+        static::$config = require_once __DIR__ . "/../config.php";
 
-        static::$isLoaded = True;
+        static::$isLoaded = true;
     }
 
     public static function getAll(): array
@@ -32,17 +32,18 @@ class Config
         return static::$config;
     }
 
-    public static function get(string $config, mixed $default = null): mixed {  
+    public static function get(string $config, mixed $default = null): mixed
+    {
         $keys = explode('.', $config);
         $value = static::$config;
-    
+
         foreach ($keys as $key) {
             if (!is_array($value) || !array_key_exists($key, $value)) {
                 return $default;
             }
             $value = $value[$key];
         }
-    
+
         return $value;
     }
 }

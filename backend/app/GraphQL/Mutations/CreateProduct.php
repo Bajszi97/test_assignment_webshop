@@ -11,7 +11,6 @@ use GraphQL\Type\Definition\Type;
 
 class CreateProduct implements FieldDefinition
 {
-
     public function __construct(
         protected TypeRegistry $registry,
         protected ProductRepository $repo

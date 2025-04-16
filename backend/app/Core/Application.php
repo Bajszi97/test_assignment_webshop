@@ -10,7 +10,6 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class Application
 {
-
     public function __construct(
         private MiddlewareServiceProvider $middlewareDispatcher,
         private ServerRequestCreator $serverRequestCreator,
@@ -19,7 +18,8 @@ class Application
     ) {
     }
 
-    public function run(): void {
+    public function run(): void
+    {
         $response = $this->middlewareDispatcher->dispatch($this->getRequest());
         $this->responseEmitter->emit($response);
     }

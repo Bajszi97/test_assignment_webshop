@@ -10,7 +10,6 @@ use GraphQL\Type\Definition\Type;
 
 class CreateCategory implements FieldDefinition
 {
-
     public function __construct(
         protected CategoryRepository $repo,
         protected TypeRegistry $registry

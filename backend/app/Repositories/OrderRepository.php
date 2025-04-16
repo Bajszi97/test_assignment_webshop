@@ -15,7 +15,7 @@ class OrderRepository extends EntityRepository
 {
     public function createAndSave(array $attributes): Order
     {
-        $new = new Order; // Order doesn't have any attribute that should be mass assigned. 
+        $new = new Order(); // Order doesn't have any attribute that should be mass assigned.
         $em = $this->getEntityManager();
 
         if (isset($attributes['items'])) {
@@ -45,7 +45,8 @@ class OrderRepository extends EntityRepository
                 $attributeValue = $em->getRepository(AttributeValue::class)->findOneBy(
                     [
                         'slug' => $attrAttributes['valueSlug'],
-                        'attributeSet' => $em->getRepository(AttributeSet::class)->findOneBySlug($attrAttributes['setSlug'])
+                        'attributeSet' => $em->getRepository(AttributeSet::class)
+                            ->findOneBySlug($attrAttributes['setSlug'])
                     ]
                 );
                 $attributeValue->addOrderItem($orderItem);

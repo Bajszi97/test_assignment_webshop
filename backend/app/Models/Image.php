@@ -15,7 +15,6 @@ use Doctrine\ORM\Mapping\Table;
 #[Table(name: 'images')]
 class Image
 {
-
     use MassAssignedCreate;
 
     #[Id]
@@ -47,4 +46,3 @@ class Image
         return $this;
     }
 }
-

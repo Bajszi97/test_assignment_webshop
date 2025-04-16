@@ -21,8 +21,8 @@ final class OrderType extends ObjectType
                 ],
                 'total' => [
                     'type' => $registry->get('price'),
-                    'resolve' => function(object $order): object {
-                        $priceDTO = new stdClass;
+                    'resolve' => function (object $order): object {
+                        $priceDTO = new stdClass();
                         $priceDTO->amount = $order->total;
                         $priceDTO->currency = $order->currency;
                         return $priceDTO;

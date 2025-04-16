@@ -10,7 +10,6 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class GraphQLController extends Controller
 {
-
     public function handle(
         ResponseFactoryInterface $responseFactory,
         ServerRequestInterface $request,

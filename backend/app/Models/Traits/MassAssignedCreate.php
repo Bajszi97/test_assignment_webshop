@@ -2,18 +2,18 @@
 
 namespace App\Models\Traits;
 
-trait MassAssignedCreate {
-
+trait MassAssignedCreate
+{
     /**
      * Create a new entity instance with the given attributes.
-     * Only attributes set in the getFillable getter method can be assigned through this static method. 
+     * Only attributes set in the getFillable getter method can be assigned through this static method.
      * @param array $attributes
      * @return object
      */
     public static function create(array $attributes): static
     {
-        $new = new static;
-        $assignableAttributes = array_intersect_key( $attributes, array_flip($new->getFillable()));
+        $new = new static();
+        $assignableAttributes = array_intersect_key($attributes, array_flip($new->getFillable()));
         foreach ($assignableAttributes as $attribute => $value) {
             $new->$attribute = $value;
         }

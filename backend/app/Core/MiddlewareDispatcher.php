@@ -43,7 +43,8 @@ class MiddlewareDispatcher implements MiddlewareServiceProvider
         }
     }
 
-    public function dispatch(RequestInterface $request): ResponseInterface {
+    public function dispatch(RequestInterface $request): ResponseInterface
+    {
         return $this->outerMiddleware->handle($request);
     }
 }

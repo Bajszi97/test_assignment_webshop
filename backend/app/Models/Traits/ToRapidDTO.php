@@ -4,20 +4,21 @@ namespace App\Models\Traits;
 
 use stdClass;
 
-trait ToRapidDTO {
+trait ToRapidDTO
+{
     public function toDTO(): object
     {
-        $result = new stdClass;
+        $result = new stdClass();
         foreach ($this->getVisible() as $field) {
             $result->$field = $this->getFieldValue($field);
         }
-        return $result;  
+        return $result;
     }
 
     private function getFieldValue(string $field): mixed
-    {   
-        $getterMethod = "get".ucfirst($field);
-        if(method_exists($this, $getterMethod)){
+    {
+        $getterMethod = "get" . ucfirst($field);
+        if (method_exists($this, $getterMethod)) {
             return $this->$getterMethod();
         }
 

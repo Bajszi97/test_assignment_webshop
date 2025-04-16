@@ -33,6 +33,7 @@ use Psr\Http\Message\ServerRequestFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\UploadedFileFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
+
 use function DI\autowire;
 use function DI\create;
 use function DI\factory;
@@ -43,17 +44,17 @@ return [
      */
     'error_handling' => [
         'debug' => $_ENV['APP_DEBUG'],
-        'log_file' => $_ENV['LOG_FILE']?? __DIR__."/../logs/errors.log",
+        'log_file' => $_ENV['LOG_FILE'] ?? __DIR__ . "/../logs/errors.log",
     ],
 
     /**
-     * The main service providers for the application, 
+     * The main service providers for the application,
      * they can be replaced by custom classes implementing the corresponding interfaces.
      */
     'services' => [
         ErrorHandlingProvider::class => autowire(ErrorHandler::class),
         MiddlewareServiceProvider::class => autowire(MiddlewareDispatcher::class),
-        RouteServiceProvider::class => autowire( Router::class),
+        RouteServiceProvider::class => autowire(Router::class),
         ServerRequestCreatorInterface::class => autowire(ServerRequestCreator::class),
         ServerRequestFactoryInterface::class => create(Psr17Factory::class),
         UriFactoryInterface::class => create(Psr17Factory::class),
@@ -63,7 +64,7 @@ return [
         ResponseEmitterInterface::class => create(ResponseEmitter::class),
         EntityManagerInterface::class => factory(require('doctrine.php')),
         SerializerInterface::class => factory(fn () => SerializerBuilder::create()->build()),
-        
+
         // Registering repos
         CategoryRepository::class => factory(doctrineRepository(Category::class)),
         AttributeSetRepository::class => factory(doctrineRepository(AttributeSet::class)),
@@ -82,7 +83,8 @@ return [
     ]
 ];
 
-function doctrineRepository(string $entityClass): \Closure {
+function doctrineRepository(string $entityClass): \Closure
+{
     return function (EntityManagerInterface $em) use ($entityClass) {
         return $em->getRepository($entityClass);
     };

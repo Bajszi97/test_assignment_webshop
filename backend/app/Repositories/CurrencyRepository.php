@@ -7,7 +7,6 @@ use Doctrine\ORM\EntityRepository;
 
 class CurrencyRepository extends EntityRepository
 {
-
     public function findOrCreate(array $attributes): Currency
     {
         return $this->findOneBy(['label' => $attributes['label']]) ?: $this->createAndSave($attributes);

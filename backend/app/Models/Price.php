@@ -18,7 +18,6 @@ use Doctrine\ORM\Mapping\Table;
 #[Table(name: 'prices')]
 class Price
 {
-
     use MassAssignedCreate;
     use ToRapidDTO;
 
@@ -57,14 +56,14 @@ class Price
         ];
     }
 
-    function toAmount(): float 
+    public function toAmount(): float
     {
-        return $this->amount;    
+        return $this->amount;
     }
 
-    function toCurrency(): Currency 
+    public function toCurrency(): Currency
     {
-        return $this->currency;    
+        return $this->currency;
     }
 
     public function setProduct(Product $product): self
@@ -85,4 +84,3 @@ class Price
         return $this;
     }
 }
-
