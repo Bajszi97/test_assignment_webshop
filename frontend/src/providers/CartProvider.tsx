@@ -31,17 +31,32 @@ const generateCartItemId = (item: Omit<CartItem, "id">): string => {
   );
 };
 
+const getInitialCart = () => {
+  try {
+    const stored = localStorage.getItem('cartItems');
+    return stored ? JSON.parse(stored) : [];
+  } catch (e) {
+    console.error('Failed to parse cart from localStorage', e);
+    return [];
+  }
+}
+
 export const CartContext = createContext<CartContextType | undefined>(
   undefined,
 );
 
 export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+  const [cartItems, setCartItems] = useState<CartItem[]>(getInitialCart());
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
 
   useEffect(() => {
     document.body.style.overflow = isCartOpen ? "hidden" : "";
   }, [isCartOpen]);
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const addItem = (item: Omit<CartItem, "id">) => {
     const id = generateCartItemId(item);
