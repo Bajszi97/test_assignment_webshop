@@ -72,3 +72,40 @@ export const findProduct: TypedDocumentNode<{
     }
   }
 `;
+
+export const createOrder = gql`
+  mutation createOrder($input: OrderInput!) {
+    order: createOrder(input: $input) {
+      placedAt
+      total {
+        amount
+        currency {
+          label
+          symbol
+        }
+      }
+      items {
+        product {
+          slug
+          name
+        }
+        quantity
+        price {
+          amount
+          currency {
+              label
+          } 
+        }
+        attributes {
+          attributeSet {
+            slug
+          }
+          attributeValue {
+            slug
+            value
+          }
+        }
+      }
+    }
+  }
+`

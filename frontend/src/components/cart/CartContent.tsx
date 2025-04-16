@@ -2,19 +2,52 @@ import { useCartContext } from "@/hooks/useCartContext";
 import PriceTag from "../PriceTag";
 import PrimaryButton from "../PrimaryButton";
 import CartItemCard from "./CartItemCard";
+import { useMutation } from "@apollo/client";
+import { createOrder } from "@/utils/queries";
 
 const CartContent: React.FC = () => {
     const { cartItems, cartTotal, clearCart, setIsCartOpen } = useCartContext();
+    const [placeOrder, { data, loading, error }] = useMutation(createOrder);
+    
+    const prepareOrderInput = () => {
+        return {
+            items: cartItems.map((item) => {
+                return {
+                    productSlug: item.product.slug,
+                    quantity: item.quantity,
+                    price: {
+                        amount: item.product.prices[0].amount,
+                        currency: item.product.prices[0].currency.label
+                    },
+                    attributes: Object.keys(item.selectedAttributes).map((key) => {
+                        return {
+                            setSlug: key,
+                            valueSlug: item.selectedAttributes[key]
+                        }
+                    })
+                } 
+            })
+        }
+    }
+    
 
     const getItemCountText = () => {
         return `${cartItems.length} Item${cartItems.length > 1 ? "s" : ""}`;
     }
 
-    const placeOrder = () => {
-        console.log(cartItems);
+    const handleClick = () => {
+        placeOrder({
+            variables: {
+                input: prepareOrderInput()
+            }
+        });
         clearCart();
         setIsCartOpen(false);
     }
+
+    if (loading) return 'Submitting...';
+
+    if (error) return `Submission error! ${error.message}`;
 
     // TODO default currency
     return (
@@ -28,7 +61,7 @@ const CartContent: React.FC = () => {
                 <PriceTag className="float-right font-bold" price={{ amount: cartTotal(), currency: { label: "USD", symbol: "$" } }} />
             </div>
             <div className="">
-                <PrimaryButton disabled={cartItems.length < 1} onClick={placeOrder}>
+                <PrimaryButton disabled={cartItems.length < 1} onClick={handleClick}>
                     Place order
                 </PrimaryButton>
             </div>
