@@ -2,7 +2,6 @@
 
 namespace App\GraphQL;
 
-use App\Core\Application;
 use DI\Container;
 use Exception;
 

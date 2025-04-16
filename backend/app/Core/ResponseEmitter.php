@@ -5,7 +5,7 @@ namespace App\Core;
 use App\Core\Contracts\ResponseEmitterInterface;
 use Psr\Http\Message\ResponseInterface;
 
-// Copied from Slim4
+// Copied from Slim4:
 // https://github.com/slimphp/Slim/blob/4.x/Slim/ResponseEmitter.php
 class ResponseEmitter implements ResponseEmitterInterface
 {

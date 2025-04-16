@@ -10,7 +10,6 @@ use App\Models\Image;
 use App\Models\Price;
 use App\Models\Product;
 use App\Repositories\Trait\FindOneBySlug;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityRepository;
 
 class ProductRepository extends EntityRepository

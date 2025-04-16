@@ -5,12 +5,10 @@ namespace App\Models;
 use App\Models\Traits\ToRapidDTO;
 use App\Models\Traits\MassAssignedCreate;
 use App\Repositories\CurrencyRepository;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
-use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 
 #[Entity(repositoryClass: CurrencyRepository::class)]
@@ -47,8 +45,4 @@ class Currency
             'symbol',
         ];
     }
-
-    // OBSOLETE
-    // #[OneToMany(targetEntity: Price::class, mappedBy: 'currency')]
-    // private Collection $prices;
 }

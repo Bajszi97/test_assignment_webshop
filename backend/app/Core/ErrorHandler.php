@@ -3,7 +3,6 @@
 namespace App\Core;
 
 use App\Core\Exceptions\HTTPException;
-use Exception;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Throwable;

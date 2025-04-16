@@ -2,9 +2,7 @@
 
 namespace App\GraphQL\Types;
 
-use App\Core\Application;
 use App\GraphQL\TypeRegistry;
-use App\Repositories\AttributeSetRepository;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 use stdClass;

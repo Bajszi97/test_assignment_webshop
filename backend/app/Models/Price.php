@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Traits\ArrayableEntity;
 use App\Models\Traits\MassAssignedCreate;
 use App\Models\Traits\ToRapidDTO;
 use Doctrine\ORM\Mapping\Column;

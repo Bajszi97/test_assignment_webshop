@@ -4,7 +4,6 @@ namespace App\GraphQL;
 
 use DI\Container;
 use Exception;
-use GraphQL\Type\Definition\ObjectType;
 
 class MutationRegistry
 {

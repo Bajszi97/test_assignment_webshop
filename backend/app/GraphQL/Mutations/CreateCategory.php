@@ -4,7 +4,6 @@ namespace App\GraphQL\Mutations;
 
 use App\GraphQL\FieldDefinition;
 use App\GraphQL\TypeRegistry;
-use App\Models\Category;
 use App\Repositories\CategoryRepository;
 use GraphQL\Type\Definition\Type;
 

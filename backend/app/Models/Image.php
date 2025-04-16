@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Traits\MassAssignedCreate;
-use App\Models\Traits\ToRapidDTO;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;

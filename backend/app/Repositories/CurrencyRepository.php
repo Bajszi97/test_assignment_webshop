@@ -17,7 +17,7 @@ class CurrencyRepository extends EntityRepository
         $new = Currency::create($attributes);
         $em = $this->getEntityManager();
         $em->persist($new);
-        // $em->flush();
+
         return $new;
     }
 }

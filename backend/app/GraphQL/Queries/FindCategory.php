@@ -5,7 +5,6 @@ namespace App\GraphQL\Queries;
 use App\GraphQL\FieldDefinition;
 use App\GraphQL\TypeRegistry;
 use App\Repositories\CategoryRepository;
-use GraphQL\Type\Definition\InputObjectType;
 use GraphQL\Type\Definition\Type;
 
 class FindCategory implements FieldDefinition

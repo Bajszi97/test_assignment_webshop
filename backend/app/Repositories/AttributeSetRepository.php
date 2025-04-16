@@ -2,9 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Core\Application;
 use App\Models\AttributeSet;
-use App\Models\Product;
 use App\Repositories\Trait\FindOneBySlug;
 use Doctrine\ORM\EntityRepository;
 
@@ -22,7 +20,7 @@ class AttributeSetRepository extends EntityRepository
         $new = AttributeSet::create($attributes);
         $em = $this->getEntityManager();
         $em->persist($new);
-        // $em->flush();
+
         return $new;
     }
 

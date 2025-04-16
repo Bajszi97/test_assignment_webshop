@@ -4,7 +4,6 @@ namespace App\GraphQL\Types;
 
 use App\GraphQL\TypeRegistry;
 use GraphQL\Type\Definition\ObjectType;
-use GraphQL\Type\Definition\Type;
 
 final class OrderItemAttributeType extends ObjectType
 {

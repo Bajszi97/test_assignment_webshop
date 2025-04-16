@@ -21,7 +21,7 @@ class AttributeValueRepository extends EntityRepository
         $set->addValue($new);
         $new->setAttributeSet($set);
         $em->persist($new);
-        // $em->flush();
+
         return $new;
     }
 }

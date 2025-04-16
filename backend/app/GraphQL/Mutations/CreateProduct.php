@@ -4,7 +4,6 @@ namespace App\GraphQL\Mutations;
 
 use App\GraphQL\FieldDefinition;
 use App\GraphQL\TypeRegistry;
-use App\Repositories\CurrencyRepository;
 use App\Repositories\ProductRepository;
 use GraphQL\Type\Definition\InputObjectType;
 use GraphQL\Type\Definition\Type;
