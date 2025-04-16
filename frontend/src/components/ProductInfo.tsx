@@ -19,7 +19,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
   const [selectedAttributes, setSelectedAttributes] = useState<
     Record<string, string>
   >({});
-  const {addItem, setIsCartOpen} = useCartContext();
+  const { addItem, setIsCartOpen } = useCartContext();
 
   const handleAttributeChange = (attribute: string, valueSlug: string) => {
     setSelectedAttributes((prev) => ({
@@ -33,7 +33,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
       product: product,
       selectedAttributes: selectedAttributes,
       quantity: 1,
-    })
+    });
     setIsCartOpen(true);
   };
 
@@ -41,7 +41,11 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
     (attributeSet) => selectedAttributes[attributeSet.slug],
   );
 
-  const tooltipText = product.inStock? (allSelected? "Add item to the cart." : "Select product attributes first") : "Item out of stock."
+  const tooltipText = product.inStock
+    ? allSelected
+      ? "Add item to the cart."
+      : "Select product attributes first"
+    : "Item out of stock.";
 
   return (
     <div className="flex w-74 flex-col">
@@ -63,8 +67,12 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
         />
       </div>
       <div className="mb-12">
-        <PrimaryButton title={tooltipText} onClick={handleAddToCart} disabled={!(product.inStock && allSelected)}>
-          {product.inStock? "Add to cart" : "Out of stock"}
+        <PrimaryButton
+          title={tooltipText}
+          onClick={handleAddToCart}
+          disabled={!(product.inStock && allSelected)}
+        >
+          {product.inStock ? "Add to cart" : "Out of stock"}
         </PrimaryButton>
       </div>
       <div className="font-roboto">{HTMLReactParser(product.description)}</div>

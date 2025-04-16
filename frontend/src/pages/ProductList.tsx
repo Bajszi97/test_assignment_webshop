@@ -12,11 +12,11 @@ const ProductList: React.FC = () => {
     variables: { category: params.category },
   });
 
-  if (loading) return <ProductListSkeleton/>;
+  if (loading) return <ProductListSkeleton />;
   if (!data) return "error";
 
   return (
-    <div className="pt-10 px-5 lg:px-0">
+    <div className="px-5 pt-10 lg:px-0">
       <h1 className="text-[42px]">{data.category.name}</h1>
       <section className="mt-10 grid grid-cols-1 justify-items-center gap-16 md:grid-cols-2 lg:grid-cols-3">
         {data.products.map((product: ProductForCard, index) => (

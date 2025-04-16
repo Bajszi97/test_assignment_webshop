@@ -7,37 +7,45 @@ import CartItemAttributeSet from "./attributes/CartItemAttributeSet";
 import { useCartContext } from "@/hooks/useCartContext";
 
 interface CartItemCardProps {
-    item: CartItem;
+  item: CartItem;
 }
 
 const CartItemCard: React.FC<CartItemCardProps> = ({ item }) => {
-    const { id, product, selectedAttributes, quantity } = item;
-    const {changeQuantity} = useCartContext();
-    return (
-        <li className="flex flex-nowrap min-h-42">
-            <div className="flex flex-col flex-1 gap-y-2">
-                <span className="font-light text-lg">{product.name}</span>
-                <PriceTag className="text-base" price={product.prices[0]} />
-                {product.attributes.map((attributeSet: AttributeSet, index) => 
-                    <CartItemAttributeSet key={index} attributeSet={attributeSet} selectedValue={selectedAttributes[attributeSet.slug]} />
-                )}
-            </div>
-            <div className="w-6 flex flex-col justify-between mx-1">
-                <button className="group" onClick={() => changeQuantity(id, 1)}>
-                    <AddIcon className="group-hover:bg-neutral-200 cursor-pointer"/>
-                </button>
-                <div className="font-raleway size-6 flex items-center justify-center">
-                    {quantity}
-                </div>  
-                <button className="group" onClick={() => changeQuantity(id, -1)}>
-                    <RemoveIcon className="hover:bg-neutral-200 cursor-pointer" />
-                </button>
-            </div>
-            <div className="flex justify-center items-center w-32">
-                <img src={product.gallery[0]} alt="Product Image" className="object-contain" />
-            </div>
-        </li>
-    )
-}
+  const { id, product, selectedAttributes, quantity } = item;
+  const { changeQuantity } = useCartContext();
+  return (
+    <li className="flex min-h-42 flex-nowrap">
+      <div className="flex flex-1 flex-col gap-y-2">
+        <span className="text-lg font-light">{product.name}</span>
+        <PriceTag className="text-base" price={product.prices[0]} />
+        {product.attributes.map((attributeSet: AttributeSet, index) => (
+          <CartItemAttributeSet
+            key={index}
+            attributeSet={attributeSet}
+            selectedValue={selectedAttributes[attributeSet.slug]}
+          />
+        ))}
+      </div>
+      <div className="mx-1 flex w-6 flex-col justify-between">
+        <button className="group" onClick={() => changeQuantity(id, 1)}>
+          <AddIcon className="cursor-pointer group-hover:bg-neutral-200" />
+        </button>
+        <div className="flex size-6 items-center justify-center font-raleway">
+          {quantity}
+        </div>
+        <button className="group" onClick={() => changeQuantity(id, -1)}>
+          <RemoveIcon className="cursor-pointer hover:bg-neutral-200" />
+        </button>
+      </div>
+      <div className="flex w-32 items-center justify-center">
+        <img
+          src={product.gallery[0]}
+          alt="Product Image"
+          className="object-contain"
+        />
+      </div>
+    </li>
+  );
+};
 
 export default CartItemCard;

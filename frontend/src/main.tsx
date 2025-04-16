@@ -21,7 +21,7 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/:category/:product" element={<ProductPage />} />
             </Route>
           </Routes>
-          <ScrollToTop/>
+          <ScrollToTop />
         </BrowserRouter>
       </CartProvider>
     </ApolloProvider>

@@ -8,8 +8,8 @@ import CategoriesNavBar from "./CategoriesNavBar";
 
 const Header: React.FC = () => {
   return (
-    <header className="sticky top-0 flex h-16 w-full justify-center z-50 bg-white">
-      <div className="flex max-w-[1920px] w-full px-5 lg:px-20">
+    <header className="sticky top-0 z-50 flex h-16 w-full justify-center bg-white">
+      <div className="flex w-full max-w-[1920px] px-5 lg:px-20">
         <Suspense fallback={<NavBarSkeleton />}>
           <CategoriesNavBar />
         </Suspense>
@@ -20,7 +20,7 @@ const Header: React.FC = () => {
           </Link>
         </div>
 
-        <div className="flex w-full justify-end items-center">
+        <div className="flex w-full items-center justify-end">
           <CartButton />
         </div>
         <CartOverlay />

@@ -7,12 +7,9 @@ const TextValue: React.FC<AttributeValueProps> = ({
 }) => {
   return (
     <span
-      className={
-        `flex h-6 min-w-6 px-1 items-center justify-center border font-source-sans text-sm transition-colors
-        ${isSelected ? "bg-shark text-white" : "hover:bg-neutral-100"}`
-      }
+      className={`flex h-6 min-w-6 items-center justify-center border px-1 font-source-sans text-sm transition-colors ${isSelected ? "bg-shark text-white" : "hover:bg-neutral-100"}`}
     >
-        {attributeValue.value}
+      {attributeValue.value}
     </span>
   );
 };

@@ -5,8 +5,8 @@ const MainLayout: React.FC = () => {
   return (
     <>
       <Header />
-      <main className={`w-screen min-h-screen flex justify-center pb-32`}>
-        <div className="max-w-[1920px] w-full md:px-10 lg:px-20">
+      <main className={`flex min-h-screen w-screen justify-center pb-32`}>
+        <div className="w-full max-w-[1920px] md:px-10 lg:px-20">
           <Outlet />
         </div>
       </main>

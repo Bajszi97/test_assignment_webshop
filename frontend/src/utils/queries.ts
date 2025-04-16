@@ -16,7 +16,6 @@ export const getCategoryProducts: TypedDocumentNode<{
   category: Category;
   products: ProductForCard[];
 }> = gql`
-
   query getCategoryProducts($category: String!) {
     category: findCategory(slug: $category) {
       slug
@@ -93,8 +92,8 @@ export const createOrder = gql`
         price {
           amount
           currency {
-              label
-          } 
+            label
+          }
         }
         attributes {
           attributeSet {
@@ -108,4 +107,4 @@ export const createOrder = gql`
       }
     }
   }
-`
+`;

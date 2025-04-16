@@ -12,9 +12,7 @@ export interface AttributeValueProps {
   isSelected: boolean;
 }
 
-export interface AttributeInputProps extends AttributeValueProps{
+export interface AttributeInputProps extends AttributeValueProps {
   setName: string;
   onChange: (value: string) => void;
 }
-
-

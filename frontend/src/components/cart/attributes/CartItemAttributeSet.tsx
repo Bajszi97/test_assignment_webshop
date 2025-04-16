@@ -1,9 +1,6 @@
 import React from "react";
 import { AttributeTypeMap } from "./valueTypes";
-import {
-  AttributeSet,
-  AttributeValue,
-} from "@/types/DomainModels";
+import { AttributeSet, AttributeValue } from "@/types/DomainModels";
 
 interface CartItemAttributeSetProps {
   attributeSet: AttributeSet;
@@ -19,7 +16,7 @@ const CartItemAttributeSet: React.FC<CartItemAttributeSetProps> = ({
 
   return (
     <div>
-      <p className="text-sm mb-1 leading-tight">{name}:</p>
+      <p className="mb-1 text-sm leading-tight">{name}:</p>
       <div className="flex w-full flex-wrap gap-2">
         {items.map((attributeValue: AttributeValue, index) => (
           <AttributeValue

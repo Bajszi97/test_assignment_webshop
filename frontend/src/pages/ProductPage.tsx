@@ -12,18 +12,18 @@ const ProductPage: React.FC = () => {
   });
 
   // TODO improve this three
-  if (loading) return <ProductPageSkeleton/>;
+  if (loading) return <ProductPageSkeleton />;
   if (error) return <p>Error : {error.message}</p>;
   if (!data) return <>Empty data</>;
 
   const product = data.product;
 
   return (
-    <div className="flex py-5 md:py-20 flex-col md:flex-row">
-      <div className="flex justify-center mb-10 md:justify-end md:basis-7/12">
+    <div className="flex flex-col py-5 md:flex-row md:py-20">
+      <div className="mb-10 flex justify-center md:basis-7/12 md:justify-end">
         <Gallery urls={product.gallery} />
       </div>
-      <div className="flex justify-center md:justify-start md:basis-5/12 md:ps-10">
+      <div className="flex justify-center md:basis-5/12 md:justify-start md:ps-10">
         <ProductInfo product={product} />
       </div>
     </div>

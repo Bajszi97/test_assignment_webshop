@@ -6,7 +6,6 @@ const MainImage: React.FC<GalleryPartProps> = ({
   setSelectedImage,
   urls,
 }) => {
-
   const changeImage = (direction: 1 | -1) => {
     const currentIndex = urls.indexOf(selectedImage);
     const nextIndex = (currentIndex + direction + urls.length) % urls.length;
@@ -14,7 +13,7 @@ const MainImage: React.FC<GalleryPartProps> = ({
   };
 
   return (
-    <figure className="relative flex items-center w-full h-[60vh] md:h-min min-h-[480px] mb-5 lg:mb-5">
+    <figure className="relative mb-5 flex h-[60vh] min-h-[480px] w-full items-center md:h-min lg:mb-5">
       <img
         src={selectedImage}
         alt="Selected"
@@ -22,8 +21,14 @@ const MainImage: React.FC<GalleryPartProps> = ({
       />
       {urls.length > 1 && (
         <>
-          <NavButton onClick={() => changeImage(1)} className="absolute top-0 right-0" />
-          <NavButton onClick={() => changeImage(-1)} className="absolute top-0 left-0 rotate-180" />
+          <NavButton
+            onClick={() => changeImage(1)}
+            className="absolute top-0 right-0"
+          />
+          <NavButton
+            onClick={() => changeImage(-1)}
+            className="absolute top-0 left-0 rotate-180"
+          />
         </>
       )}
     </figure>
