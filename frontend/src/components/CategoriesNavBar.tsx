@@ -12,7 +12,7 @@ const CategoriesNavBar: React.FC = () => {
           key={index}
           to={category.slug}
           className={({ isActive }) =>
-            `flex h-full min-w-12 items-center justify-center px-2 text-center uppercase transition-colors hover:text-primary active:text-green-600 ${isActive && "border-b-2 border-primary font-semibold text-primary"} `
+            `flex h-full min-w-12 items-center justify-center px-2 text-center uppercase transition-colors hover:text-primary active:text-green-600 ${isActive? "border-b-2 border-primary font-semibold text-primary" : ""} `
           }
         >
           {category.name}
