@@ -31,6 +31,13 @@ class CreateOrder implements FieldDefinition
                             'fields' => [
                                 'quantity' => Type::nonNull(Type::int()),
                                 'productSlug' => Type::nonNull(Type::string()),
+                                'price' => new InputObjectType([
+                                    'name' => 'OrderItemPriceInput',
+                                    'fields' => [
+                                        'amount' => Type::nonNull(Type::float()),
+                                        'currency' => Type::nonNull(Type::string()),
+                                    ]
+                                ]),
                                 'attributes' => Type::listOf(new InputObjectType([
                                     'name' => 'OrderItemAttributeInput',
                                     'fields' => [

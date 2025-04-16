@@ -13,6 +13,7 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
 
 #[Entity()]
@@ -36,6 +37,9 @@ class OrderItem
     #[ManyToOne(targetEntity: Product::class, inversedBy: 'orderItems')]
     private Product $product;
 
+    #[OneToOne(targetEntity: Price::class, mappedBy: 'orderItem',  cascade: ['persist', 'remove'])]
+    private Price $price;
+
     #[JoinTable(name: 'order_item_attribute_values')]
     #[ManyToMany(targetEntity: AttributeValue::class, inversedBy: 'orderItems')]
     private Collection $attributes;
@@ -52,6 +56,7 @@ class OrderItem
             'order',
             'product',
             'attributes',
+            'price',
         ];
     }
 
@@ -72,6 +77,22 @@ class OrderItem
     {
         $this->product = $product;
         return $this;
+    }
+
+    public function setPrice(Price $price): static
+    {
+        $this->price = $price;
+        return $this;
+    }
+
+    public function toPrice(): Price
+    {
+        return $this->price;
+    }
+
+    public function toQuantity(): int
+    {
+        return $this->quantity;
     }
 
     public function addAttribute(AttributeValue $attribute): self

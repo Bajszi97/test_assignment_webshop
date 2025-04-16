@@ -18,7 +18,7 @@ final class PriceType extends ObjectType
                 ],
                 'currency' => [
                     'type' => $registry->get('currency'),
-                    'resolve' => fn (object $price): ?object => $price->currency->toDTO()
+                    'resolve' => fn (object $price): object => $price->currency->toDTO()
                 ],
             ],
         ]);

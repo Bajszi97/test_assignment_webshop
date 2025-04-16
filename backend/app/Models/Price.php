@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
@@ -30,7 +31,12 @@ class Price
     private int $amount;
 
     #[ManyToOne(targetEntity: Product::class, inversedBy: 'prices')]
-    private Product $product;
+    #[JoinColumn(nullable: true, onDelete: 'CASCADE')]
+    private ?Product $product;
+
+    #[OneToOne(inversedBy: 'price', targetEntity: OrderItem::class)]
+    #[JoinColumn(nullable: true, onDelete: 'CASCADE')]
+    private ?OrderItem $orderItem = null;
 
     #[ManyToOne(targetEntity: Currency::class, inversedBy: 'prices')]
     private Currency $currency;
@@ -39,7 +45,6 @@ class Price
     {
         return [
             'id',
-            'product',
             'currency',
             'amount',
         ];
@@ -52,9 +57,25 @@ class Price
         ];
     }
 
+    function toAmount(): float 
+    {
+        return $this->amount;    
+    }
+
+    function toCurrency(): Currency 
+    {
+        return $this->currency;    
+    }
+
     public function setProduct(Product $product): self
     {
         $this->product = $product;
+        return $this;
+    }
+
+    public function setOrderItem(OrderItem $orderItem): self
+    {
+        $this->orderItem = $orderItem;
         return $this;
     }
 

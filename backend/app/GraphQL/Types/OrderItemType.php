@@ -17,6 +17,10 @@ final class OrderItemType extends ObjectType
                     'type' => $registry->get('product'),
                     'resolve' => fn(object $orderItem): object => $orderItem->product->toDTO(),
                 ],
+                'price' => [
+                    'type' => $registry->get('price'),
+                    'resolve' => fn(object $orderItem): object => $orderItem->price->toDTO(),
+                ],
                 'attributes' => [
                     'type' => Type::listOf($registry->get('orderItemAttribute')),
                     'resolve' => fn(object $orderItem): iterable =>

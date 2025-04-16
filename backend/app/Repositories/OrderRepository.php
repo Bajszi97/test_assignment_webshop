@@ -4,8 +4,10 @@ namespace App\Repositories;
 
 use App\Models\AttributeSet;
 use App\Models\AttributeValue;
+use App\Models\Currency;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Price;
 use App\Models\Product;
 use Doctrine\ORM\EntityRepository;
 
@@ -51,11 +53,30 @@ class OrderRepository extends EntityRepository
             }
         }
 
+        if (isset($attributes['price'])) {
+            $this->createPriceForOrderItem($attributes['price'], $orderItem);
+        }
+
         $order->addItem($orderItem);
         $orderItem->setOrder($order);
 
         $em->persist($orderItem);
 
         return $order;
+    }
+
+    public function createPriceForOrderItem(array $attributes, OrderItem $orderItem): OrderItem
+    {
+        $price = Price::create(['amount' => (int) (100 * $attributes['amount'])]);
+
+        $em = $this->getEntityManager();
+        $currency = $em->getRepository(Currency::class)->findOneBy(["label" => $attributes['currency']]);
+        $price->setCurrency($currency);
+
+        $price->setOrderItem($orderItem);
+        $orderItem->setPrice($price);
+        $em->persist($price);
+
+        return $orderItem;
     }
 }

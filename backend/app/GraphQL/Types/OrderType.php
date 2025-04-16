@@ -2,10 +2,12 @@
 
 namespace App\GraphQL\Types;
 
+use App\Core\Application;
 use App\GraphQL\TypeRegistry;
 use App\Repositories\AttributeSetRepository;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
+use stdClass;
 
 final class OrderType extends ObjectType
 {
@@ -16,6 +18,15 @@ final class OrderType extends ObjectType
                 'placedAt' => [
                     'type' => Type::string(),
                     'resolve' => fn(object $order): string => $order->placedAt->format(\DateTime::ATOM)
+                ],
+                'total' => [
+                    'type' => $registry->get('price'),
+                    'resolve' => function(object $order): object {
+                        $priceDTO = new stdClass;
+                        $priceDTO->amount = $order->total;
+                        $priceDTO->currency = $order->currency;
+                        return $priceDTO;
+                    },
                 ],
                 'items' => [
                     'type' => Type::listOf($registry->get('orderItem')),

@@ -49,10 +49,10 @@ class Product
     #[ManyToOne(targetEntity: Category::class, inversedBy: 'products')]
     private Category $category;
 
-    #[OneToMany(targetEntity: Price::class, mappedBy: 'product')]
+    #[OneToMany(targetEntity: Price::class, mappedBy: 'product', cascade: ['persist', 'remove'])]
     private Collection $prices;
 
-    #[OneToMany(targetEntity: Image::class, mappedBy: 'product')]
+    #[OneToMany(targetEntity: Image::class, mappedBy: 'product', cascade: ['persist', 'remove'])]
     private Collection $images;
 
     #[OneToMany(targetEntity: OrderItem::class, mappedBy: 'product')]
@@ -67,7 +67,7 @@ class Product
         $this->images = new ArrayCollection();
         $this->prices = new ArrayCollection();
         $this->attributes = new ArrayCollection();
-        $this->orderItem = new ArrayCollection();
+        $this->orderItems = new ArrayCollection();
     }
 
     private function getVisible(): array
