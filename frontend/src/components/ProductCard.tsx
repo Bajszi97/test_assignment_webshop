@@ -51,6 +51,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             className={`w-full aspect-square object-contain mb-5 ${outOfStock && "grayscale"}`}
             src={product.mainImage}
             alt={`${product.name}-main-image`}
+            loading="lazy"
           />
           {outOfStock ?
             <span className="absolute inset-0 flex justify-center items-center uppercase text-2xl bg-[rgba(196,196,196,0.25)] text-[rgba(141,143,154,1)]">out of stock</span>

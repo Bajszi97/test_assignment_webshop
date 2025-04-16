@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { findProduct } from "@/utils/queries";
 import Gallery from "@/components/gallery/Gallery";
 import ProductInfo from "@/components/ProductInfo";
+import ProductPageSkeleton from "@/components/skeletons/ProductPageSkeleton";
 
 const ProductPage: React.FC = () => {
   const params = useParams();
@@ -11,7 +12,7 @@ const ProductPage: React.FC = () => {
   });
 
   // TODO improve this three
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <ProductPageSkeleton/>;
   if (error) return <p>Error : {error.message}</p>;
   if (!data) return <>Empty data</>;
 

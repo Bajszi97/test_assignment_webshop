@@ -4,6 +4,7 @@ import { getCategoryProducts } from "@/utils/queries";
 import ProductCard from "@/components/ProductCard";
 import { ProductForCard } from "@/types/DomainModels";
 import React from "react";
+import ProductListSkeleton from "@/components/skeletons/ProductListSkeleton";
 
 const ProductList: React.FC = () => {
   const params = useParams();
@@ -11,10 +12,8 @@ const ProductList: React.FC = () => {
     variables: { category: params.category },
   });
 
-  // TODO improve this three
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error : {error.message}</p>;
-  if (!data) return <>Empty data</>;
+  if (loading) return <ProductListSkeleton/>;
+  if (!data) return "error";
 
   return (
     <div className="pt-10 px-5 lg:px-0">
