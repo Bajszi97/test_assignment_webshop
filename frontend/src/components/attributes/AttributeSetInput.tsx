@@ -23,7 +23,7 @@ const AttributeSetInput: React.FC<AttributeSetProps> = ({
   };
 
   return (
-    <fieldset className="mb-5">
+    <fieldset className="mb-5" data-testid={`product-attribute-${slug}`}>
       <AttributeTitle>{name}:</AttributeTitle>
       <div className="flex w-full flex-wrap gap-3">
         {items.map((attributeValue: AttributeValue, index) => (

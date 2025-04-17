@@ -6,6 +6,8 @@ import { MouseEvent } from "react";
 import { useLazyQuery } from "@apollo/client";
 import { findProduct } from "@/utils/queries";
 import { useCartContext } from "@/hooks/useCartContext";
+import { toKebabCase } from "@/utils/toKebabCase";
+
 interface ProductCardProps {
   product: ProductForCard;
 }
@@ -14,7 +16,7 @@ const getDefaultAttributes = (product: Product) => {
   return product.attributes.reduce<Record<string, string>>(
     (defaults, attributeSet) => {
       defaults[attributeSet.slug] = attributeSet.items[0].slug;
-      return defaults; // Explicitly return the defaults object
+      return defaults;
     },
     {},
   );
@@ -47,7 +49,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   };
 
   return (
-    <Link to={`/${product.category.slug}/${product.slug}`}>
+    <Link to={`/${product.category.slug}/${product.slug}`} data-testid={`product-${toKebabCase(product.name)}`}>
       <figure className="group cursor-pointer border border-transparent p-4 transition-all duration-300 ease-in-out hover:border-neutral-100 hover:shadow-[0_4px_35px_0_rgba(168,172,176,0.19)]">
         <div className="relative">
           <img
