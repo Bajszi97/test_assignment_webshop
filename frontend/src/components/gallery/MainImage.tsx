@@ -13,11 +13,11 @@ const MainImage: React.FC<GalleryPartProps> = ({
   };
 
   return (
-    <figure className="relative mb-5 flex h-[60vh] min-h-[480px] w-full items-center md:h-min lg:mb-5">
+    <figure className="relative mb-5 h-[60vh] min-h-[480px] md:min-h-auto w-full items-center md:h-[30vw] md:mb-0">
       <img
         src={selectedImage}
         alt="Selected"
-        className="size-full object-contain"
+        className="size-full shrink-0 object-contain"
       />
       {urls.length > 1 && (
         <>
