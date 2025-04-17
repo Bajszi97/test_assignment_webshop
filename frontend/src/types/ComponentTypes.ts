@@ -8,11 +8,11 @@ export interface GalleryPartProps {
 }
 
 export interface AttributeValueProps {
+  setSlug: string;
   attributeValue: AttributeValue;
   isSelected: boolean;
 }
 
 export interface AttributeInputProps extends AttributeValueProps {
-  setName: string;
   onChange: (value: string) => void;
 }

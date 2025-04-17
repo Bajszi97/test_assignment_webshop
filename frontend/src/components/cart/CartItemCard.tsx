@@ -27,13 +27,13 @@ const CartItemCard: React.FC<CartItemCardProps> = ({ item }) => {
         ))}
       </div>
       <div className="mx-1 flex w-6 flex-col justify-between">
-        <button className="group" onClick={() => changeQuantity(id, 1)}>
+        <button className="group" onClick={() => changeQuantity(id, 1)} data-testid="cart-item-amount-increase">
           <AddIcon className="cursor-pointer group-hover:bg-neutral-200" />
         </button>
-        <div className="flex size-6 items-center justify-center font-raleway">
+        <span className="flex size-6 items-center justify-center" data-testid="cart-item-amount">
           {quantity}
-        </div>
-        <button className="group" onClick={() => changeQuantity(id, -1)}>
+        </span>
+        <button className="group" onClick={() => changeQuantity(id, -1)} data-testid="cart-item-amount-decrease">
           <RemoveIcon className="cursor-pointer hover:bg-neutral-200" />
         </button>
       </div>

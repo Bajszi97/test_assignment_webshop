@@ -29,7 +29,7 @@ const AttributeSetInput: React.FC<AttributeSetProps> = ({
         {items.map((attributeValue: AttributeValue, index) => (
           <AttributeInput
             key={index}
-            setName={name}
+            setSlug={slug}
             attributeValue={attributeValue}
             onChange={handleChange}
             isSelected={attributeValue.slug === selectedValue}

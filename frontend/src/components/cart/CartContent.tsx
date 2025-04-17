@@ -59,7 +59,7 @@ const CartContent: React.FC = () => {
           <CartItemCard key={index} item={item} />
         ))}
       </ul>
-      <div className="mb-8 font-medium">
+      <div className="mb-8 font-medium" data-testid="cart-total">
         <span className="font-roboto font-medium">Total</span>
         <PriceTag
           className="float-right font-bold"

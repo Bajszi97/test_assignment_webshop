@@ -15,12 +15,13 @@ const CartItemAttributeSet: React.FC<CartItemAttributeSetProps> = ({
   const AttributeValue = AttributeTypeMap[type];
 
   return (
-    <div>
+    <div data-testid={`cart-item-attribute-${slug}`}>
       <p className="mb-1 text-sm leading-tight">{name}:</p>
       <div className="flex w-full flex-wrap gap-2">
         {items.map((attributeValue: AttributeValue, index) => (
           <AttributeValue
             key={index}
+            setSlug={slug}
             attributeValue={attributeValue}
             isSelected={attributeValue.slug === selectedValue}
           />

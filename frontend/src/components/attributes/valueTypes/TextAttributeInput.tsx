@@ -2,19 +2,19 @@ import { AttributeInputProps } from "@/types/ComponentTypes";
 import React from "react";
 
 const TextAttributeInput: React.FC<AttributeInputProps> = ({
-  setName,
+  setSlug,
   attributeValue,
   onChange,
   isSelected,
 }) => {
-  const inputId = `${setName}-${attributeValue.slug}`;
+  const inputId = `${setSlug}-${attributeValue.slug}`;
 
   return (
     <label htmlFor={inputId} className="cursor-pointer">
       <input
         type="radio"
         id={inputId}
-        name={setName}
+        name={setSlug}
         value={attributeValue.slug}
         className="peer sr-only"
         checked={isSelected}
