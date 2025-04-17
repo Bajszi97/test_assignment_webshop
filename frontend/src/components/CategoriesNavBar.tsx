@@ -1,23 +1,29 @@
 import { getCategories } from "@/utils/queries";
 import { useSuspenseQuery } from "@apollo/client";
-import { NavLink } from "react-router";
+import { Link, useParams } from "react-router";
 
 const CategoriesNavBar: React.FC = () => {
   const { error, data } = useSuspenseQuery(getCategories);
+  const params = useParams();
+  const activeCategory = params.category || "";
 
   return (
     <nav className="flex w-full">
-      {data.categories.map((category, index) => (
-        <NavLink
-          key={index}
-          to={category.slug}
-          className={({ isActive }) =>
-            `flex h-full min-w-12 items-center justify-center px-2 text-center uppercase transition-colors hover:text-primary active:text-green-600 ${isActive? "border-b-2 border-primary font-semibold text-primary" : ""} `
-          }
-        >
-          {category.name}
-        </NavLink>
-      ))}
+      {data.categories.map((category, index) => {
+        const isActive = activeCategory === category.slug
+        return (
+          <Link
+            key={index}
+            data-testid={isActive ? "active-category-link" : "category-link"}
+            to={category.slug}
+            className={
+              `flex h-full min-w-12 items-center justify-center px-2 text-center uppercase transition-colors hover:text-primary active:text-green-600 ${isActive ? "border-b-2 border-primary font-semibold text-primary" : ""} `
+            }
+          >
+            {category.name}
+          </Link>
+        )
+      })}
     </nav>
   );
 };
