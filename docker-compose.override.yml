@@ -3,7 +3,7 @@ version: '3.8'
 services:
   php:
     build:
-      dockerfile: ../docker/php/php.dockerfile
+      dockerfile: /docker/php.dockerfile
       args:
         - UID=${UID:-1000}
         - GID=${GID:-1000}
@@ -15,7 +15,7 @@ services:
 
   node:
     build:
-      dockerfile: ../docker/node/node.dockerfile
+      dockerfile: /docker/node.dockerfile
     user: "${UID:-1000}:${GID:-1000}"
     tty: true
     ports:
@@ -41,8 +41,8 @@ services:
 
   composer:
     build:
-      context: ./docker/php
-      dockerfile: php.dockerfile
+      context: ./backend
+      dockerfile: /docker/php.dockerfile
       args:
         - UID=${UID:-1000}
         - GID=${GID:-1000}
@@ -57,8 +57,8 @@ services:
 
   doctrine:
     build:
-      context: ./docker/php
-      dockerfile: php.dockerfile
+      context: ./backend
+      dockerfile: /docker/php.dockerfile
       args:
         - UID=${UID:-1000}
         - GID=${GID:-1000}
