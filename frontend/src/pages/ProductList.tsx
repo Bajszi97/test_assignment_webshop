@@ -8,7 +8,7 @@ import ProductListSkeleton from "@/components/skeletons/ProductListSkeleton";
 
 const ProductList: React.FC = () => {
   const params = useParams();
-  const { loading, error, data } = useQuery(getCategoryProducts, {
+  const { loading, data } = useQuery(getCategoryProducts, {
     variables: { category: params.category },
   });
 

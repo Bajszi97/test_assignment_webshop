@@ -7,7 +7,7 @@ import { createOrder } from "@/utils/queries";
 
 const CartContent: React.FC = () => {
   const { cartItems, cartTotal, clearCart, setIsCartOpen } = useCartContext();
-  const [placeOrder, { data, loading, error }] = useMutation(createOrder);
+  const [placeOrder, { loading, error }] = useMutation(createOrder);
 
   const prepareOrderInput = () => {
     return {

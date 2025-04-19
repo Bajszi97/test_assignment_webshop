@@ -3,7 +3,7 @@ import { useSuspenseQuery } from "@apollo/client";
 import { Link, useParams } from "react-router";
 
 const CategoriesNavBar: React.FC = () => {
-  const { error, data } = useSuspenseQuery(getCategories);
+  const { data } = useSuspenseQuery(getCategories);
   const params = useParams();
   const activeCategory = params.category || "";
 
