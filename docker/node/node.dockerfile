@@ -1,6 +1,3 @@
-FROM node:latest
+FROM node:23-alpine
 
-COPY startup.sh /opt/startup.sh
-RUN chmod +x /opt/startup.sh
-
-CMD ["/bin/bash", "/opt/startup.sh"]
+CMD ["npm", "run", "dev"]

@@ -1,132 +1,38 @@
-version: '3'
+version: '3.8'
 
 services:
 
-  nginx:
-    build:
-      context: ./docker/nginx
-      dockerfile: nginx.dockerfile
-      args:
-        - UID=${UID:-1000}
-        - GID=${GID:-1000}
-    ports:
-      - "${NGINX_BACKEND_PORT}:8000"
-    depends_on:
-      - php
-    volumes:
-      - ./backend:/var/www/backend
-    environment:
-      - TZ=${TZ}
-    networks:
-      - app
-
   php:
+    container_name: php_backend
     build:
       context: ./docker/php
-      dockerfile: php.dockerfile
-      args:
-        - UID=${UID:-1000}
-        - GID=${GID:-1000}
-    ports:
-      - "9000:9000"
-    working_dir: /var/www/backend
-    tty: true
+    working_dir: /var/www/html
     depends_on:
       - mysql
-    volumes:
-      - ./backend:/var/www/backend
     networks:
       - app
 
   node:
+    container_name: react-frontend
     build:
       context: ./docker/node
-      dockerfile: node.dockerfile
-    user: "${UID:-1000}:${GID:-1000}"
-    working_dir: /var/www/frontend
-    tty: true
-    ports:
-      - "3000:3000"
-      - "5173:5173"
-    volumes:
-      - ./frontend:/var/www/frontend
+    working_dir: /app
     networks:
       - app
 
   mysql:
-    build:
-      context: ./docker/mysql
-      dockerfile: mysql.dockerfile
+    image: mysql:latest
+    restart: unless-stopped
     volumes:
       - ./data/mysql:/var/lib/mysql
-    tty: true
-    ports:
-      - "3306:3306"
     environment:
-      MYSQL_DATABASE: mydatabase
+      MYSQL_DATABASE: app_database
       MYSQL_USER: webserver
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      SERVICE_TAGS: dev
-      SERVICE_NAME: mysql
     networks:
       - app
-
-  npm:
-    image: node:latest
-    user: "${UID:-1000}:${GID:-1000}"
-    working_dir: /var/www/frontend
-    volumes:
-      - ./frontend:/var/www/frontend
-    entrypoint: [ 'npm' ]
-    networks:
-      - app
-
-  composer:
-    build:
-      context: ./docker/php
-      dockerfile: php.dockerfile
-      args:
-        - UID=${UID:-1000}
-        - GID=${GID:-1000}
-    working_dir: /var/www/backend
-    volumes:
-      - ./backend:/var/www/backend
-    depends_on:
-      - php
-    entrypoint: [ 'composer' ]
-    networks:
-      - app
-
-  doctrine:
-    build:
-      context: ./docker/php
-      dockerfile: php.dockerfile
-      args:
-        - UID=${UID:-1000}
-        - GID=${GID:-1000}
-    working_dir: /var/www/backend/app/
-    volumes:
-      - ./backend:/var/www/backend
-    entrypoint: [ "php", "doctrine-cli.php" ]
-    depends_on:
-      - mysql
-    networks:
-      - app
-
-  phpmyadmin:
-    image: 'phpmyadmin:latest'
-    links:
-      - mysql
-    ports:
-      - 8080:80
-    networks:
-      - app
-    environment:
-      PMA_HOST: mysql
-      PMA_PORT: 3306
-      UPLOAD_LIMIT: 300M
-
+      
 networks:
   app:
     driver: bridge

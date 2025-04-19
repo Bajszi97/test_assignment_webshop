@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+
+  php:
+    build:
+      dockerfile: php.prod.dockerfile
+    expose:
+      - 9000
+    environment:
+      - VIRTUAL_HOST=${BACKEND_VIRTUAL_HOST}
+      - VIRTUAL_PORT=9000
+
+  node:
+    build:
+      dockerfile: node.prod.dockerfile
+    expose:
+      - 80
+    environment:
+      - VIRTUAL_HOST=${FRONTEND_VIRTUAL_HOST}
+      - VIRTUAL_PORT=80
+    networks:
+      - app
+      - nginx-proxy
+  
+  mysql:
+    expose:
+      - 3306
+    
+networks:
+  nginx-proxy:
+    external: true
