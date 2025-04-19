@@ -3,7 +3,7 @@ version: '3.8'
 services:
   php:
     build:
-      dockerfile: php.dockerfile
+      dockerfile: ../docker/php/php.dockerfile
       args:
         - UID=${UID:-1000}
         - GID=${GID:-1000}
@@ -15,7 +15,7 @@ services:
 
   node:
     build:
-      dockerfile: node.dockerfile
+      dockerfile: ../docker/node/node.dockerfile
     user: "${UID:-1000}:${GID:-1000}"
     tty: true
     ports:

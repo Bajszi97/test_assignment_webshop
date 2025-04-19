@@ -2,7 +2,7 @@
 FROM node:23-alpine as build
 
 WORKDIR /app
-COPY ./frontend .
+COPY . .
 RUN npm install
 RUN npm run build
 
@@ -13,4 +13,4 @@ RUN rm -rf /usr/share/nginx/html/*
 
 COPY --from=build /app/dist /usr/share/nginx/html
 
-COPY ./docker/node/nginx.conf /etc/nginx/conf.d/default.conf
+COPY ../docker/node/nginx.conf /etc/nginx/conf.d/default.conf

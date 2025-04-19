@@ -4,7 +4,7 @@ services:
 
   php:
     build:
-      dockerfile: php.prod.dockerfile
+      dockerfile: ../docker/php/php..prod.dockerfile
     expose:
       - 9000
     environment:
@@ -13,7 +13,7 @@ services:
 
   node:
     build:
-      dockerfile: node.prod.dockerfile
+      dockerfile: ../docker/node/node.prod.dockerfile
     expose:
       - 80
     environment:

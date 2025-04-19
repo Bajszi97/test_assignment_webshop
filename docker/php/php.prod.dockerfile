@@ -3,7 +3,7 @@ FROM composer:2 AS build
 
 WORKDIR /app
 
-COPY ./backend .
+COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
 
