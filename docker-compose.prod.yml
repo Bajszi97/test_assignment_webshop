@@ -10,6 +10,9 @@ services:
     environment:
       - VIRTUAL_HOST=${BACKEND_VIRTUAL_HOST}
       - VIRTUAL_PORT=9000
+    networks:
+      - app
+      - nginx-proxy
 
   node:
     build:
