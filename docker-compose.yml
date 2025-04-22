@@ -21,7 +21,7 @@ services:
       - app
 
   mysql:
-    image: mariadb:11.4-alpine
+    image: mariadb:11.8
     restart: unless-stopped
     volumes:
       - ./data/mysql:/var/lib/mysql
