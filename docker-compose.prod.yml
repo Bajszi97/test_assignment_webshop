@@ -24,6 +24,9 @@ services:
       - nginx-proxy
   
   mysql:
+    volumes:
+      - ./backend/docker/my.cnf:/etc/mysql/my.cnf:ro
+    mem_limit: 256m
     expose:
       - 3306
     
