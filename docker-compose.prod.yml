@@ -11,6 +11,7 @@ services:
       - VIRTUAL_HOST=${BACKEND_VIRTUAL_HOST}
       - VIRTUAL_PROTO=fastcgi
       - VIRTUAL_PORT=9000
+      - VIRTUAL_ROOT=/var/www/html/public
     networks:
       - app
       - nginx-proxy
