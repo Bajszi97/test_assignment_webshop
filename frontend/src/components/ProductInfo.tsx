@@ -73,7 +73,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
           disabled={!(product.inStock && allSelected)}
           data-testid='add-to-cart'
         >
-          {product.inStock ? "Add to cart" : "Out of stock"}
+          {product.inStock ? "ADD TO CART" : "Out of stock"}
         </PrimaryButton>
       </div>
       <div className="font-roboto" data-testid='product-description'>{HTMLReactParser(product.description)}</div>
