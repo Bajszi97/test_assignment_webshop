@@ -10,7 +10,7 @@ const TextAttributeInput: React.FC<AttributeInputProps> = ({
   const inputId = `${setSlug}-${attributeValue.slug}`;
 
   return (
-    <label htmlFor={inputId} className="cursor-pointer">
+    <label htmlFor={inputId} className="cursor-pointer" data-testid={`product-attribute-${setSlug}-${attributeValue.displayValue}`}>
       <input
         type="radio"
         id={inputId}
@@ -19,7 +19,6 @@ const TextAttributeInput: React.FC<AttributeInputProps> = ({
         className="peer sr-only"
         checked={isSelected}
         onChange={() => onChange(attributeValue.slug)}
-        data-testid={`product-attribute-${setSlug}-${attributeValue.displayValue}`}
       />
       <span
         className={`flex h-11 min-w-16 items-center justify-center border font-source-sans text-base transition-colors ${isSelected ? "bg-shark text-white" : "hover:bg-neutral-100"} `}

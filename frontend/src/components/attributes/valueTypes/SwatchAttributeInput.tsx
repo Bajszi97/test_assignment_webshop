@@ -10,7 +10,7 @@ const SwatchAttributeInput: React.FC<AttributeInputProps> = ({
   const inputId = `${setSlug}-${attributeValue.slug}`;
 
   return (
-    <label htmlFor={inputId} className="cursor-pointer">
+    <label htmlFor={inputId} className="cursor-pointer" data-testid={`product-attribute-${setSlug}-${attributeValue.displayValue}`}>
       <input
         type="radio"
         id={inputId}
@@ -19,7 +19,6 @@ const SwatchAttributeInput: React.FC<AttributeInputProps> = ({
         className="sr-only"
         checked={isSelected}
         onChange={() => onChange(attributeValue.slug)}
-        data-testid={`product-attribute-${setSlug}-${attributeValue.displayValue}`}
       />
       <span
         className={`block size-8 transition-all duration-200 ${attributeValue.slug === "white" ? "border border-shark" : ""} ${isSelected ? "outline-2 outline-offset-1 outline-primary" : ""} `}
