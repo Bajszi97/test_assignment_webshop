@@ -71,7 +71,7 @@ const CartContent: React.FC = () => {
       </div>
       <div className="">
         <PrimaryButton disabled={cartItems.length < 1} onClick={handleClick}>
-          PLACE ORDER
+          Place order
         </PrimaryButton>
       </div>
     </div>
