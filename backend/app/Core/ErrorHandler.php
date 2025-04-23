@@ -22,7 +22,7 @@ class ErrorHandler
     {
         $config = Config::get('error_handling');
         $this->debug = $config['debug'] ?? false;
-        $this->logFile = $config['log_file'] ?? 'errors.log';
+        $this->createLogFile($config['log_file']);
     }
 
     public function handle(Throwable $exception): ResponseInterface
@@ -49,5 +49,19 @@ class ErrorHandler
     {
         // TODO: Logger Interface
         error_log("[" . date('Y-m-d H:i:s') . "] " . $message . "\n", 3, $this->logFile);
+    }
+
+    private function createLogFile(string $logFile = 'logs/errors.log'): void
+    {
+        $this->logFile = $logFile;
+        $logDir = dirname($this->logFile);
+
+        if (!is_dir($logDir)) {
+            mkdir($logDir, 0770, true);
+        }
+        
+        if (!file_exists($this->logFile)) {
+            touch($this->logFile);
+        }
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-const URL = "http://nginx:8000/graphql";
+const URL = "http://nginx/graphql";
 const SOURCE = "parsedData.json";
 
 const CREATE_CATEGORY_GPQ = '
@@ -50,5 +50,5 @@ function sendPayload(string $payload){
   $response = curl_exec($ch);
   curl_close($ch);
 
-  echo $response;
+  echo $response? $response : curl_error($ch);
 };
