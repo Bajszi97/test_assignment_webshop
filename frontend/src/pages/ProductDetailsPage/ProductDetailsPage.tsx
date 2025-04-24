@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { useParams } from "react-router";
+import { Navigate, useParams } from "react-router";
 import { findProduct } from "@/utils/queries";
 import { ProductPageSkeleton } from "@/components/skeletons";
 import { Gallery, ProductInfo } from "./components";
@@ -10,10 +10,9 @@ export const ProductDetailsPage: React.FC = () => {
     variables: { slug: params.product },
   });
 
-  // TODO improve
   if (loading) return <ProductPageSkeleton />;
-  if (error) return <p>Error : {error.message}</p>;
-  if (!data) return <>Empty data</>;
+  if (error) throw Error("Could not fetch data for product details page.");
+  if (!data) return <Navigate to="/404"/>;
 
   const product = data.product;
 
