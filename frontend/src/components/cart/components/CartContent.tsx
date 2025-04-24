@@ -1,4 +1,4 @@
-import { useCartContext } from "@/hooks/useCartContext";
+import { useCartContext } from "@/hooks";
 import { CartItemCard } from "./CartItemCard";
 import { useMutation } from "@apollo/client";
 import { createOrder } from "@/utils/queries";

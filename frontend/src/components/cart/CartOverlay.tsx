@@ -1,4 +1,4 @@
-import { useCartContext } from "@/hooks/useCartContext";
+import { useCartContext } from "@/hooks";
 import { CartContent } from "./components/CartContent";
 
 export const CartOverlay: React.FC = () => {

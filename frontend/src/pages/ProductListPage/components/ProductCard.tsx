@@ -4,7 +4,7 @@ import { MouseEvent } from "react";
 import { toKebabCase } from "@/utils/toKebabCase";
 import { PriceTag } from "@/components";
 import { Cart } from "@/assets/icons";
-import { useQuickShop } from "@/hooks/useQuickShop";
+import { useQuickShop } from "@/hooks";
 
 interface ProductCardProps {
   product: ProductForCard;

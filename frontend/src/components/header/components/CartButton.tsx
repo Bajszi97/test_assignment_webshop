@@ -1,5 +1,5 @@
 import React from "react";
-import { useCartContext } from "@/hooks/useCartContext";
+import { useCartContext } from "@/hooks";
 import { Cart } from "@/assets/icons";
 
 export const CartButton: React.FC = () => {

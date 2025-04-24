@@ -4,7 +4,7 @@ import { AttributeTitle } from "./attributes/AttributeTitle";
 import { AttributeSetInput } from "./attributes/AttributeSetInput";
 import { useState } from "react";
 import { PriceTag, PrimaryButton } from "@/components";
-import { useCartContext } from "@/hooks/useCartContext";
+import { useCartContext } from "@/hooks";
 import { ProductName } from "./ProductName";
 
 interface ProductInfoProps {

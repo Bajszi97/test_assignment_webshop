@@ -1,7 +1,7 @@
 import { CartItem } from "@/providers/CartProvider";
 import { AttributeSet } from "@/types/DomainModels";
 import { CartItemAttributeSet } from "./attributes/CartItemAttributeSet";
-import { useCartContext } from "@/hooks/useCartContext";
+import { useCartContext } from "@/hooks";
 import { PriceTag } from "@/components";
 import { AddIcon, RemoveIcon } from "@/assets/icons";
 
