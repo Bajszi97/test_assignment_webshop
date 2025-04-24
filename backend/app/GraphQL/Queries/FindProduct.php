@@ -5,7 +5,6 @@ namespace App\GraphQL\Queries;
 use App\GraphQL\FieldDefinition;
 use App\GraphQL\TypeRegistry;
 use App\Repositories\ProductRepository;
-use GraphQL\Type\Definition\InputObjectType;
 use GraphQL\Type\Definition\Type;
 
 class FindProduct implements FieldDefinition
@@ -23,7 +22,7 @@ class FindProduct implements FieldDefinition
             'args' => [
                 'slug' => Type::nonNull(Type::string())
             ],
-            'resolve' => fn($rootValue, $args): object => $this->repo->findOneBySlug($args['slug'])->toDTO(),
+            'resolve' => fn($rootValue, $args): ?object => $this->repo->findOneBySlug($args['slug'])?->toDTO(),
         ];
     }
 }

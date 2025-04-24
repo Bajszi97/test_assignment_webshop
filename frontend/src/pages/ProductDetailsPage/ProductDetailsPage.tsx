@@ -12,7 +12,7 @@ export const ProductDetailsPage: React.FC = () => {
 
   if (loading) return <ProductPageSkeleton />;
   if (error) throw Error("Could not fetch data for product details page.");
-  if (!data) return <Navigate to="/404"/>;
+  if (!data?.product) return <Navigate to="/404"/>;
 
   const product = data.product;
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { useParams } from "react-router";
+import { Navigate, useParams } from "react-router";
 import { getCategoryProducts } from "@/utils/queries";
 import { ProductForCard } from "@/types/DomainModels";
 import { NoProductNotice, ProductCard } from "./components";
@@ -8,12 +8,14 @@ import { ProductListSkeleton } from "@/components/skeletons";
 
 export const ProductListPage: React.FC = () => {
   const params = useParams();
-  const { loading, data } = useQuery(getCategoryProducts, {
+  const { loading, data, error } = useQuery(getCategoryProducts, {
     variables: { category: params.category },
   });
 
   if (loading) return <ProductListSkeleton />;
-  if (!data) return <NoProductNotice />;
+  if (error) throw Error("Could not fetch products for listing.");
+  if (!data?.category) return <Navigate to="/404" />;
+  if (!data.products) return <NoProductNotice />;
 
   return (
     <div className="px-5 pt-10 lg:px-0">

@@ -22,7 +22,7 @@ class FindCategory implements FieldDefinition
             'args' => [
                 'slug' => Type::nonNull(Type::string()),
             ],
-            'resolve' => fn($rootValue, $args): object => $this->repo->findOneBySlug($args['slug'])->toDTO(),
+            'resolve' => fn($rootValue, $args): ?object => $this->repo->findOneBySlug($args['slug'])?->toDTO(),
         ];
     }
 }
