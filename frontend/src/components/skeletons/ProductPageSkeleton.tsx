@@ -1,4 +1,4 @@
-const ProductPageSkeleton: React.FC = () => {
+export const ProductPageSkeleton: React.FC = () => {
   return (
     <div className="flex flex-col py-5 md:flex-row md:py-20">
       <div className="mb-10 flex justify-center md:basis-7/12 md:justify-end">
@@ -31,5 +31,3 @@ const ProductPageSkeleton: React.FC = () => {
     </div>
   );
 };
-
-export default ProductPageSkeleton;

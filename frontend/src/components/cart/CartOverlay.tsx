@@ -1,7 +1,7 @@
 import { useCartContext } from "@/hooks/useCartContext";
-import CartContent from "./CartContent";
+import { CartContent } from "./components/CartContent";
 
-const CartOverlay: React.FC = () => {
+export const CartOverlay: React.FC = () => {
   const { isCartOpen, setIsCartOpen } = useCartContext();
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) =>
@@ -21,5 +21,3 @@ const CartOverlay: React.FC = () => {
 
   return <></>;
 };
-
-export default CartOverlay;

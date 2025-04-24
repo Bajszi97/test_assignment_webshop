@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes } from "react";
 
-const PrimaryButton: React.FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
+export const PrimaryButton: React.FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
   className,
   onClick,
   disabled,
@@ -18,5 +18,3 @@ const PrimaryButton: React.FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
     </button>
   );
 };
-
-export default PrimaryButton;

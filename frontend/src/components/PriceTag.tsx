@@ -5,7 +5,7 @@ interface PriceTagProps extends HTMLAttributes<HTMLSpanElement> {
   price: Price;
 }
 
-const PriceTag: React.FC<PriceTagProps> = ({ price, className, ...props }) => {
+export const PriceTag: React.FC<PriceTagProps> = ({ price, className, ...props }) => {
   return (
     <span {...props} className={`${className}`}>
       {price.currency.symbol}
@@ -13,5 +13,3 @@ const PriceTag: React.FC<PriceTagProps> = ({ price, className, ...props }) => {
     </span>
   );
 };
-
-export default PriceTag;

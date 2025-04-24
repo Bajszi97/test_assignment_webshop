@@ -1,4 +1,4 @@
-const ProductListSkeleton: React.FC = () => {
+export const ProductListSkeleton: React.FC = () => {
   return (
     <div className="px-5 pt-10 lg:px-0">
       <div className="h-10 w-32 animate-pulse rounded-md bg-gray-200"></div>
@@ -16,4 +16,3 @@ const ProductListSkeleton: React.FC = () => {
   );
 };
 
-export default ProductListSkeleton;

@@ -1,7 +1,7 @@
 import { Outlet } from "react-router";
-import Header from "@/components/Header";
+import { Header } from "@/components/header/Header";
 
-const MainLayout: React.FC = () => {
+export const MainLayout: React.FC = () => {
   return (
     <>
       <Header />
@@ -13,5 +13,3 @@ const MainLayout: React.FC = () => {
     </>
   );
 };
-
-export default MainLayout;

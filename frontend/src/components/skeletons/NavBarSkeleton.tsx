@@ -1,4 +1,4 @@
-const NavBarSkeleton: React.FC = () => {
+export const NavBarSkeleton: React.FC = () => {
   return (
     <div className="flex w-full items-center space-x-4">
       {Array.from({ length: 4 }).map((_, index) => (
@@ -11,4 +11,3 @@ const NavBarSkeleton: React.FC = () => {
   );
 };
 
-export default NavBarSkeleton;
