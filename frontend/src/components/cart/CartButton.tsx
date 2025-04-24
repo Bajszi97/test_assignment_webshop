@@ -5,11 +5,11 @@ import { useCartContext } from "@/hooks/useCartContext";
 const CartButton: React.FC = () => {
   const { cartItems, isCartOpen, setIsCartOpen } = useCartContext();
   const hasItem = cartItems.length > 0;
-  // ${!hasItem? "fill-neutral-400" : ""} disabled class removed to pass test
+
   return (
     <button
       onClick={() => setIsCartOpen(!isCartOpen)}
-      className={`relative me-5 ${hasItem ? "group cursor-pointer" : ""}`}
+      className="relative me-5 group cursor-pointer"
       // disabled={!hasItem}
       data-testid='cart-btn'
     >
