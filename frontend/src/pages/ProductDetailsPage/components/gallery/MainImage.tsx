@@ -13,7 +13,7 @@ export const MainImage: React.FC<GalleryPartProps> = ({
   };
 
   return (
-    <figure className="relative mb-5 h-[60vh] min-h-[480px] md:min-h-auto w-full items-center md:h-[30vw] md:mb-0">
+    <figure className="relative mb-5 h-[60vh] min-h-[480px] w-full items-center md:mb-0 md:h-[30vw] md:min-h-auto">
       <img
         src={selectedImage}
         alt="Selected"

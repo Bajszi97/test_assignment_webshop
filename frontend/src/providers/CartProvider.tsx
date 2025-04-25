@@ -33,20 +33,19 @@ const generateCartItemId = (item: Omit<CartItem, "id">): string => {
 
 const getInitialCart = () => {
   try {
-    const stored = localStorage.getItem('cartItems');
+    const stored = localStorage.getItem("cartItems");
     return stored ? JSON.parse(stored) : [];
   } catch (e) {
-    console.error('Failed to parse cart from localStorage', e);
+    console.error("Failed to parse cart from localStorage", e);
     return [];
   }
-}
+};
 
 export const CartContext = createContext<CartContextType | undefined>(
   undefined,
 );
 
 export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
-
   const [cartItems, setCartItems] = useState<CartItem[]>(getInitialCart());
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
 

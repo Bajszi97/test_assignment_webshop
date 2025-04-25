@@ -10,19 +10,17 @@ export const CategoriesNavBar: React.FC = () => {
   return (
     <nav className="flex w-full">
       {data.categories.map((category, index) => {
-        const isActive = activeCategory === category.slug
+        const isActive = activeCategory === category.slug;
         return (
           <Link
             key={index}
             data-testid={isActive ? "active-category-link" : "category-link"}
             to={category.slug}
-            className={
-              `flex h-full min-w-12 items-center justify-center px-2 text-center uppercase transition-colors hover:text-primary active:text-green-600 ${isActive ? "border-b-2 border-primary font-semibold text-primary" : ""} `
-            }
+            className={`flex h-full min-w-12 items-center justify-center px-2 text-center uppercase transition-colors hover:text-primary active:text-green-600 ${isActive ? "border-b-2 border-primary font-semibold text-primary" : ""} `}
           >
             {category.name}
           </Link>
-        )
+        );
       })}
     </nav>
   );

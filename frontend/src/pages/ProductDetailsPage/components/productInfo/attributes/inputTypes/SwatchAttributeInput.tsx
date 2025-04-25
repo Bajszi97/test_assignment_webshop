@@ -10,7 +10,11 @@ export const SwatchAttributeInput: React.FC<AttributeInputProps> = ({
   const inputId = `${setSlug}-${attributeValue.slug}`;
 
   return (
-    <label htmlFor={inputId} className="cursor-pointer" data-testid={`product-attribute-${setSlug}-${attributeValue.displayValue}`}>
+    <label
+      htmlFor={inputId}
+      className="cursor-pointer"
+      data-testid={`product-attribute-${setSlug}-${attributeValue.displayValue}`}
+    >
       <input
         type="radio"
         id={inputId}

@@ -1,10 +1,8 @@
 import React, { HtmlHTMLAttributes } from "react";
 
-export const AttributeTitle: React.FC<HtmlHTMLAttributes<HTMLHeadingElement>> = ({
-  children,
-  className = "",
-  ...props
-}) => {
+export const AttributeTitle: React.FC<
+  HtmlHTMLAttributes<HTMLHeadingElement>
+> = ({ children, className = "", ...props }) => {
   return (
     <legend
       {...props}
@@ -14,4 +12,3 @@ export const AttributeTitle: React.FC<HtmlHTMLAttributes<HTMLHeadingElement>> = 
     </legend>
   );
 };
-

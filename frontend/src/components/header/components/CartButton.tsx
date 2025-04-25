@@ -9,9 +9,9 @@ export const CartButton: React.FC = () => {
   return (
     <button
       onClick={() => setIsCartOpen(!isCartOpen)}
-      className="relative me-5 group cursor-pointer"
+      className="group relative me-5 cursor-pointer"
       // disabled={!hasItem}
-      data-testid='cart-btn'
+      data-testid="cart-btn"
     >
       <Cart className={`transition-colors group-hover:fill-primary`} />
       {hasItem && (

@@ -1,12 +1,8 @@
 import { ButtonHTMLAttributes } from "react";
 
-export const PrimaryButton: React.FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
-  className,
-  onClick,
-  disabled,
-  children,
-  ...props
-}) => {
+export const PrimaryButton: React.FC<
+  ButtonHTMLAttributes<HTMLButtonElement>
+> = ({ className, onClick, disabled, children, ...props }) => {
   return (
     <button
       {...props}

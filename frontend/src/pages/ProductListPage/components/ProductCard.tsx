@@ -20,11 +20,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   };
 
   return (
-    <Link to={`/${product.category.slug}/${product.slug}`} data-testid={`product-${toKebabCase(product.name)}`}>
+    <Link
+      to={`/${product.category.slug}/${product.slug}`}
+      data-testid={`product-${toKebabCase(product.name)}`}
+    >
       <figure className="group cursor-pointer border border-transparent p-4 transition-all duration-300 ease-in-out hover:border-neutral-100 hover:shadow-[0_4px_35px_0_rgba(168,172,176,0.19)]">
         <div className="relative">
           <img
-            className={`mb-5 aspect-square w-full object-contain ${outOfStock?  "grayscale" : ""}`}
+            className={`mb-5 aspect-square w-full object-contain ${outOfStock ? "grayscale" : ""}`}
             src={product.mainImage}
             alt={`${product.name}-main-image`}
             loading="lazy"

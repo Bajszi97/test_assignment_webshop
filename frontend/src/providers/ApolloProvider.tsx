@@ -13,4 +13,3 @@ const client = new ApolloClient({
 export const ApolloProvider: React.FC<PropsWithChildren> = ({ children }) => {
   return <AP client={client}>{children}</AP>;
 };
-

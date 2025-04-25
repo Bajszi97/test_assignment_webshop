@@ -15,4 +15,3 @@ export const ProductListSkeleton: React.FC = () => {
     </div>
   );
 };
-

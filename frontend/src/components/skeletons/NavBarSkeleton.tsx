@@ -10,4 +10,3 @@ export const NavBarSkeleton: React.FC = () => {
     </div>
   );
 };
-
