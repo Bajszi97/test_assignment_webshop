@@ -6,7 +6,7 @@ services:
     container_name: php_backend
     build:
       context: ./backend
-    working_dir: /var/www/html
+    working_dir: /var/www/backend
     depends_on:
       - mysql
     networks:
